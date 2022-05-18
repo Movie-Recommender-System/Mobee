@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    mileage = models.IntegerField()
-    age = models.IntegerField()
+    mileage = models.IntegerField(default=0)
+    # age = models.IntegerField()
 
 
 class Item(models.Model):
