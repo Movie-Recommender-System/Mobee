@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     mileage = models.IntegerField(default=0)
-    # age = models.IntegerField()
 
 
 class Item(models.Model):
@@ -12,4 +11,11 @@ class Item(models.Model):
     content = models.CharField(max_length=100)
     price = models.IntegerField()
     photo_url = models.URLField()
-    bought_users = models.ManyToManyField(User, related_name='bought_items')
+    purchased_users = models.ManyToManyField(User, through='PurchaseList', related_name='inventory')
+
+
+class PurchaseList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
