@@ -85,14 +85,32 @@ def user_recommendation(request, user_pk):
     pass
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'POST'])
 def movie_detail_or_wish_movie(request, movie_pk):
+    user = request.user
+    print(user)
     movie = get_object_or_404(Movie, pk=movie_pk)
+
     def movie_detail():
         serializer = MovieSerializer(movie)
-        return Response(serializer.data)
+        data = serializer.data
+        if movie.wished_users.filter(pk=user.pk).exists():
+            data['is_wished'] = True
+        else:
+            data['is_wished'] = False
+        return Response(data)
+
     if request.method == 'GET':
         return movie_detail()
+    
+    elif request.method == 'PUT':
+        if movie.wished_users.filter(pk=user.pk).exists():
+            movie.wished_users.remove(user)    
+        else:
+            movie.wished_users.add(user)
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+
 
 
 def create_review(request, movie_pk):

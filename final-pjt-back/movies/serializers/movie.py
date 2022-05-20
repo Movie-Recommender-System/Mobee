@@ -58,14 +58,25 @@ class MovieSerializer(serializers.ModelSerializer):
         }
         path = f'/movie/{movie.pk}/credits'
         data = requests.get(BASE_URL+path, params = params).json()
+        cnt = 0
+        # 영화 배우 5명
         for cast in data['cast']:
+            if cnt == 5:
+                break
             if cast['profile_path']:
-                actor = {'name':cast['name'], 'profile_path':cast['profile_path']}
+                cnt += 1
+                actor = {
+                    'name':cast['name'], 
+                    'profile_path':cast['profile_path'], 
+                    'character':cast['character']
+                }
                 credits['actors'].append(actor)
+        # 감독 1명        
         for crew in data['crew']:
             if crew['profile_path']:
                 director = {'name':crew['name'], 'profile_path':crew['profile_path']}
                 credits['directors'].append(director)
+                break
         return credits
 
     class Meta:
