@@ -13,7 +13,15 @@ def profile(request, username):
     user = get_object_or_404(User, username=username)
     serializer = ProfileSerializer(user)
     return Response(serializer.data)
-
+    
+# 좋아하는 장르 출력
+# genres = {}
+# for genre in Genre.objects.all():
+#     genres[genre.name] = 0
+# user = request.user
+# for review in Review.objects.filter(user=user):
+#     for movie_genre in review.movie.genres.all():
+#         genres[movie_genre.name] += review.score - 3
 
 def shop(request, username):
     pass
