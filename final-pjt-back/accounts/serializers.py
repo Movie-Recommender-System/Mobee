@@ -3,19 +3,28 @@ from django.contrib.auth import get_user_model
 from movies.models import Genre, Movie, Review
 
 
-class ProfileSerializer(serializers.ModelSerializer):
 
-    class ReviewSerializer(serializers.ModelSerializer):
-        like_count = serializers.IntegerField(source='like_users.count', read_only=True)
-        class Meta:
-            model = Review
-            fields = ('pk', 'movie', 'content', 'score', 'like_count')
+class ProfileSerializer(serializers.ModelSerializer):
 
     class MovieSerializer(serializers.ModelSerializer):
         
         class Meta:
             model = Movie
             fields = ('pk', 'title', 'poster_path')
+
+    class ReviewSerializer(serializers.ModelSerializer):
+        class MovieSerializer(serializers.ModelSerializer):
+
+            class Meta:
+                model = Movie
+                fields = ('pk', 'title',)
+        
+        movie = MovieSerializer()
+        like_count = serializers.IntegerField(source='like_users.count', read_only=True)
+
+        class Meta:
+            model = Review
+            fields = ('pk', 'movie', 'content', 'score', 'like_count')
 
     wish_movie_list = MovieSerializer(many=True)
     reviews = ReviewSerializer(many=True)
