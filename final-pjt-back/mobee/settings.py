@@ -160,7 +160,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         # 모두에게 허용
-        'rest_framework.permissions.AllowAny', 
+        #'rest_framework.permissions.AllowAny', 
         # @permission_classes([IsAuthenticated]) 이걸 달아준다!!
         # permission_classes = [IsAuthenticated] 이걸 넣어놔도 된다.
 
