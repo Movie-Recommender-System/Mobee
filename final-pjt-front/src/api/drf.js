@@ -1,8 +1,10 @@
-const HOST = 'http://localhost:8080/api/v1/'
+const HOST = 'http://localhost:8080/'
 
 const ACCOUNTS = 'accounts/'
 const ARTICLES = 'articles/'
 const COMMENTS = 'comments/'
+const MOVIES = 'movies/'
+const REVIEWS = 'reviews/'
 
 export default {
   accounts: {
@@ -24,4 +26,13 @@ export default {
     comment: (articlePk, commentPk) =>
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
   },
+  movies: {
+    createMovies: () => HOST + MOVIES + 'create/',
+    recentMovies: () => HOST + MOVIES + 'list/' + 'recent',
+    wishedMovies: () => HOST + MOVIES + 'list/' + 'wish',
+    recommendMovies: () => HOST + MOVIES +'recommendation/',
+    movie: () => HOST + MOVIES + `${moviePK}/`,
+    reviews: () => HOST + MOVIES + `${moviePK}/` + REVIEWS,
+    review: () => HOST + MOVIES + `${moviePK}/` + REVIEWS + `${reviewPK}/`,
+  }
 }
