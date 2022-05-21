@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h3>CommunitySearchList</h3>
+    <h3>MileageShopView</h3>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CommunitySearchList',  
+  name: 'MileageShopView',  
 }
 </script>
 

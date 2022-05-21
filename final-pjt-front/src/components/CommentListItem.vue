@@ -5,8 +5,9 @@
 </template>
 
 <script>
+
 export default {
-  name: 'abc',  
+  name: 'CommentListItem',
 }
 </script>
 

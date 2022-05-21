@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h3>MovieSearch</h3>
+    <h3>ArticleCreateModal</h3>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MovieSearch',  
+  name: 'ArticleCreateModal',
 }
 </script>
 

@@ -28,7 +28,7 @@ export default {
     SET_ARTICLE_COMMENTS: (state,comments) => (state.article.comments = comments),
   },
 
-  artions: {
+  actions: {
 
     // 게시글 목록 받아오기 (GET: articles URL (token))
 
@@ -227,16 +227,5 @@ export default {
           .catch(err => console.error(err.response))
       }
     }
-
-    
-    
-
-
-
-
-
-
-
-
   }
 }

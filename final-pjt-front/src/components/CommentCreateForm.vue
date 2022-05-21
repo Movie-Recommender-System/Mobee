@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h3>MovieSearchList</h3>
+    <h3>CommentCreateForm</h3>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MovieSearchList',  
+  name: 'CommentCreateForm',  
 }
 </script>
 

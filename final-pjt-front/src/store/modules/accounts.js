@@ -27,10 +27,10 @@ export default {
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
-    LOGOUT (state, token) {
-      localStorage.removeItem('token')
-      location.reload();
-    }
+    // LOGOUT (state, token) {
+    //   localStorage.removeItem('token')
+    //   location.reload();
+    // }
   },
 
   actions: {

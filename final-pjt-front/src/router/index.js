@@ -1,55 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import IntroView from '../views/IntroView.vue'
+
 import SignupView from '../views/SignupView.vue'
 import LoginView from '../views/LoginView.vue'
-import CommunitySearchView from '../views/CommunitySearchView.vue'
-import CommunityView from '../views/CommunityView.vue'
-import IntroView from '../views/IntroView.vue'
-import MilelageShopView from '../views/MilelageShopView.vue'
-import MovieDetailView from '../views/MovieDetailView.vue'
-import MovieHomeView from '../views/HomeView.vue'
-import MovieSearchView from '../views/MovieSearchView.vue'
 import ProfileView from '../views/ProfileView.vue'
-import NotFound404 from '../views/NotFound404.vue'
+import MileageShopView from '../views/MileageShopView.vue'
 
+import MovieHomeView from '../views/MovieHomeView.vue'
+import ArticleListView from '../views/ArticleListView'
+
+import NotFound404 from '../views/NotFound404.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: 'communitySearch/',
-    name: 'communitySearch',
-    component: CommunitySearchView
-  },
-  {
-    path: 'community/',
-    name: 'community',
-    component: CommunityView
-  },
   {
     path: '/',
     name: 'intro',
     component: IntroView
   },
   {
-    path: 'movieDetail/',
-    name: 'movieDetail',
-    component: MovieDetailView
+    path: 'article/',
+    name: 'article',
+    component: ArticleListView
   },
+
   {
-    path: 'movieSearch/',
-    name: 'movieSearch',
-    component: MovieSearchView
-  },
-  {
-    path: 'movieHome/',
-    name: 'movieHome',
+    path: 'movie/',
+    name: 'movie',
     component: MovieHomeView
   },
   {
-    path: 'milelageShop/',
-    name: 'milelageShop',
-    component: MilelageShopView
+    path: 'mileageShop/',
+    name: 'mileageShop',
+    component: MileageShopView
   },
   {
     path: 'profile/',

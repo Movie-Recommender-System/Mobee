@@ -31,8 +31,8 @@ export default {
     recentMovies: () => HOST + MOVIES + 'list/' + 'recent',
     wishedMovies: () => HOST + MOVIES + 'list/' + 'wish',
     recommendMovies: () => HOST + MOVIES +'recommendation/',
-    movie: () => HOST + MOVIES + `${moviePK}/`,
-    reviews: () => HOST + MOVIES + `${moviePK}/` + REVIEWS,
-    review: () => HOST + MOVIES + `${moviePK}/` + REVIEWS + `${reviewPK}/`,
+    movie: moviePK => HOST + MOVIES + `${moviePK}/`,
+    reviews: moviePK => HOST + MOVIES + `${moviePK}/` + REVIEWS,
+    review: (moviePK, reviewPK) => HOST + MOVIES + `${moviePK}/` + REVIEWS + `${reviewPK}/`,
   }
 }
