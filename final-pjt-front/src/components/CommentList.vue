@@ -1,17 +1,18 @@
 <template>
   <div>
     <h3>CommentList</h3>
-    <CommentForm/>
+    <CommentCreateForm/>
     <CommentListItem/>
   </div>
 </template>
 
 <script>
-import CommentListItem from 'CommentListItem'
-import CommentForm from 'CommentForm'
+import CommentListItem from './CommentListItem.vue'
+import CommentCreateForm from './CommentCreateForm.vue'
+
 export default {
   name: 'CommentList',  
-  components: { CommentListItem, CommentForm },
+  components: { CommentListItem, CommentCreateForm },
 }
 </script>
 

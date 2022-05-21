@@ -1,13 +1,16 @@
 <template>
   <div>
     <h3>ReviewListItem</h3>
-    <ReviewListView/>
+    <MovieDetailModal/>
   </div>
 </template>
 
 <script>
+import MovieDetailModal from './MovieDetailModal.vue'
+
 export default {
-  name: 'ReviewListItem',  
+  name: 'ReviewListItem',
+  components: { MovieDetailModal },
 }
 </script>
 
