@@ -13,6 +13,7 @@ class ReviewSerializer(serializers.ModelSerializer):
             model = User
             fields = ('pk', 'username')
     
+    score = serializers.IntegerField(max_value=5, min_value=1)  # 범위 지정 1,2,3,4,5
     user = UserSerializer(read_only=True)
     like_users = UserSerializer(read_only=True, many=True)
     like_count = serializers.IntegerField(source='like_users.count', read_only=True)

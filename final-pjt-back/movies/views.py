@@ -1,13 +1,17 @@
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.contrib.auth import get_user_model
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
 import requests
-from .models import Movie, Genre, Review
-from .serializers.movie import MovieCreateSerializer, MovieSerializer, MovieListSerializer, GenreSerializer
-from django.db.models import Count, Avg
+
+from django.shortcuts import get_object_or_404, get_list_or_404
+from django.db.models import Count
+from django.contrib.auth import get_user_model
+
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+
+from .serializers.review import ReviewSerializer
+from .serializers.movie import MovieCreateSerializer, MovieSerializer, MovieListSerializer, GenreSerializer
+from .models import Movie, Genre, Review
 
 User = get_user_model()
 
@@ -21,7 +25,7 @@ params = {
 @permission_classes([IsAdminUser])      # 관리자만 가능!!
 def movie_create(request):
     # 영화 DB 초기 설정(genres와 popular_movies tmdb에서 받아오기)
-
+    add_data = {'genres':[], 'movies':[]}
     # tmdb 장르 받아오기
     path = '/genre/movie/list'
     genres = requests.get(BASE_URL+path, params = params).json()['genres']
@@ -31,13 +35,15 @@ def movie_create(request):
         if Genre.objects.all().filter(name=genre['name']).exists():
             continue
         genres_data.append({'name' : genre['name']})
-    
+        add_data['gernes'].append({'name': genre['name']})
+
     serializer = GenreSerializer(data=genres_data, many=True)
     if serializer.is_valid(raise_exception=True):
         serializer.save()       # 장르 저장
 
-    # tmdb 영화 인기 영화 6 page 받아오기(한국 번역 트레일러 없는 영화 제외)
-    for page in range(1, 7):
+    # tmdb 영화 인기 영화 5 page 받아오기(한국 번역 트레일러 없는 영화 제외)
+
+    for page in range(1, 8):
         popular_params = {
             'api_key': '0092d2cc473c39e4782f65d37de965bd',
             'region': 'KR',
@@ -69,6 +75,7 @@ def movie_create(request):
                 'poster_path' : f'https://image.tmdb.org/t/p/w500{movie["poster_path"]}',
                 'video_path' : f'http://www.youtube.com/watch?v={video_key}'
             }
+            add_data['movies'].append({'id': movie['id'], 'title': movie['title']})
             serializer = MovieCreateSerializer(data=movie_data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()       # 영화 저장
@@ -80,7 +87,7 @@ def movie_create(request):
             for genre in genres:
                 genre_data = get_object_or_404(Genre, name=genre['name'])
                 genre_data.movies.add(movie_data)       # 영화와 장르 연결
-    return Response(['movie create success'])
+    return Response(add_data)   # 추가된 장르와 영화 정보 출력
 
 
 @api_view(['GET'])
@@ -145,7 +152,7 @@ def recommendation(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticatedOrReadOnly])
+@permission_classes([IsAuthenticatedOrReadOnly])    # 영화 조회는 아무나, 찜 누르기는 인증된 유저만
 def movie_detail_wish_movie(request, movie_pk):
     user = request.user
     movie = get_object_or_404(Movie, pk=movie_pk)       # 영화가 있어야 한다.
@@ -169,10 +176,24 @@ def movie_detail_wish_movie(request, movie_pk):
         wish()
         return detail()
 
-
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
-    pass
+    user = request.user
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    
+    serializer = ReviewSerializer(data=request.data)
+
+    if movie.reviews.filter(user=user).exists():
+        return Response(["이 영화에 남긴 리뷰가 있습니다."])     # 이미 영화에 남긴 리뷰가 있으면 작성 X
+
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(movie=movie, user=user)
+
+        reviews = movie.reviews.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-def create_review_update_or_delete(request, movie_pk, review_pk):
+def review_update_or_delete(request, movie_pk, review_pk):
     pass
