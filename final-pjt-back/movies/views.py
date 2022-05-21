@@ -1,6 +1,6 @@
 import requests
 
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.contrib.auth import get_user_model
 
@@ -176,6 +176,7 @@ def movie_detail_wish_movie(request, movie_pk):
         wish()
         return detail()
 
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
@@ -185,7 +186,7 @@ def create_review(request, movie_pk):
     serializer = ReviewSerializer(data=request.data)
 
     if movie.reviews.filter(user=user).exists():
-        return Response(["이 영화에 남긴 리뷰가 있습니다."])     # 이미 영화에 남긴 리뷰가 있으면 작성 X
+        return Response(["이 영화에 남긴 리뷰가 존재합니다."], status=status.HTTP_405_METHOD_NOT_ALLOWED)     # 이미 영화에 남긴 리뷰가 있으면 작성 X
 
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=user)
@@ -195,5 +196,34 @@ def create_review(request, movie_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def review_update_or_delete(request, movie_pk, review_pk):
-    pass
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    review = get_object_or_404(Review, pk=review_pk)
+    def update_review():
+        if request.user == review.user:
+            serializer = ReviewSerializer(instance=review, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                reviews = movie.reviews.all()
+                serializer = ReviewSerializer(reviews, many=True)
+                return Response(serializer.data)
+        else:
+            return Response(["작성한 사용자만 수정 권한이 있습니다."], status=status.HTTP_403_FORBIDDEN)
+
+    def delete_review():
+        if request.user == review.user or request.user.is_staff == 1:   # 작성한 사용자나 관리지만 제거
+            review.delete()
+            reviews = movie.reviews.all()
+            serializer = ReviewSerializer(reviews, many=True)
+            return Response(serializer.data)
+        else:
+            return Response(["관리자나 작성한 사용자만 삭제할 권한이 있습니다."], status=status.HTTP_403_FORBIDDEN)
+    
+    if not movie.reviews.filter(pk=review.pk).exists():
+        return Response(["사용자가 이 영화에 작성한 리뷰가 없습니다."], status=status.HTTP_404_NOT_FOUND)
+    elif request.method == 'PUT':
+        return update_review()
+    elif request.method == 'DELETE':
+        return delete_review()
