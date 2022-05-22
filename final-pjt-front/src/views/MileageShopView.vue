@@ -5,9 +5,9 @@
 </template>
 
 <script>
-export default {
-  name: 'MileageShopView',  
-}
+  export default {
+    name: 'MileageShopView',  
+  }
 </script>
 
 <style>

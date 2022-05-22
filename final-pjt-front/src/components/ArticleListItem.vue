@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import ArticleDetailModal from './ArticleDetailModal.vue'
-export default {
-  name: 'ArticleListItem',
-  components: { ArticleDetailModal },
-}
+  import ArticleDetailModal from './ArticleDetailModal.vue'
+  export default {
+    name: 'ArticleListItem',
+    components: { ArticleDetailModal },
+  }
 </script>
 
 <style>

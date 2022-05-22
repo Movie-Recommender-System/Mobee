@@ -5,10 +5,10 @@
 </template>
 
 <script>
-export default {
-  name: "IntroView",
+  export default {
+    name: "IntroView",
 
-}
+  }
 </script>
 
 <style>

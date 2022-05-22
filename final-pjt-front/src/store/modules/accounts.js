@@ -4,8 +4,6 @@ import drf from '@/api/drf'
 
 
 export default {
-  // namespaced: true,
-
   // state는 직접 접근하지 않겠다!
   state: {
     token: localStorage.getItem('token') || '' ,
@@ -27,10 +25,6 @@ export default {
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
-    // LOGOUT (state, token) {
-    //   localStorage.removeItem('token')
-    //   location.reload();
-    // }
   },
 
   actions: {
@@ -71,7 +65,7 @@ export default {
           const token = res.data.key
           dispatch('saveToken', token)
           dispatch('fetchCurrentUser')
-          router.push({ name: 'movieHome' })
+          router.push({ name: 'movie' })
         })
         .catch(err => {
           console.error(err.response.data)
@@ -98,7 +92,7 @@ export default {
           const token = res.data.key
           dispatch('saveToken', token)
           dispatch('fetchCurrentUser')
-          router.push({ name: 'intro' })
+          router.push({ name: 'movie' })
         })
         .catch(err => {
           console.error(err.response.data)
@@ -106,34 +100,29 @@ export default {
         })
     },
 
-    // logout({ getters, dispatch }) {
-    //   /* 
-    //   POST: token을 logout URL로 보내기
-    //     성공하면
-    //       토큰 삭제
-    //       사용자 알람
-    //       LoginView로 이동
-    //     실패하면
-    //       에러 메시지 표시
-    //   */
-    //   axios({
-    //     url: drf.accounts.logout(),
-    //     method: 'post',
-    //     // data: {},
-    //     headers: getters.authHeader,
-    //   })
-    //     .then(() => {
-    //       dispatch('removeToken')
-    //       alert('성공적으로 logout!')
-    //       router.push({ name: 'login' })
-    //     })
-    //     .error(err => {
-    //       console.error(err.response)
-    //     })
-    // },
-    
-    logout({ commit }) {
-      commit('LOGOUT')
+    logout({ getters, dispatch }) {
+      /* 
+      POST: token을 logout URL로 보내기
+        성공하면
+          토큰 삭제
+          사용자 알람
+          LoginView로 이동
+        실패하면
+          에러 메시지 표시
+      */
+      axios({
+        url: drf.accounts.logout(),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(() => {
+          dispatch('removeToken')
+          alert('성공적으로 logout!')
+          router.push({ name: 'movie' })
+        })
+        .error(err => {
+          console.error(err.response)
+        })
     },
 
     fetchCurrentUser({ commit, getters, dispatch }) {
@@ -141,7 +130,7 @@ export default {
       GET: 사용자가 로그인 했다면(토큰이 있다면)
         currentUserInfo URL로 요청보내기
           성공하면
-            state.cuurentUser에 저장
+            state.currentUser에 저장
           실패하면(토큰이 잘못되었다면)
             기존 토큰 삭제
             LoginView로 이동
@@ -168,7 +157,6 @@ export default {
         성공하면
           state.profile에 저장
       */
-          console.log(drf.accounts.profile(username))
       axios({
         url: drf.accounts.profile(username),
         method: 'get',
@@ -176,6 +164,9 @@ export default {
       })
         .then(res => {
           commit('SET_PROFILE', res.data)
+        })
+        .error(err => {
+          console.error(err.response)
         })
     },
   },

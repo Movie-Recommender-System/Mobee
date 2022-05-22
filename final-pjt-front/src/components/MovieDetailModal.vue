@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import ReviewList from './ReviewList.vue'
+  import ReviewList from './ReviewList.vue'
 
-export default {
-  name: 'MovieDetailModal',
-  components: { ReviewList },
-}
+  export default {
+    name: 'MovieDetailModal',
+    components: { ReviewList },
+  }
 </script>
 
 <style>

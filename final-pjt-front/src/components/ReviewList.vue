@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import ReviewListItem from './ReviewListItem.vue'
+  import ReviewListItem from './ReviewListItem.vue'
 
-export default {
-  name: 'ReviewList',  
-  components: { ReviewListItem },
-}
+  export default {
+    name: 'ReviewList',  
+    components: { ReviewListItem },
+  }
 </script>
 
 <style>

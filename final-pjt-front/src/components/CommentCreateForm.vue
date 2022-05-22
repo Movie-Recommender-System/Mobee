@@ -5,9 +5,9 @@
 </template>
 
 <script>
-export default {
-  name: 'CommentCreateForm',  
-}
+  export default {
+    name: 'CommentCreateForm',  
+  }
 </script>
 
 <style>

@@ -5,9 +5,9 @@
 </template>
 
 <script>
-export default {
-  name: 'ProfileView',  
-}
+  export default {
+    name: 'ProfileView',  
+  }
 </script>
 
 <style>

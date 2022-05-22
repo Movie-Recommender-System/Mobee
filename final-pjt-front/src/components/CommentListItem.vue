@@ -6,9 +6,9 @@
 
 <script>
 
-export default {
-  name: 'CommentListItem',
-}
+  export default {
+    name: 'CommentListItem',
+  }
 </script>
 
 <style>

@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import CommentListItem from './CommentListItem.vue'
-import CommentCreateForm from './CommentCreateForm.vue'
+  import CommentListItem from './CommentListItem.vue'
+  import CommentCreateForm from './CommentCreateForm.vue'
 
-export default {
-  name: 'CommentList',  
-  components: { CommentListItem, CommentCreateForm },
-}
+  export default {
+    name: 'CommentList',  
+    components: { CommentListItem, CommentCreateForm },
+  }
 </script>
 
 <style>

@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import MovieList from '@/components/MovieList.vue'
+  import MovieList from '@/components/MovieList.vue'
 
-export default {
-  name: 'MovieHomeView',
-  components: { MovieList },
-}
+  export default {
+    name: 'MovieHomeView',
+    components: { MovieList },
+  }
 </script>
 
 <style>
