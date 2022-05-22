@@ -43,7 +43,7 @@ def movie_create(request):
 
     # tmdb 영화 인기 영화 5 page 받아오기(한국 번역 트레일러 없는 영화 제외)
 
-    for page in range(1, 8):
+    for page in range(1, 6):
         popular_params = {
             'api_key': '0092d2cc473c39e4782f65d37de965bd',
             'region': 'KR',
