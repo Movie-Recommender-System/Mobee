@@ -55,3 +55,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ('pk', 'username', 'wish_movie_list', 'reviews', 'preferred_genres', 'mileage')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = get_user_model()
+        fields = ('pk', 'username', 'is_staff')
