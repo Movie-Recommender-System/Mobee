@@ -14,7 +14,9 @@ export default {
     movie: state => state.movie,
   },
   mutations: {
-
+    SET_MOVIES: (state, movies) => state.movies = movies,
+    SET_MOVIE: (state, movie) => state.movie = movie,
+    NEW_MOVIES: (state, new_movies) => state.new_movies = new_movies,
   },
   actions: {
     fetchMovies({ commit, getters }, kind) {
@@ -64,7 +66,7 @@ export default {
         })
     },
 
-    wishMovie( {commit, getters }) {
+    wishMovie( { commit, getters }) {
       axios({
         url: drf.articles.movie(),
         method: 'post',
@@ -74,7 +76,7 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    createReview({ commit, getters }, { moviePk, content }) {
+    createReview({ dispatch, getters }, { moviePk, content }) {
       const review = { content }
 
       axios({
@@ -83,13 +85,11 @@ export default {
         data: review,
         headers: getters.authHeader,
       })
-        .then(res => {
-          commit('SET_MOVIE_REVIEW', res.data)
-        })
+        .then(() => dispatch('fetchMovie'))
         .catch(err => console.error(err.response))
     },
 
-    updateReview({ commit, getters }, { moviePk, reviewPk, content }) {
+    updateReview({ dispatch, getters }, { moviePk, reviewPk, content }) {
       const review = { content }
 
       axios({
@@ -98,13 +98,11 @@ export default {
         data: review,
         headers: getters.authHeader,
       })
-        .then(res => {
-          commit('SET_ARTICLE_COMMENTS', res.data)
-        })
+        .then(() => dispatch('fetchMovie'))
         .catch(err => console.error(err.response))
     },
 
-    deleteReview({ commit, getters }, { moviePk, reviewPk }) {
+    deleteReview({ dispatch, getters }, { moviePk, reviewPk }) {
       if (confirm('정말 삭제하시겠습니까?')) {
         axios({
           url: drf.articles.comment(moviePk, reviewPk),
@@ -112,9 +110,7 @@ export default {
           data: {},
           headers: getters.authHeader,
         })
-          .then(res => {
-            commit('SET_ARTICLE_COMMENTS', res.data)
-          })
+          .then(() => dispatch('fetchMovie'))
           .catch(err => console.error(err.response))
       }
     },
