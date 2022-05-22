@@ -7,7 +7,7 @@ import LoginView from '../views/LoginView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import MileageShopView from '../views/MileageShopView.vue'
 
-import MovieHomeView from '../views/MovieHomeView.vue'
+import MovieListView from '../views/MovieListView.vue'
 import ArticleListView from '../views/ArticleListView'
 
 import NotFound404 from '../views/NotFound404.vue'
@@ -29,7 +29,7 @@ const routes = [
   {
     path: 'movie/',
     name: 'movie',
-    component: MovieHomeView
+    component: MovieListView
   },
   {
     path: 'mileageShop/',
