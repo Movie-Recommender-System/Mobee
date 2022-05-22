@@ -67,14 +67,14 @@ class MovieSerializer(serializers.ModelSerializer):
                 cnt += 1
                 actor = {
                     'name':cast['name'], 
-                    'profile_path':cast['profile_path'], 
+                    'profile_path':f'https://image.tmdb.org/t/p/w500{cast["profile_path"]}', 
                     'character':cast['character']
                 }
                 credits['actors'].append(actor)
         # 감독 1명        
         for crew in data['crew']:
             if crew['profile_path']:
-                director = {'name':crew['name'], 'profile_path':crew['profile_path']}
+                director = {'name':crew['name'], 'profile_path':f'https://image.tmdb.org/t/p/w500{crew["profile_path"]}'}
                 credits['directors'].append(director)
                 break
         return credits
