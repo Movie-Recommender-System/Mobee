@@ -1,26 +1,43 @@
 <template>
-  <div class="col">
+  <div @click="open" class="col">
     <div class="card h-100">
-      <img :src="movie.poster_path" class="card-img-top img-thumbnail rounded" :alt="`${movie.title} poster img`">
+      <img :src="movie.poster_path" class="card-img-top img-thumbnail rounded" alt="poster img">
       <div class="card-body">
         <h5 class="card-title">{{ movie.title }}</h5>
         <h4>wished_count:{{ movie.wished_count }}</h4>
-        <MovieDetailModal>
-        </MovieDetailModal>
       </div>
       <div class="card-footer">
         <small class="text-muted">{{ movie.release_date }}</small>
       </div>
     </div>
+
+    <modal :name='movie.title' height="auto" width="70%">
+      <MovieDetail/>
+    </modal>
   </div> 
 </template>
 
 <script>
-  import MovieDetailModal from './MovieDetailModal.vue'
+  import MovieDetail from './MovieDetail.vue'
+  import Vue from 'vue'
+  import VModal from 'vue-js-modal'
+  import 'vue-js-modal/dist/styles.css'
+  import { mapActions } from 'vuex'
+
+  //componentName: 'Modal'}, 
+  Vue.use(VModal)
+
   export default {
     name: 'MovieListItem',
     props: { movie: Object },
-    components: { MovieDetailModal },
+    components: { MovieDetail },
+    methods: {
+      ...mapActions(['fetchMovie']),
+      open () {
+        this.fetchMovie(this.movie.pk)
+        this.$modal.show(this.movie.title)
+      }
+    }
   }
 </script>
 
