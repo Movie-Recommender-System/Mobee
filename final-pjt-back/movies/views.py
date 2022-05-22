@@ -32,10 +32,13 @@ def movie_create(request):
     genres_data = []
     for genre in genres:
         # 중복 장르는 제외!
-        if Genre.objects.all().filter(name=genre['name']).exists():
+        if Genre.objects.all().filter(pk=genre['id']).exists():
             continue
-        genres_data.append({'name' : genre['name']})
-        add_data['gernes'].append({'name': genre['name']})
+        genres_data.append({
+            'pk' : genre['id'],
+            'name' : genre['name']
+        })
+        add_data['genres'].append({'id' : genre['id'], 'name' : genre['name']})
 
     serializer = GenreSerializer(data=genres_data, many=True)
     if serializer.is_valid(raise_exception=True):
@@ -80,12 +83,10 @@ def movie_create(request):
             if serializer.is_valid(raise_exception=True):
                 serializer.save()       # 영화 저장
             
+            movie_data = get_object_or_404(Movie, pk=movie["id"])
             # 영화와 장르 연결하기
-            movie_data = get_object_or_404(Movie, pk=movie['id'])
-            path = f'/movie/{movie["id"]}'
-            genres = requests.get(BASE_URL+path, params = params).json()['genres']
-            for genre in genres:
-                genre_data = get_object_or_404(Genre, name=genre['name'])
+            for genre_id in movie['genre_ids']:
+                genre_data = get_object_or_404(Genre, pk=genre_id)
                 genre_data.movies.add(movie_data)       # 영화와 장르 연결
     return Response(add_data)   # 추가된 장르와 영화 정보 출력
 
@@ -144,7 +145,7 @@ def recommendation(request):
     for v, idx in scores:
         if cnt == 10:           # 10개 이하로 출력
             break
-        if v < 0:               # 추천도가 0보다 작아지면 종료
+        if v <= 0:               # 추천도가 0 이하면 종료
             break
         cnt += 1
         result_data.append(data[idx])
