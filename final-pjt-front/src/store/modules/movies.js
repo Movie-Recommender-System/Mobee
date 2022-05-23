@@ -39,11 +39,27 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    fetchMovie({ commit }, moviePK) {
-      axios({
-        url: drf.movies.movie(moviePK),
-        method: 'get',
-      })
+    fetchMovie({ commit, getters }, moviePK) {
+      // 로그인 한 경우 찜했는지 여부가 다르다!
+      if (getters.isLoggedIn) {
+        axios({
+          url: drf.movies.movie(moviePK),
+          method: 'get',
+          headers: getters.authHeader,
+        })
+          .then(res => commit('SET_MOVIE', res.data))
+          .catch(err => {
+            console.error(err.response)
+            if (err.response.status === 404) {
+              router.push({ name: 'NotFound404' })
+            }
+          })
+      // 로그인하지 않은 경우
+      } else {
+        axios({
+          url: drf.movies.movie(moviePK),
+          method: 'get',
+        })
         .then(res => commit('SET_MOVIE', res.data))
         .catch(err => {
           console.error(err.response)
@@ -51,11 +67,12 @@ export default {
             router.push({ name: 'NotFound404' })
           }
         })
+      }
     },
 
     createMovies({ commit, getters }) {
       axios({
-        url: drf.articles.createMovie(),
+        url: drf.movies.createMovie(),
         method: 'post',
         headers: getters.authHeader,
       })
@@ -66,9 +83,9 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    wishMovie( { commit, getters }) {
+    wishMovie( { commit, getters }, moviePK) {
       axios({
-        url: drf.articles.movie(),
+        url: drf.movies.movie(moviePK),
         method: 'post',
         headers: getters.authHeader,
       })
@@ -80,7 +97,7 @@ export default {
       const review = { content }
 
       axios({
-        url: drf.articles.comments(moviePk),
+        url: drf.movies.comments(moviePk),
         method: 'post',
         data: review,
         headers: getters.authHeader,
@@ -93,7 +110,7 @@ export default {
       const review = { content }
 
       axios({
-        url: drf.articles.comment(moviePk, reviewPk),
+        url: drf.movies.comment(moviePk, reviewPk),
         method: 'put',
         data: review,
         headers: getters.authHeader,
@@ -105,7 +122,7 @@ export default {
     deleteReview({ dispatch, getters }, { moviePk, reviewPk }) {
       if (confirm('정말 삭제하시겠습니까?')) {
         axios({
-          url: drf.articles.comment(moviePk, reviewPk),
+          url: drf.movies.comment(moviePk, reviewPk),
           method: 'delete',
           data: {},
           headers: getters.authHeader,

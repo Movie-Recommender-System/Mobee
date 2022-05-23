@@ -2,7 +2,21 @@
   <div v-if="movie.credits">
     <img class="window-header" :src="movie.poster_path" alt="poster img">
     <h3 class='text-wrap'>{{ movie.title }}</h3>
-    <p>평점 : 
+    <h4>
+      <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
+        <p>{{ movie.is_wished }}</p>
+        <i v-if="movie.is_wished" class="fa-solid fa-heart"></i>
+        <i v-else class="fa-regular fa-heart"></i>
+      </button>
+      <i v-else class="fa-solid fa-heart"></i>
+      {{ movie.wished_count }}
+    </h4>
+    <p>
+      <i v-if="movie.score_avg > 0.5" class="fa-solid fa-star"></i>
+      <i v-if="movie.score_avg > 1.5" class="fa-solid fa-star"></i>
+      <i v-if="movie.score_avg > 2.5" class="fa-solid fa-star"></i>
+      <i v-if="movie.score_avg > 3.5" class="fa-solid fa-star"></i>
+      <i v-if="movie.score_avg > 4.5" class="fa-solid fa-star"></i>
       <span v-if="movie.score_avg">{{ movie.score_avg }}</span>
       <span v-else class="text-muted">데이터가 없습니다.</span>
     </p>
@@ -41,22 +55,24 @@
         </li>
       </ul>
     </p>
-    <p>찜한 수 : {{ movie.wished_count }}</p>
-    <p>찜 여부 : {{ movie.is_wished }}</p>
-    <ReviewList/>
+
+    <p>리뷰 수 : {{ movie.reviews_count }}</p>
+    <ReviewList :reviews="movie.reviews"/>
+    <ReviewCreateForm/>
   </div>
       
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import ReviewList from './ReviewList.vue'
+  import ReviewCreateForm from './ReviewCreateForm.vue'
 
   export default {
     name: 'MovieDetail',
-    components: { ReviewList },
+    components: { ReviewList, ReviewCreateForm },
     computed: {
-      ...mapGetters(['movie']),
+      ...mapGetters(['movie', 'isLoggedIn']),
       actors() {
         return this.movie.credits.actors
       },
@@ -64,6 +80,10 @@
         return this.movie.credits.directors
       }
     },
+    methods: {
+      ...mapActions(['wishMovie'])
+    }
+    
   }
 </script>
 
