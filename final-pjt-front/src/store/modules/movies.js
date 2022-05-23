@@ -39,11 +39,27 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    fetchMovie({ commit }, moviePK) {
-      axios({
-        url: drf.movies.movie(moviePK),
-        method: 'get',
-      })
+    fetchMovie({ commit, getters }, moviePk) {
+      // 로그인 한 경우 찜했는지 여부가 다르다!
+      if (getters.isLoggedIn) {
+        axios({
+          url: drf.movies.movie(moviePk),
+          method: 'get',
+          headers: getters.authHeader,
+        })
+          .then(res => commit('SET_MOVIE', res.data))
+          .catch(err => {
+            console.error(err.response)
+            if (err.response.status === 404) {
+              router.push({ name: 'NotFound404' })
+            }
+          })
+      // 로그인하지 않은 경우
+      } else {
+        axios({
+          url: drf.movies.movie(moviePk),
+          method: 'get',
+        })
         .then(res => commit('SET_MOVIE', res.data))
         .catch(err => {
           console.error(err.response)
@@ -51,11 +67,12 @@ export default {
             router.push({ name: 'NotFound404' })
           }
         })
+      }
     },
 
     createMovies({ commit, getters }) {
       axios({
-        url: drf.articles.createMovie(),
+        url: drf.movies.createMovie(),
         method: 'post',
         headers: getters.authHeader,
       })
@@ -66,9 +83,9 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    wishMovie( { commit, getters }) {
+    wishMovie( { commit, getters }, moviePk) {
       axios({
-        url: drf.articles.movie(),
+        url: drf.movies.movie(moviePk),
         method: 'post',
         headers: getters.authHeader,
       })
@@ -76,43 +93,79 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    createReview({ dispatch, getters }, { moviePk, content }) {
-      const review = { content }
+    createReview({ dispatch, getters }, { moviePk, content, score }) {
+      const review = { content, score }
 
       axios({
-        url: drf.articles.comments(moviePk),
+        url: drf.movies.reviews(moviePk),
         method: 'post',
         data: review,
         headers: getters.authHeader,
       })
-        .then(() => dispatch('fetchMovie'))
-        .catch(err => console.error(err.response))
+        .then(() => dispatch('fetchMovie', moviePk))
+        .catch(err => {
+          if (err.response.status === 403) {
+            alert(err.response.data)
+          } else {
+            console.error(err.response)
+          }
+        })
     },
 
-    updateReview({ dispatch, getters }, { moviePk, reviewPk, content }) {
-      const review = { content }
+    updateReview({ dispatch, getters }, { moviePk, reviewPk, content, score }) {
+      const review = { content, score }
 
       axios({
-        url: drf.articles.comment(moviePk, reviewPk),
+        url: drf.movies.review(moviePk, reviewPk),
         method: 'put',
         data: review,
         headers: getters.authHeader,
       })
-        .then(() => dispatch('fetchMovie'))
-        .catch(err => console.error(err.response))
+        .then(() => dispatch('fetchMovie', moviePk))
+        .catch(err => {
+          if (err.response.status === 403) {
+            alert(err.response.data)
+          }
+          else if (err.response.status === 401) {
+            alert('로그인 하세요.')
+          } 
+          else {
+            console.error(err.response)
+          }
+        })
     },
 
     deleteReview({ dispatch, getters }, { moviePk, reviewPk }) {
       if (confirm('정말 삭제하시겠습니까?')) {
         axios({
-          url: drf.articles.comment(moviePk, reviewPk),
+          url: drf.movies.review(moviePk, reviewPk),
           method: 'delete',
           data: {},
           headers: getters.authHeader,
         })
-          .then(() => dispatch('fetchMovie'))
-          .catch(err => console.error(err.response))
+          .then(() => dispatch('fetchMovie', moviePk))
+          .catch(err => {
+            if (err.response.status === 403) {
+              alert(err.response.data)
+            } 
+            else if (err.response.status === 401) {
+              alert('로그인 하세요.')
+            } 
+            else {
+              console.error(err.response)
+            }
+          })
       }
+    },
+
+    likeReview( { getters, dispatch }, { reviewPk, moviePk }) {
+      axios({
+        url: drf.movies.likeReview(reviewPk),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(() => dispatch('fetchMovie', moviePk))
+        .catch(err => console.error(err.response))
     },
   },
 }

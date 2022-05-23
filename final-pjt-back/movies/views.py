@@ -164,6 +164,17 @@ def movie_detail_wish_movie(request, movie_pk):
             data['is_wished'] = True
         else:
             data['is_wished'] = False
+        if movie.reviews.filter(user=user.pk).exists():
+            data['is_reviewed'] = True
+        else:
+            data['is_reviewed'] = False
+        idx = 0
+        for review in movie.reviews.all():
+            if review.like_users.filter(pk=user.pk).exists():
+                data['reviews'][idx]['is_liked'] = True
+            else:
+                data['reviews'][idx]['is_liked'] = False
+            idx += 1
         return Response(data)
     def wish():
         if movie.wished_users.filter(pk=user.pk).exists():      # wish movie에 등록되어있다면
@@ -187,7 +198,7 @@ def create_review(request, movie_pk):
     serializer = ReviewSerializer(data=request.data)
 
     if movie.reviews.filter(user=user).exists():
-        return Response(["이 영화에 남긴 리뷰가 존재합니다."], status=status.HTTP_405_METHOD_NOT_ALLOWED)     # 이미 영화에 남긴 리뷰가 있으면 작성 X
+        return Response(["이 영화에 남긴 리뷰가 존재합니다."], status=status.HTTP_403_FORBIDDEN)     # 이미 영화에 남긴 리뷰가 있으면 작성 X
 
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=user)
@@ -223,8 +234,23 @@ def review_update_or_delete(request, movie_pk, review_pk):
             return Response(["관리자나 작성한 사용자만 삭제할 권한이 있습니다."], status=status.HTTP_403_FORBIDDEN)
     
     if not movie.reviews.filter(pk=review.pk).exists():
-        return Response(["사용자가 이 영화에 작성한 리뷰가 없습니다."], status=status.HTTP_404_NOT_FOUND)
+        return Response(["사용자가 이 영화에 작성한 리뷰가 없습니다."], status=status.HTTP_403_FORBIDDEN)
     elif request.method == 'PUT':
         return update_review()
     elif request.method == 'DELETE':
         return delete_review()
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])    # 댓글 좋아요 누르기는 인증된 유저만
+def like_review(request, review_pk):
+    user = request.user
+    review = get_object_or_404(Review, pk=review_pk)       # 리뷰가 있어야 한다.
+
+    if review.like_users.filter(pk=user.pk).exists():
+        review.like_users.remove(user)
+    else:
+        review.like_users.add(user)
+
+    serializer = ReviewSerializer(review)
+    return Response(serializer.data)
