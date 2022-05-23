@@ -25,7 +25,6 @@
   import 'vue-js-modal/dist/styles.css'
   import { mapActions } from 'vuex'
 
-  //componentName: 'Modal'}, 
   Vue.use(VModal)
 
   export default {

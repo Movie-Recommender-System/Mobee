@@ -8,7 +8,7 @@
       <i v-if="review.score == 5" class="fa-solid fa-star"></i>
       <p>내용 : {{ review.content }}</p>
     </div>
-    
+
     <div class="d-flex">
       <div>
         <h4>
@@ -31,24 +31,38 @@
           <li><button class="dropdown-item" type="button"
           @click='deleteReview({moviePk : review.movie, reviewPk : review.pk})'>
           삭제</button></li>
-          <li><button class="dropdown-item" type="button">
+          <li><button class="dropdown-item" type="button" @click="open">
           수정</button></li>
         </ul>
       </div>
     </div>
+    <modal name='updateModal' height="auto" width="50%">
+      <ReviewEditForm :review="review"/>
+    </modal>
   </li>
 </template>
 
 <script>
+  import ReviewEditForm from './ReviewEditForm.vue'
   import { mapGetters, mapActions } from 'vuex'
+  import Vue from 'vue'
+  import VModal from 'vue-js-modal'
+  import 'vue-js-modal/dist/styles.css'
+
+  Vue.use(VModal)
+
   export default {
     name: 'ReviewListItem',
+    components: { ReviewEditForm },
     props: {review: Object },
     computed: {
       ...mapGetters([ 'isLoggedIn' ])
     },
     methods: {
-      ...mapActions([ 'likeReview', 'deleteReview' ])
+      ...mapActions([ 'likeReview', 'deleteReview' ]),
+      open () {
+        this.$modal.show('updateModal')
+      }
     }
   }
 </script>
