@@ -146,7 +146,7 @@ export default {
             if (err.response.status === 401) {
               dispatch('removeToken')
               router.push({ name: 'login' })
-            }
+            } else ( console.error(err.response) )
           })
       }
     },

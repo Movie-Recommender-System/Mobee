@@ -58,7 +58,7 @@
 
     <p>리뷰 수 : {{ movie.reviews_count }}</p>
     <ReviewList :reviews="movie.reviews"/>
-    <ReviewCreateForm/>
+    <ReviewCreateForm :moviePk="movie.pk" />
   </div>
       
 </template>

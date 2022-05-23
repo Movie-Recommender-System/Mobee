@@ -93,21 +93,27 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    createReview({ dispatch, getters }, { moviePk, content }) {
-      const review = { content }
+    createReview({ dispatch, getters }, { moviePk, content, score }) {
+      const review = { content, score }
 
       axios({
-        url: drf.movies.comments(moviePk),
+        url: drf.movies.reviews(moviePk),
         method: 'post',
         data: review,
         headers: getters.authHeader,
       })
-        .then(() => dispatch('fetchMovie'))
-        .catch(err => console.error(err.response))
+        .then(() => dispatch('fetchMovie', moviePk))
+        .catch(err => {
+          if (err.response.status === 405) {
+            alert('이미 남긴 댓글이 존재합니다.')
+          } else {
+            console.error(err.response)
+          }
+        })
     },
 
-    updateReview({ dispatch, getters }, { moviePk, reviewPk, content }) {
-      const review = { content }
+    updateReview({ dispatch, getters }, { moviePk, reviewPk, content, score }) {
+      const review = { content, score }
 
       axios({
         url: drf.movies.comment(moviePk, reviewPk),
@@ -115,7 +121,7 @@ export default {
         data: review,
         headers: getters.authHeader,
       })
-        .then(() => dispatch('fetchMovie'))
+        .then(() => dispatch('fetchMovie', moviePk))
         .catch(err => console.error(err.response))
     },
 
@@ -127,7 +133,7 @@ export default {
           data: {},
           headers: getters.authHeader,
         })
-          .then(() => dispatch('fetchMovie'))
+          .then(() => dispatch('fetchMovie', moviePk))
           .catch(err => console.error(err.response))
       }
     },
