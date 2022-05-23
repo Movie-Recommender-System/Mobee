@@ -198,7 +198,7 @@ def create_review(request, movie_pk):
     serializer = ReviewSerializer(data=request.data)
 
     if movie.reviews.filter(user=user).exists():
-        return Response(["이 영화에 남긴 리뷰가 존재합니다."], status=status.HTTP_405_METHOD_NOT_ALLOWED)     # 이미 영화에 남긴 리뷰가 있으면 작성 X
+        return Response(["이 영화에 남긴 리뷰가 존재합니다."], status=status.HTTP_403_FORBIDDEN)     # 이미 영화에 남긴 리뷰가 있으면 작성 X
 
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=user)
@@ -234,7 +234,7 @@ def review_update_or_delete(request, movie_pk, review_pk):
             return Response(["관리자나 작성한 사용자만 삭제할 권한이 있습니다."], status=status.HTTP_403_FORBIDDEN)
     
     if not movie.reviews.filter(pk=review.pk).exists():
-        return Response(["사용자가 이 영화에 작성한 리뷰가 없습니다."], status=status.HTTP_404_NOT_FOUND)
+        return Response(["사용자가 이 영화에 작성한 리뷰가 없습니다."], status=status.HTTP_403_FORBIDDEN)
     elif request.method == 'PUT':
         return update_review()
     elif request.method == 'DELETE':
