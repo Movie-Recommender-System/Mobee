@@ -232,3 +232,18 @@ def review_update_or_delete(request, movie_pk, review_pk):
         return update_review()
     elif request.method == 'DELETE':
         return delete_review()
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])    # 댓글 좋아요 누르기는 인증된 유저만
+def like_review(request, review_pk):
+    user = request.user
+    review = get_object_or_404(Review, pk=review_pk)       # 리뷰가 있어야 한다.
+
+    if review.like_users.filter(pk=user.pk).exists():
+        review.like_users.remove(user)
+    else:
+        review.like_users.add(user)
+        
+    serializer = ReviewSerializer(review)
+    return Response(serializer.data)
