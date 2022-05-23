@@ -72,7 +72,6 @@
           this.stars = [true, true, true, true, true]
           this.newReview.score = 5
         }
-        console.log(this.moviePk)
       },
       onSubmit() {
         if ( this.newReview.score > 0 ) {

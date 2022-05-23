@@ -4,7 +4,6 @@
     <h3 class='text-wrap'>{{ movie.title }}</h3>
     <h4>
       <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
-        <p>{{ movie.is_wished }}</p>
         <i v-if="movie.is_wished" class="fa-solid fa-heart"></i>
         <i v-else class="fa-regular fa-heart"></i>
       </button>

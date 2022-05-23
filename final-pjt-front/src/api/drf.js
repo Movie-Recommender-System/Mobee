@@ -30,8 +30,9 @@ export default {
     createMovies: () => HOST + MOVIES + 'create/',
     movies: kind => HOST + MOVIES + 'list/' + `${kind}/`,
     recommendMovies: () => HOST + MOVIES +'recommendation/',
-    movie: moviePK => HOST + MOVIES + `${moviePK}/`,
-    reviews: moviePK => HOST + MOVIES + `${moviePK}/` + REVIEWS,
-    review: (moviePK, reviewPK) => HOST + MOVIES + `${moviePK}/` + REVIEWS + `${reviewPK}/`,
+    movie: moviePk => HOST + MOVIES + `${moviePk}/`,
+    reviews: moviePk => HOST + MOVIES + `${moviePk}/` + REVIEWS,
+    review: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + REVIEWS + `${reviewPk}/`,
+    likeReview: reviewPk => HOST + MOVIES + `${reviewPk}/`+ REVIEWS + `like/`,
   }
 }
