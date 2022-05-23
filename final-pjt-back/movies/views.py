@@ -168,6 +168,13 @@ def movie_detail_wish_movie(request, movie_pk):
             data['is_reviewed'] = True
         else:
             data['is_reviewed'] = False
+        idx = 0
+        for review in movie.reviews.all():
+            if review.like_users.filter(pk=user.pk).exists():
+                data['reviews'][idx]['is_liked'] = True
+            else:
+                data['reviews'][idx]['is_liked'] = False
+            idx += 1
         return Response(data)
     def wish():
         if movie.wished_users.filter(pk=user.pk).exists():      # wish movie에 등록되어있다면
@@ -244,6 +251,6 @@ def like_review(request, review_pk):
         review.like_users.remove(user)
     else:
         review.like_users.add(user)
-        
+
     serializer = ReviewSerializer(review)
     return Response(serializer.data)
