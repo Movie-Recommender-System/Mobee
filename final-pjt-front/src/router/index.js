@@ -21,28 +21,28 @@ const routes = [
     component: IntroView
   },
   {
-    path: 'article/',
+    path: '/article',
     name: 'article',
     component: ArticleListView
   },
 
   {
-    path: 'movie/',
+    path: '/movie',
     name: 'movie',
     component: MovieListView
   },
   {
-    path: 'mileageShop/',
+    path: '/mileageShop',
     name: 'mileageShop',
     component: MileageShopView
   },
   {
-    path: 'profile/',
+    path: '/profile',
     name: 'profile',
     component: ProfileView
   },
   {
-    path: 'login/',
+    path: '/login',
     name: 'login',
     component: LoginView
   },
