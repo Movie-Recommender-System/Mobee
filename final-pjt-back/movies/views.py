@@ -164,6 +164,10 @@ def movie_detail_wish_movie(request, movie_pk):
             data['is_wished'] = True
         else:
             data['is_wished'] = False
+        if movie.reviews.filter(user=user.pk).exists():
+            data['is_reviewed'] = True
+        else:
+            data['is_reviewed'] = False
         return Response(data)
     def wish():
         if movie.wished_users.filter(pk=user.pk).exists():      # wish movie에 등록되어있다면
