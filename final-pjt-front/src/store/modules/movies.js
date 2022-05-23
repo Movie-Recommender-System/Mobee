@@ -20,11 +20,10 @@ export default {
     NEW_MOVIES: (state, new_movies) => state.new_movies = new_movies,
   },
   actions: {
-    fetchMovies({ commit, getters }, kind) {
+    fetchMovies({ commit }, kind) {
       axios({
         url: drf.movies.movies(kind),
         method: 'get',
-        headers: getters.authHeader,
       })
         .then(res => commit('SET_MOVIES', res.data))
         .catch(err => console.error(err.response))
