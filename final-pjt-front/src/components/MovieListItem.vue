@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <modal :name='movie.title' height="auto" width="70%">
+    <modal :name='movie.title' height="auto" width="70%" :scrollable="true">
       <MovieDetail/>
     </modal>
   </div> 

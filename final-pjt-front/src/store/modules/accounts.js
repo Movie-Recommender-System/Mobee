@@ -118,9 +118,9 @@ export default {
         .then(() => {
           dispatch('removeToken')
           alert('성공적으로 logout!')
-          router.push({ name: 'movie' })
+          dispatch('fetchMovies', 'recent')
         })
-        .error(err => {
+        .catch(err => {
           console.error(err.response)
         })
     },

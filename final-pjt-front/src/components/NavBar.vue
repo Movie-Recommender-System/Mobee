@@ -16,7 +16,7 @@
         <router-link :to="{ name: 'login' }">Login</router-link>
       </li>
       <li v-else>
-        <a href="" @click.prevent="logout()">logout</a>
+        <a href="" @click.prevent="logout">logout</a>
       </li>
       <li v-if="!isLoggedIn">
         <router-link :to="{ name: 'signup' }">Signup</router-link>

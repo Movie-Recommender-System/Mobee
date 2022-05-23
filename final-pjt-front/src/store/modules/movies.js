@@ -39,11 +39,10 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    fetchMovie({ commit, getters }, moviePK) {
+    fetchMovie({ commit }, moviePK) {
       axios({
         url: drf.movies.movie(moviePK),
         method: 'get',
-        headers: getters.authHeader,
       })
         .then(res => commit('SET_MOVIE', res.data))
         .catch(err => {
@@ -64,6 +63,7 @@ export default {
           commit('NEW_MOVIES', res.data)
           alert('성공적으로 최신 영화를 받아왔습니다!')
         })
+        .catch(err => console.error(err.response))
     },
 
     wishMovie( { commit, getters }) {
