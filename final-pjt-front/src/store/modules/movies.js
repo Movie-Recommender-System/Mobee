@@ -64,6 +64,7 @@ export default {
           commit('NEW_MOVIES', res.data)
           alert('성공적으로 최신 영화를 받아왔습니다!')
         })
+        .catch(err => console.error(err.response))
     },
 
     wishMovie( { commit, getters }) {
