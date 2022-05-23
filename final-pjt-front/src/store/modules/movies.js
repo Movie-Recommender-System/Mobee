@@ -39,11 +39,10 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    fetchMovie({ commit, getters }, moviePK) {
+    fetchMovie({ commit }, moviePK) {
       axios({
         url: drf.movies.movie(moviePK),
         method: 'get',
-        headers: getters.authHeader,
       })
         .then(res => commit('SET_MOVIE', res.data))
         .catch(err => {

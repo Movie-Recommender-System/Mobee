@@ -3,10 +3,10 @@
     <h3>MovieListView</h3>
     <ul>
       <li>
-        <button>유저들이 가장 많이 보고 싶어하는 영화</button>
+        <button @click='fetchMovies("wish")'>유저들이 가장 많이 보고 싶어하는 영화</button>
         </li>
-      <li><button>최신 영화</button></li>
-      <li><button>사용자 맞춤 추천 영화</button></li>
+      <li><button @click='fetchMovies("recent")'>최신 영화</button></li>
+      <li v-if="isLoggedIn"><button @click='fetchRecommendMovies'>사용자 맞춤 추천 영화</button></li>
     </ul>
     <ul>
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -24,10 +24,10 @@
     name: 'MovieListView',
     components: { MovieListItem },
     computed: {
-      ...mapGetters(['movies'])
+      ...mapGetters(['movies', 'isLoggedIn'])
     },
     methods: {
-      ...mapActions(['fetchMovies'])
+      ...mapActions(['fetchMovies', 'fetchRecommendMovies'])
     },
     created() {
       this.fetchMovies('recent')
