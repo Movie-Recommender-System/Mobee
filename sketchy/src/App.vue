@@ -5,11 +5,11 @@
       <NavBar/>
     </header>
     
-    <aside  class="sidebar collapse collapse-horizontal bg-warning" id="collapseWidthExample">
+    <aside  class="sidebar collapse collapse-horizontal" id="collapseWidthExample">
       <SideBar  />
     </aside>
 
-    <main  id="main" class="main d-grid">
+    <main id="main" class="main d-grid">
       <div class="card min-vh-100">
         <div class="card-body">
           <router-view></router-view>
@@ -38,11 +38,10 @@
       NavBar, FooterPage, SideBar,
     },
     methods: {
-      ...mapActions(['fetchCurrentUser', 'fetchGenres'])
+      ...mapActions(['fetchCurrentUser'])
     },
     created() {
-      this.fetchCurrentUser(),
-      this.fetchGenres()
+      this.fetchCurrentUser()
     },
     // mounted() {
     //       /**

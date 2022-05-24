@@ -1,6 +1,6 @@
 import requests
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404, get_object_or_404
 from django.db.models import Count
 from django.contrib.auth import get_user_model
 
@@ -104,11 +104,19 @@ def movie_list(request, kind):
         movies = Movie.objects.annotate(wished_count=Count('wished_users')).order_by('-release_date')
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
-    
+    # 장르만 조회
+    def genre():
+        genre = get_object_or_404(Genre, name=kind)
+        movies = genre.movies.annotate(wished_count=Count('wished_users')).order_by('-wished_count')
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+
     if kind == 'wish':
         return wish()
     elif kind == 'recent':
         return recent()
+    else:
+        return genre()
 
 
 @api_view(['GET'])
@@ -253,4 +261,11 @@ def like_review(request, review_pk):
         review.like_users.add(user)
 
     serializer = ReviewSerializer(review)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def genres(request):
+    genres = get_list_or_404(Genre)
+    serializer = GenreSerializer(genres, many=True)
     return Response(serializer.data)

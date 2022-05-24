@@ -46,7 +46,6 @@ export default {
   methods: {
     ...mapActions(['likeArticle', 'updateArticle', 'deleteArticle', 
     'switchUpdateArticleModal']),
-
   },
 }
 </script>

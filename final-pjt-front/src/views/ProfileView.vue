@@ -49,7 +49,8 @@ import { mapActions, mapGetters } from 'vuex'
       ...mapActions(['fetchProfile'])
     },
     created () {
-      setTimeout(() => this.fetchProfile({ username : this.currentUser.username }), 1000)
+
+      setTimeout(() => this.fetchProfile({ username : this.currentUser.username }), 100)
     }
   }
 </script>

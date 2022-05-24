@@ -1,42 +1,37 @@
 <template>
   <div>
-    
-    <div class="pagetitle">
-        <h1 class="text-center my-5">MovieListView</h1>
-        <div class=" text-align-between justify-content-between align-items-center">
-          <ol class=" text-align-between justify-content-between align-items-center">
-            <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
-            <button type="button" class="btn btn-primary" @click='fetchMovies("wish")'>인기 영화</button>
-            <button type="button" class="btn btn-primary" v-if="isLoggedIn" @click='fetchRecommendMovies'>사용자 추천 영화</button>
-            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">장르별 영화</button>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <li>
-                <a class="dropdown-item" href="#">SF</a>
-                <a class="dropdown-item" href="#">TV 영화</a>
-                <a class="dropdown-item" href="#">가족</a>
-                <a class="dropdown-item" href="#">공포</a>
-                <a class="dropdown-item" href="#">다큐멘터리</a>
-                <a class="dropdown-item" href="#">드라마</a>
-                <a class="dropdown-item" href="#">로맨스</a>
-                <a class="dropdown-item" href="#">모험</a>
-                <a class="dropdown-item" href="#">미스터리</a>
-                <a class="dropdown-item" href="#">범죄</a>
-                <a class="dropdown-item" href="#">서부</a>
-                <a class="dropdown-item" href="#">스릴러</a>
-                <a class="dropdown-item" href="#">애니메이션</a>
-                <a class="dropdown-item" href="#">액션</a>
-                <a class="dropdown-item" href="#">역사</a>
-                <a class="dropdown-item" href="#">음악</a>
-                <a class="dropdown-item" href="#">전쟁</a>
-                <a class="dropdown-item" href="#">코미디</a>
-                <a class="dropdown-item" href="#">판타지</a>
-              </li>
-            </ul>
-          </ol>
-        </div>
+
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+      <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
+      <button type="button" class="btn btn-primary" 
+      @click='fetchMovies("wish")'>유저들이 가장 많이 찜한 영화</button>
+      <button type="button" class="btn btn-primary" 
+      v-if="isLoggedIn" @click='fetchRecommendMovies'>사용자 맞춤 추천 영화</button>
+      <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+         data-bs-toggle="dropdown" aria-expanded="false">장르별 추천 영화
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <li v-for="genre in genres" :key="genre.pk" @click='fetchMovies(genre.name)'>
+            <a class="dropdown-item" href="#">{{ genre.name }}</a>
+          </li>
+        </ul>
       </div>
     <ul>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
+
+      <div>
+        <h1> {{moviesKind}}</h1>
+      </div>
+      <div v-if="!isMovies">
+        <div v-if="moviesKind=='recommend'">
+          <h3>사용자 데이터가 부족합니다.</h3>
+        </div>
+        <div v-else>
+          <h3>관련 장르의 영화가 존재하지 않습니다.</h3>
+        </div>
+      </div>
+      <div v-else class="row row-cols-1 row-cols-xs-2
+      row-cols-md-4 row-cols-lg-6 row-cols-xl-12 g-4">
         <MovieListItem v-for="movie in movies" :key="movie.pk" :movie="movie"/>
       </div>
     </ul>
@@ -47,11 +42,12 @@
   import MovieListItem from '@/components/MovieListItem.vue'
   import { mapActions, mapGetters } from 'vuex'
 
+
   export default {
     name: 'MovieListView',
     components: { MovieListItem },
     computed: {
-      ...mapGetters(['movies', 'isLoggedIn'])
+      ...mapGetters(['movies', 'isLoggedIn', 'isMovies', 'genres', 'moviesKind'])
     },
     methods: {
       ...mapActions(['fetchMovies', 'fetchRecommendMovies'])
