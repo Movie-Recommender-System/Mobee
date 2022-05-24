@@ -166,13 +166,6 @@ export default {
     },
 
     updateComment({ commit, getters }, { articlePk, commentPk, content }) {
-      /* 댓글 수정
-      PUT: comment URL(댓글 입력 정보, token)
-        성공하면
-          응답으로 state.article의 comments 갱신
-        실패하면
-          에러 메시지 표시
-      */
       const comment = { content }
 
       axios({
@@ -184,18 +177,15 @@ export default {
         .then(res => {
           commit('SET_ARTICLE_COMMENTS', res.data)
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          if (err.response.status === 403) {
+            alert(err.response.data)
+          }
+          console.error(err.response)
+        })
     },
 
-    deleteComment({ commit, getters }, { articlePk, commentPk }) {
-      /* 댓글 삭제
-      사용자가 확인을 받고
-        DELETE: comment URL (token)
-          성공하면
-            응답으로 state.article의 comments 갱신
-          실패하면
-            에러 메시지 표시
-      */
+    deleteComment({ commit, getters, dispatch }, { articlePk, commentPk }) {
         if (confirm('정말 삭제하시겠습니까?')) {
           axios({
             url: drf.articles.comment(articlePk, commentPk),
@@ -205,8 +195,14 @@ export default {
           })
             .then(res => {
               commit('SET_ARTICLE_COMMENTS', res.data)
+              dispatch('fetchArticles')
             })
-            .catch(err => console.error(err.response))
+            .catch(err => {
+              if (err.response.status === 403) {
+                alert(err.response.data)
+              }
+              console.error(err.response)
+            })
         }
       },
   },
