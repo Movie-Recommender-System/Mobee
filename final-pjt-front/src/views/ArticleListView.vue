@@ -1,6 +1,9 @@
 <template>
   <div>
-    <ArticleForm/>
+    <button class="btn btn-secondary" @click="open">새 게시물 만들기</button>
+    <modal name='newArticle' height="auto" width="50%">
+      <ArticleForm :article="article" action="create"/>
+    </modal>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -12,7 +15,7 @@
       </thead>
       <tbody>
         <ArticleListItem v-for="(article, index) in articles" 
-        :key="article.pk" :index='index' :article_info='article'/>
+        :key="article.pk" :index='index' :article='article'/>
       </tbody>
     </table>
   </div>
@@ -22,15 +25,32 @@
   import { mapActions, mapGetters } from 'vuex'
   import ArticleListItem from '@/components/ArticleListItem.vue'
   import ArticleForm from '@/components/ArticleForm.vue'
+  import Vue from 'vue'
+  import VModal from 'vue-js-modal'
+  import 'vue-js-modal/dist/styles.css'
+
+  Vue.use(VModal)
 
   export default {
     name: 'ArticleListView',  
     components: { ArticleListItem, ArticleForm },
+    data () {
+      return {
+        article: {
+          pk: null,
+          title: '',
+          content: '',
+        }
+      }
+    },
     computed: {
       ...mapGetters(['articles'])
     },
     methods: {
       ...mapActions(['fetchArticles']),
+      open () {
+        this.$modal.show('newArticle')
+      }
     },
     created() {
       this.fetchArticles()

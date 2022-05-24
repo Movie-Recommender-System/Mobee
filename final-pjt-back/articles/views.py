@@ -79,12 +79,16 @@ def like_article(request, article_pk):
     user = request.user
     if article.like_users.filter(pk=user.pk).exists():
         article.like_users.remove(user)
-        serializer = ArticleSerializer(article)
-        return Response(serializer.data)
     else:
         article.like_users.add(user)
-        serializer = ArticleSerializer(article)
-        return Response(serializer.data)
+    serializer = ArticleSerializer(article)
+    data = serializer.data
+    if article.like_users.filter(pk=user.pk).exists():
+        data['is_liked'] = True
+    else:
+        data['is_liked'] = False
+    return Response(data)
+
 
 
 @api_view(['POST'])

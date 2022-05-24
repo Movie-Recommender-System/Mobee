@@ -1,19 +1,19 @@
 <template>
   <tr>
-    <th scope="row" @click="open">{{ index }}</th>
-    <td @click="open">{{ article_info.title }}</td>
-    <td @click="open">{{ article_info.user.username }}</td>
-    <td @click="open">{{ article_info.comment_count }} | {{ article_info.like_count }}</td>
-    <modal name='showArticle' height="auto" width="50%">
-      <h3>{{ article.title }}</h3>
-      <p>{{ article.content }}</p>
+    <th scope="row">{{ index + 1 }}</th>
+    <td><a href="" @click.prevent="open">{{ article.title }}</a></td>
+    <td>{{ article.user.username }}</td>
+    <td>{{ article.comment_count }} | {{ article.like_count }}</td>
+    <modal :name='modalName' height="auto" width="50%">
+      <ArticleDetail/>
     </modal>
   </tr>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+  import ArticleDetail from './ArticleDetail.vue'
   import Vue from 'vue'
-  import { mapGetters, mapActions } from 'vuex'
   import VModal from 'vue-js-modal'
   import 'vue-js-modal/dist/styles.css'
 
@@ -21,19 +21,22 @@
 
   export default {
     name: 'ArticleListItem',
+    components: { ArticleDetail },
     props: {
       index: Number,
-      article_info: Object,
+      article: Object,
     },
-    computed: {
-      ...mapGetters(['article'])
+    data () {
+      return {
+        modalName: this.index + ''    // 게시글 별로 다른 모달 이름을 주기 위함.
+      }
     },
     methods: {
       ...mapActions(['fetchArticle']),
       open () {
-        this.fetchArticle(this.article_info.pk)
-        this.$modal.show('showArticle')
-      }
+        this.fetchArticle(this.article.pk)
+        this.$modal.show(this.modalName)
+      },
     }
   }
 </script>

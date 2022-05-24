@@ -19,7 +19,10 @@
       </div>
     </div>
     <ul>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div v-if="movies.length == 0">
+        <h3>사용자 데이터가 부족합니다.</h3>
+      </div>
+      <div v-else class="row row-cols-1 row-cols-md-3 g-4">
         <MovieListItem v-for="movie in movies" :key="movie.pk" :movie="movie"/>
       </div>
     </ul>
