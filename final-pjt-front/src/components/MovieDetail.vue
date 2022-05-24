@@ -1,6 +1,8 @@
 <template>
   <div v-if="movie.credits">
-    <img class="window-header" :src="movie.poster_path" alt="poster img">
+    <div class="ratio ratio-16x9">
+      <iframe :src="movie.video_path" frameborder="0"></iframe>
+    </div>
     <h3 class='text-wrap'>{{ movie.title }}</h3>
     <h4>
       <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>

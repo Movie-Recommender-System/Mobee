@@ -76,7 +76,7 @@ def movie_create(request):
                 'overview' : movie['overview'],
                 'release_date' : movie['release_date'],
                 'poster_path' : f'https://image.tmdb.org/t/p/w500{movie["poster_path"]}',
-                'video_path' : f'http://www.youtube.com/watch?v={video_key}'
+                'video_path' : f'https://youtube.com/embed/{video_key}?autoplay=1&mute=1'
             }
             add_data['movies'].append({'id': movie['id'], 'title': movie['title']})
             serializer = MovieCreateSerializer(data=movie_data)
