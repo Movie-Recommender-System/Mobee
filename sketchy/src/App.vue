@@ -5,8 +5,8 @@
       <NavBar/>
     </header>
     
-    <aside id="sidebar" class="sidebar">
-      <SideBar/>
+    <aside  class="sidebar collapse collapse-horizontal" id="collapseWidthExample">
+      <SideBar  />
     </aside>
 
     <main id="main" class="main d-grid">
@@ -17,6 +17,7 @@
         <div class="card-footer text-muted text-center">
           <FooterPage ></FooterPage>
         </div>
+
       </div>
     </main>
     

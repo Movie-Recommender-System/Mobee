@@ -1,14 +1,22 @@
 <template>
   <nav class=" d-flex navbar navbar-expand-lg navbar-dark bg-primary">
+    
     <div class="container-fluid mx-5">
+      
       <i class="bi bi-list toggle-sidebar-btn"></i>
       <a class="navbar-brand" href="#">MOBEE</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </li>
           <li class="nav-item">
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </li>

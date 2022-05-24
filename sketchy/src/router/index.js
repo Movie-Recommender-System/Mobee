@@ -12,6 +12,7 @@ import ArticleListView from '../views/ArticleListView'
 
 import NotFound404 from '../views/NotFound404.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [

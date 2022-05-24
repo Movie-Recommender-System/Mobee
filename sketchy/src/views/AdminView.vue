@@ -1,13 +1,14 @@
-<template lang="">
+<template>
   <div>
-    
+    admin
   </div>
 </template>
 <script>
 export default {
-  name: "IntroView"
+  name: 'AdminView',
+  
 }
 </script>
-<style lang="">
+<style>
   
 </style>

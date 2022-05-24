@@ -1,5 +1,5 @@
 <template>
-  <div class="col">
+  <div >
     <div @click="open" class="card h-100">
       <img :src="movie.poster_path" class="card-img-top img-thumbnail rounded" alt="poster img">
       <div class="card-body">
