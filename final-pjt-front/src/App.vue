@@ -14,7 +14,7 @@ export default {
     NavBar,
   },
   methods: {
-    ...mapActions(['fetchCurrentUser', 'fetchGenres'])
+    ...mapActions(['fetchCurrentUser', 'fetchGenres']),
   },
   created() {
     this.fetchCurrentUser()
