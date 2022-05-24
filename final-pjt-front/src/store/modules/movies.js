@@ -1,34 +1,48 @@
 import router from '@/router'
 import drf from "@/api/drf"
 import axios from "axios"
-
+import _ from 'lodash'
 
 export default {
   state: {
     movies: [],
     movie: {},
-    new_movies: {},
-    movies_kind: '',    // 좋아요 버튼 클릭 시 영화 리스트의 하트도 변경
+    genres: [],
+    newMovies: {},      // 새로 영화 받아올 때 보여주기 위함
+    moviesKind: '',    // 좋아요 버튼 클릭 시 영화 리스트의 하트도 변경
   },
   getters: {
     movies: state => state.movies,
     movie: state => state.movie,
-    new_movies: state => state.new_movies,
-    movies_kind: state => state.movies_kind,
+    newMovies: state => state.new_movies,
+    moviesKind: state => state.moviesKind,
+    isMovies: state => !_.isEmpty(state.movies),
+    genres: state => state.genres,
   },
   mutations: {
     SET_MOVIES: (state, { movies, kind }) => {
       state.movies = movies
-      state.movies_kind = kind
+      state.moviesKind = kind
     },
     SET_MOVIE: (state, movie) => state.movie = movie,
-    NEW_MOVIES: (state, new_movies) => state.new_movies = new_movies,
+    NEW_MOVIES: (state, new_movies) => state.newMovies = new_movies,
+    SET_GENRES: (state, genres) => state.genres = genres,
   },
   actions: {
-    fetchMovies({ commit }, kind) {
+    fetchGenres( {commit} ) {
+      axios({
+        url: drf.movies.genres(),
+        method: 'get',
+      })
+        .then(res => commit('SET_GENRES', res.data))
+        .catch(err => console.error(err.response))
+    },
+
+    fetchMovies({ commit, getters }, kind) {
       axios({
         url: drf.movies.movies(kind),
         method: 'get',
+        headers: getters.authHeader,
       })
         .then(res => commit('SET_MOVIES', {'movies' : res.data, 'kind' : kind}))
         .catch(err => console.error(err.response))
@@ -40,7 +54,7 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_MOVIES', res.data))
+        .then(res => commit('SET_MOVIES', {'movies' : res.data, 'kind' : 'recommend'}))
         .catch(err => console.error(err.response))
     },
 
@@ -96,7 +110,7 @@ export default {
       })
         .then(res => {
           commit('SET_MOVIE', res.data)
-          dispatch('fetchMovies', getters.movies_kind)
+          dispatch('fetchMovies', getters.moviesKind)
         })
         .catch(err => console.error(err.response))
     },

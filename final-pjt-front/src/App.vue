@@ -14,10 +14,11 @@ export default {
     NavBar,
   },
   methods: {
-    ...mapActions(['fetchCurrentUser'])
+    ...mapActions(['fetchCurrentUser', 'fetchGenres']),
   },
   created() {
     this.fetchCurrentUser()
+    this.fetchGenres()
   }
 }
 </script>

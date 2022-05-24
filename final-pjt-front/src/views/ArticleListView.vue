@@ -44,12 +44,16 @@
       }
     },
     computed: {
-      ...mapGetters(['articles'])
+      ...mapGetters(['articles', 'isLoggedIn'])
     },
     methods: {
       ...mapActions(['fetchArticles']),
       open () {
-        this.$modal.show('newArticle')
+        if ( this.isLoggedIn ) {
+          this.$modal.show('newArticle')
+        } else {
+          alert('로그인 하세요.')
+        }
       }
     },
     created() {

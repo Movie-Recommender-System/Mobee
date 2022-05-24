@@ -14,7 +14,7 @@ export default {
     // Token 으로 현재 user 판단
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     // username으로 프로필 제공
-    profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    profile: username => HOST + ACCOUNTS + 'profile/' + `${username}/`,
   },
   articles: {
     // /articles/
@@ -29,10 +29,11 @@ export default {
   movies: {
     createMovies: () => HOST + MOVIES + 'create/',
     movies: kind => HOST + MOVIES + 'list/' + `${kind}/`,
-    recommendMovies: () => HOST + MOVIES +'recommendation/',
+    recommendMovies: () => HOST + MOVIES +'list/recommend/',
     movie: moviePk => HOST + MOVIES + `${moviePk}/`,
     reviews: moviePk => HOST + MOVIES + `${moviePk}/` + REVIEWS,
     review: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + REVIEWS + `${reviewPk}/`,
     likeReview: reviewPk => HOST + MOVIES + `${reviewPk}/`+ REVIEWS + `like/`,
+    genres: () => HOST + MOVIES + 'genres/',
   }
 }

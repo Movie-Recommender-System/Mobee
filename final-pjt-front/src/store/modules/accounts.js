@@ -119,6 +119,9 @@ export default {
           dispatch('removeToken')
           alert('성공적으로 logout!')
           dispatch('fetchMovies', 'recent')
+          router.push({
+            name: 'intro',
+          })
         })
         .catch(err => {
           console.error(err.response)
@@ -145,13 +148,13 @@ export default {
           .catch(err => {
             if (err.response.status === 401) {
               dispatch('removeToken')
-              router.push({ name: 'login' })
-            } else ( console.error(err.response) )
+            }
+            console.error(err.response)
           })
       }
     },
 
-    fetchProfile({ commit, getters }, { username }) {
+    fetchProfile({ commit, getters }, {username} ) {
       /*
       GET: profile URL로 요청보내기
         성공하면
@@ -165,7 +168,7 @@ export default {
         .then(res => {
           commit('SET_PROFILE', res.data)
         })
-        .error(err => {
+        .catch(err => {
           console.error(err.response)
         })
     },
