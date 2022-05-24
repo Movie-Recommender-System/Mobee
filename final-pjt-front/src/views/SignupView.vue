@@ -1,26 +1,32 @@
 <template>
   <div>
-    <h1>Signup</h1>
 
-    <account-error-list v-if="authError"></account-error-list>
+    <div>
+      <h2>Application<br> Login Page</h2>
+      <p>Login or register from here to access.</p>
+      <account-error-list v-if="authError"></account-error-list>
+      
+    </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+          <form @submit.prevent="signup(credentials)">
+            <div class="form-group">
+                <label>User Name</label>
+                <input  v-model="credentials.username" placeholder="User Name" class="form-control" type="text" id="username" required/>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input v-model="credentials.password1" placeholder="Password" class="form-control" type="password" id="password1" required />
+            </div>
+            <div class="form-group">
+                <label>Password Confirmation</label>
+                <input v-model="credentials.password2" placeholder="Password Again" class="form-control" type="password" id="password2" required />
+            </div>
 
-    <form @submit.prevent="signup(credentials)">
-      <div>
-        <label for="username">Username: </label>
-        <input  v-model="credentials.username" type="text" id="username" required/>
+            <button  type="submit" class="btn btn-secondary">Register</button>
+          </form>
+        </div>
       </div>
-      <div>
-        <label for="password1">Password: </label>
-        <input v-model="credentials.password1" type="password" id="password1" required />
-      </div>
-      <div>
-        <label for="password2">Password Confirmation:</label>
-        <input v-model="credentials.password2" type="password" id="password2" required />
-      </div>
-      <div>
-        <button>Signup</button>
-      </div>
-    </form>
   </div>
 </template>
 

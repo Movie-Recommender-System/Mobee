@@ -5,24 +5,22 @@
       <NavBar/>
     </header>
     
-    <aside id="sidebar" class="sidebar">
-      <SideBar/>
+    <aside  class="sidebar collapse collapse-horizontal bg-warning" id="collapseWidthExample">
+      <SideBar  />
     </aside>
 
-    <main id="main" class="main d-grid">
-      <div class="list-group">
-        <li class="list-group-item contents d-flex justify-content-between align-items-center">
+    <main  id="main" class="main d-grid">
+      <div class="card min-vh-100">
+        <div class="card-body">
           <router-view></router-view>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <p>안녕</p>
-          <p>안녕</p>
-          <p>안녕</p>
-          <p>안녕</p>
-        </li>
+        </div>
+        <div class="card-footer text-muted text-center">
+          <FooterPage ></FooterPage>
+        </div>
+
       </div>
     </main>
-    <FooterPage class="text-center fixed-bottom"></FooterPage>
+    
 
 
 
@@ -63,19 +61,27 @@
 </script>
 
 <style>
+
 @import url("../public/bootstrap.css");
 
 :root {
   scroll-behavior: smooth;
 }
 
-#app {
-  /* color: #444444; */
+/* 커서이미지 */
+html, body{
+  cursor: url(./assets/bee_cursor.png), auto;
 }
-
+a, a:link {
+  cursor: url(./assets/bee_hover.png),auto;
+}
+a:hover, a:focus { cursor: url(./assets/bee_hover.png),auto;} 
+a:active {cursor: url(./assets/bee_hover.png),auto;} 
+input {cursor: url(./assets/bee_hover.png),auto;} 
 
 #app {
   height: 100vh;
+  /* cursor: url("./assets/bee.png"), auto; */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -110,11 +116,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #1a1a1a;
 }
 
-
+/* 
 .contents {
-  min-height: 70vh;
+  min-height: 200vh;
 
-}
+} */
 
 .header {
   transition: all 0.5s;
@@ -312,12 +318,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
+  font-family: 'Stylish', sans-serif;
 }
 .sidebar-nav .nav-content a i {
   font-size: 6px;
   margin-right: 8px;
   line-height: 0;
-  border-radius: 50%;
+  border-radius: 50%; 
 }
 .sidebar-nav .nav-content a:hover, .sidebar-nav .nav-content a.active {
   color: #000000;

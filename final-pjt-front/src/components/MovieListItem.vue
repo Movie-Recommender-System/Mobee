@@ -36,8 +36,8 @@
       open () {
         this.fetchMovie(this.movie.pk)
         this.$modal.show(this.movie.title)
-      },
-    },
+      }
+    }
   }
 </script>
 

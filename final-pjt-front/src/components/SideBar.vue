@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div >
     <!-- ======= Sidebar ======= -->
       <ul class="sidebar-nav" id="sidebar-nav">
-
+        <li class="nav-heading">Pages</li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="index.html">
+          <router-link :to="{ name: 'intro' }" class="nav-link collapsed" href="index.html">
             <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
-          </a>
+            <span>Intro</span>
+          </router-link>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
@@ -16,18 +16,18 @@
           </a>
           <ul id="movies-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <router-link class="text-decoration-none nav-link" :to="{ name: 'movie' }">
-                <i class="bi bi-circle"></i><span>최신 영화</span>
+              <router-link class="text-decoration-none" :to="{ name: 'movie' }">
+                <span>최신 영화</span>
               </router-link>
             </li>
             <li>
-              <router-link class="text-decoration-none nav-link" :to="{ name: 'movie' }">
-                <i class="bi bi-circle"></i><span>인기 영화</span>
+              <router-link class="text-decoration-none" :to="{ name: 'movie' }">
+                <span>인기 영화</span>
               </router-link>
             </li>
             <li>
-              <router-link class="text-decoration-none nav-link" :to="{ name: 'movie' }">
-                <i class="bi bi-circle"></i><span>내 꿀단지 영화</span>
+              <router-link class="text-decoration-none" :to="{ name: 'movie' }">
+                <span>내 꿀단지 영화</span>
               </router-link>
             </li>
           </ul>
@@ -39,80 +39,91 @@
           </a>
           <ul id="Community-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <router-link :to="{ name: 'article' }">
-                <i class="bi bi-circle"></i><span>커뮤니티</span>
+              <router-link class="text-decoration-none" :to="{ name: 'article' }">
+                <span>커뮤니티</span>
               </router-link>
             </li>
             <!-- <li>
               <routers href="Community-layouts.html">
-                <i class="bi bi-circle"></i><span>글 작성</span>
+                <span>글 작성</span>
               </routers>
             </li> -->
           </ul>
         </li><!-- End Community Nav -->
-
+        <li class="nav-heading">MY</li>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-layout-text-window-reverse"></i><span>PyPages</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
+          </li>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <router-link class="dropdown-item" :to="{ name: 'profile' }">
-                <i class="bi bi-circle"></i><span>Profile</span>
+            <li v-if="isLoggedIn">
+              <router-link v-if="isLoggedIn" class="dropdown-item" :to="{ name: 'profile' }">
+                <span>Profile</span>
               </router-link>
-            </li>
+            </li><!-- End Profile Page Nav -->
+
             <li>
-              <router-link class="dropdown-item" :to="{ name: 'mileageShop' }">
-                <i class="bi bi-circle"></i><span>Mileage</span>
+              <router-link v-if="isLoggedIn" class="dropdown-item" :to="{ name: 'mileageShop' }">
+                <span>Mileage</span>
               </router-link>
-            </li>
-            <div v-if="isStaff" class="dropdown-divider"></div>
+            </li><!-- End Mileage Page Nav -->
+                          
             <li>
-              <a v-if="isStaff" class="dropdown-item" href="#">
-                <i class="bi bi-circle"></i><span>Admin Page</span>
+              <a v-if="isLoggedIn" class="dropdown-item text-decoration-none" href="#" @click.prevent="logout">Logout</a>
+            </li><!-- End Logout Page Nav -->
+
+            <li v-if="!isLoggedIn" class="dropdown-item">
+              <router-link :to="{ name: 'login'}" class="text-decoration-none collapsed" >
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Login</span>
+              </router-link>
+            </li><!-- End Login Page Nav -->
+
+            <li v-if="!isLoggedIn" class="dropdown-item">
+              <router-link class="text-decoration-none collapsed" :to="{ name: 'signup' }">
+                <i class="bi bi-card-list"></i>
+                <span>Signup</span>
+              </router-link>
+            </li><!-- End Signup Page Nav -->
+
+            <li v-if="isStaff" class="dropdown-item">
+              <a class="text-decoration-none collapsed" href="http://localhost:8080/admin/">
+                <i class="bi bi-card-list"></i>
+                <span>Admin Page</span>
               </a>
             </li>
+
+            
           </ul>
         
+        
 
-        <li class="nav-heading">Pages</li>
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="users-profile.html">
-            <i class="bi bi-person"></i>
-            <span>Profile</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
-
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-contact.html">
-            <i class="bi bi-envelope"></i>
-            <span>Contact</span>
-          </a>
-        </li><!-- End Contact Page Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-register.html">
-            <i class="bi bi-card-list"></i>
-            <span>Register</span>
-          </a>
-        </li><!-- End Register Page Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
-            <i class="bi bi-box-arrow-in-right"></i>
-            <span>Login</span>
-          </a>
-        </li><!-- End Login Page Nav -->
+        <!-- End Signup Page Nav -->
       </ul>
   </div>
 </template>
+
 <script>
-export default {
-  name: 'SideBar',
-}
+  import { mapGetters, mapActions } from 'vuex'
+
+  export default {
+    name: 'NavBar',
+    computed: {
+      ...mapGetters(['isLoggedIn', 'currentUser']),
+      username() {
+        return this.currentUser.username ? this.currentUser.username : 'guest'
+      },
+      isStaff () {
+        return !!this.currentUser.is_staff
+      }
+    },
+    methods: {
+      ...mapActions(['logout']),
+    }
+  }
 </script>
+
 <style>
 
 

@@ -1,18 +1,18 @@
 <template>
   <div>
-    <h3>CommentList</h3>
-    <CommentCreateForm/>
-    <CommentListItem/>
+    <h4>댓글 목록</h4>
+    <ul class="list-group">
+      <CommentListItem v-for="comment in comments" :key="comment.pk" :comment="comment"/>
+    </ul>
   </div>
 </template>
 
 <script>
   import CommentListItem from './CommentListItem.vue'
-  import CommentCreateForm from './CommentCreateForm.vue'
-
   export default {
-    name: 'CommentList',  
-    components: { CommentListItem, CommentCreateForm },
+    name: 'CommentList',
+    components: { CommentListItem },
+    props: { comments: Array },
   }
 </script>
 

@@ -1,17 +1,22 @@
 <template>
   <nav class=" d-flex navbar navbar-expand-lg navbar-dark bg-primary">
     
-    
-
     <div class="container-fluid mx-5">
+      
       <i class="bi bi-list toggle-sidebar-btn"></i>
       <a class="navbar-brand" href="#">MOBEE</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </li>
           <li class="nav-item">
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </li>
@@ -23,28 +28,26 @@
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'article' }" >Community</router-link>
           </li>
-          <li v-if="isLoggedIn" class="nav-item">
+          <!-- <li v-if="isLoggedIn" class="nav-item">
             <router-link class="nav-link" :to="{ name: 'profile', params: { username } }">
               {{ currentUser.username }}'s page
             </router-link>
-          </li>
+          </li> -->
           <li v-if="!isLoggedIn" class="nav-item">
             <router-link class="nav-link" :to="{ name: 'login' }">Login</router-link>
           </li>
           <li v-if="!isLoggedIn" class="nav-item">
             <router-link class="nav-link" :to="{ name: 'signup' }">Signup</router-link>
           </li>
-          <li v-if="isLoggedIn" class="nav-item">
-            <a class="nav-link text-decoration-none" href="#" @click.prevent="logout">logout</a>
-          </li>
           <li v-if="isLoggedIn" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Page</a>
             <div class="dropdown-menu">
+              <a v-if="isLoggedIn" class="dropdown-item text-decoration-none" href="#" @click.prevent="logout">logout</a>
               <router-link class="dropdown-item" :to="{ name: 'profile' }">Profile</router-link>
               <router-link class="dropdown-item" :to="{ name: 'mileageShop' }">Mileage</router-link>
               <!--관리자계정페이지-->
               <div v-if="isStaff" class="dropdown-divider"></div>
-              <a v-if="isStaff" class="dropdown-item" href="#">Admin Page</a>
+              <a v-if="isStaff" class="dropdown-item" href="http://localhost:8000/admin/">Admin Page</a>
             </div>
           </li>
         </ul>
@@ -54,32 +57,7 @@
         </form>
       </div>
     </div>
-    <!-- <hr>
-
-    <ul>
-      <li>
-        <router-link :to="{ name: 'movie' }">Movie</router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'article' }">Community</router-link>
-      </li>
-      <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'profile', params: { username } }">
-          {{ currentUser.username }}'s page
-        </router-link>
-      </li>
-      <li v-if="!isLoggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-else>
-        <a href="" @click.prevent="logout">logout</a>
-      </li>
-      <li v-if="!isLoggedIn">
-        <router-link :to="{ name: 'signup' }">Signup</router-link>
-      </li>
-    </ul> -->
-    
-    </nav>
+  </nav>
 </template>
 
 <script>
