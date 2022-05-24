@@ -28,13 +28,14 @@
     },
     data () {
       return {
-        modalName: this.index + ''    // 게시글 별로 다른 모달 이름을 주기 위함.
+        modalName: this.article.pk + ''    // 게시글 별로 다른 모달 이름을 주기 위함.
       }
     },
     methods: {
       ...mapActions(['fetchArticle']),
       open () {
         this.fetchArticle(this.article.pk)
+        console.log(this.modalName)
         this.$modal.show(this.modalName)
       },
     }

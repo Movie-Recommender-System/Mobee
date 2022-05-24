@@ -32,18 +32,19 @@
       }
     },
     methods: {
-      ...mapActions(['createArticle', 'updateArticle']),
+      ...mapActions(['createArticle', 'updateArticle', 'switchUpdateArticleModal']),
       onSubmit() {
         if (this.action === 'create') {
           this.createArticle(this.newArticle)
+          this.$modal.hide('newArticle')
         } else if (this.action === 'update') {
           const payload = {
             pk: this.article.pk,
             ...this.newArticle,
           }
           this.updateArticle(payload)
+          this.switchUpdateArticleModal()
         }
-        this.$modal.hide('newArticle')
       },
     }
   }
