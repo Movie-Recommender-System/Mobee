@@ -149,14 +149,7 @@ export default {
       commit('SET_ON_UPDATE_ARTICLE_MODAL')
     },
 
-		createComment({ commit, getters }, { articlePk, content }) {
-      /* 댓글 생성
-      POST: comments URL(댓글 입력 정보, token)
-        성공하면
-          응답으로 state.article의 comments 갱신
-        실패하면
-          에러 메시지 표시
-      */
+		createComment({ commit, getters, dispatch }, { articlePk, content }) {
       const comment = { content }
 
       axios({
@@ -167,6 +160,7 @@ export default {
       })
         .then(res => {
           commit('SET_ARTICLE_COMMENTS', res.data)
+          dispatch('fetchArticles')
         })
         .catch(err => console.error(err.response))
     },

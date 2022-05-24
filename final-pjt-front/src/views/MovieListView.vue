@@ -19,7 +19,7 @@
       </div>
     </div>
     <ul>
-      <div v-if="movies.length == 0">
+      <div v-if="!isMovies">
         <h3>사용자 데이터가 부족합니다.</h3>
       </div>
       <div v-else class="row row-cols-1 row-cols-md-3 g-4">
@@ -33,11 +33,12 @@
   import MovieListItem from '@/components/MovieListItem.vue'
   import { mapActions, mapGetters } from 'vuex'
 
+
   export default {
     name: 'MovieListView',
     components: { MovieListItem },
     computed: {
-      ...mapGetters(['movies', 'isLoggedIn'])
+      ...mapGetters(['movies', 'isLoggedIn', 'isMovies'])
     },
     methods: {
       ...mapActions(['fetchMovies', 'fetchRecommendMovies'])

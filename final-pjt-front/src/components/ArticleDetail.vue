@@ -21,6 +21,10 @@
           </h4>
         </div>
       </div>
+      <CommentList :comments='article.comments'/>
+      <hr>
+      <CommentForm :articlePk='article.pk'/>
+      <hr>
       <button @click="switchUpdateArticleModal" class='btn btn-warning'>수정</button>
       <button @click="deleteArticle(article.pk)" class="btn btn-danger">삭제</button>
     </div>
@@ -30,15 +34,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import ArticleForm from './ArticleForm.vue'
+import CommentList from './CommentList.vue'
+import CommentForm from './CommentForm.vue'
 
 export default {
   name: 'ArticleDetail',
-  components: { ArticleForm },
+  components: { ArticleForm, CommentList, CommentForm },
   computed: {
     ...mapGetters(['article', 'isLoggedIn', 'onUpdateArticleModal'])
   },
   methods: {
-    ...mapActions(['likeArticle', 'updateArticle', 'deleteArticle', 'switchUpdateArticleModal']),
+    ...mapActions(['likeArticle', 'updateArticle', 'deleteArticle', 
+    'switchUpdateArticleModal']),
+
   },
 }
 </script>

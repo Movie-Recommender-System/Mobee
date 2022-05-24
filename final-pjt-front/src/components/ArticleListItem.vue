@@ -35,7 +35,6 @@
       ...mapActions(['fetchArticle']),
       open () {
         this.fetchArticle(this.article.pk)
-        console.log(this.modalName)
         this.$modal.show(this.modalName)
       },
     }
