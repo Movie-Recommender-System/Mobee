@@ -1,24 +1,26 @@
 <template>
   <div>
-    <h3>MovieListView</h3>
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
       <button type="button" class="btn btn-primary" 
-      @click='fetchMovies("wish")'>유저들이 가장 많이 보고 싶어하는 영화</button>
+      @click='fetchMovies("wish")'>유저들이 가장 많이 찜한 영화</button>
       <button type="button" class="btn btn-primary" 
       v-if="isLoggedIn" @click='fetchRecommendMovies'>사용자 맞춤 추천 영화</button>
       <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          장르별
+        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+         data-bs-toggle="dropdown" aria-expanded="false">장르별 추천 영화
         </button>
         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <li>
-            <a class="dropdown-item" href="#">Dropdown link</a>
+          <li v-for="genre in genres" :key="genre.pk" @click='fetchMovies(genre.name)'>
+            <a class="dropdown-item" href="#">{{ genre.name }}</a>
           </li>
         </ul>
       </div>
     </div>
     <ul>
+      <div>
+        <h1> {{moviesKind}}</h1>
+      </div>
       <div v-if="!isMovies">
         <h3>사용자 데이터가 부족합니다.</h3>
       </div>
@@ -38,7 +40,7 @@
     name: 'MovieListView',
     components: { MovieListItem },
     computed: {
-      ...mapGetters(['movies', 'isLoggedIn', 'isMovies'])
+      ...mapGetters(['movies', 'isLoggedIn', 'isMovies', 'genres', 'moviesKind'])
     },
     methods: {
       ...mapActions(['fetchMovies', 'fetchRecommendMovies'])

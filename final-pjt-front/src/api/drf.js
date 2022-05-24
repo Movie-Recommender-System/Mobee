@@ -34,5 +34,6 @@ export default {
     reviews: moviePk => HOST + MOVIES + `${moviePk}/` + REVIEWS,
     review: (moviePk, reviewPk) => HOST + MOVIES + `${moviePk}/` + REVIEWS + `${reviewPk}/`,
     likeReview: reviewPk => HOST + MOVIES + `${reviewPk}/`+ REVIEWS + `like/`,
+    genres: () => HOST + MOVIES + 'genres/',
   }
 }
