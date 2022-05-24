@@ -4,7 +4,7 @@
     <td><a href="" @click.prevent="open">{{ article.title }}</a></td>
     <td>{{ article.user.username }}</td>
     <td>{{ article.comment_count }} | {{ article.like_count }}</td>
-    <modal :name='modalName' height="auto" width="50%">
+    <modal :name='modalName' width="50%" :adaptive="true" height="50%">
       <ArticleDetail/>
     </modal>
   </tr>
@@ -42,5 +42,5 @@
 </script>
 
 <style>
-  
+
 </style>

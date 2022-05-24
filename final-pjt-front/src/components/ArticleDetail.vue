@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="modal-body">
     <div v-if="onUpdateArticleModal == true">
       <article-form :article='article' action="update"/>
     </div>
@@ -17,16 +17,17 @@
               <i v-else class="fa-regular fa-heart"></i>
             </button>
             <i v-else class="fa-solid fa-heart"></i>
-            {{ article.like_users.length }}
+            {{ article.like_users.length }}<br>
+            <button @click="switchUpdateArticleModal" class='btn btn-warning'>수정</button>
+            <button @click="deleteArticle(article.pk)" class="btn btn-danger">삭제</button>
           </h4>
         </div>
       </div>
-      <CommentList :comments='article.comments'/>
-      <hr>
-      <CommentForm :articlePk='article.pk'/>
-      <hr>
-      <button @click="switchUpdateArticleModal" class='btn btn-warning'>수정</button>
-      <button @click="deleteArticle(article.pk)" class="btn btn-danger">삭제</button>
+      <div>
+        <CommentList :comments='article.comments'/>
+        <hr>
+        <CommentForm :articlePk='article.pk'/>
+      </div>
     </div>
   </div>
 </template>
@@ -51,5 +52,8 @@ export default {
 </script>
 
 <style>
-
+  .modal-body{
+      height: 100%;
+      overflow-y: auto;
+  }
 </style>
