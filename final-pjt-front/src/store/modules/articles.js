@@ -70,7 +70,7 @@ export default {
         })
     },
 
-    createArticle({ commit, getters }, article) {
+    createArticle({ commit, getters, dispatch }, article) {
       /* 게시글 생성
       POST: articles URL (게시글 입력정보, token)
         성공하면
@@ -88,11 +88,9 @@ export default {
       })
         .then(res => {
           commit('SET_ARTICLE', res.data)
-          router.push({
-            name: 'article',
-            params: { articlePk: getters.article.pk }
-          })
+          dispatch('fetchArticles')
         })
+        .catch(err => console.error(err.response))
     },
 
     updateArticle({ commit, getters }, { pk, title, content}) {
@@ -117,6 +115,7 @@ export default {
             params: { articlePk: getters.article.pk }
           })
         })
+        .catch(err => console.error(err.response))
     },
 
     deleteArticle({ commit, getters }, articlePk) {

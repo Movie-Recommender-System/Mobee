@@ -8,14 +8,19 @@ export default {
     movies: [],
     movie: {},
     new_movies: {},
+    movies_kind: '',    // 좋아요 버튼 클릭 시 영화 리스트의 하트도 변경
   },
   getters: {
     movies: state => state.movies,
     movie: state => state.movie,
     new_movies: state => state.new_movies,
+    movies_kind: state => state.movies_kind,
   },
   mutations: {
-    SET_MOVIES: (state, movies) => state.movies = movies,
+    SET_MOVIES: (state, { movies, kind }) => {
+      state.movies = movies
+      state.movies_kind = kind
+    },
     SET_MOVIE: (state, movie) => state.movie = movie,
     NEW_MOVIES: (state, new_movies) => state.new_movies = new_movies,
   },
@@ -25,7 +30,7 @@ export default {
         url: drf.movies.movies(kind),
         method: 'get',
       })
-        .then(res => commit('SET_MOVIES', res.data))
+        .then(res => commit('SET_MOVIES', {'movies' : res.data, 'kind' : kind}))
         .catch(err => console.error(err.response))
     },
 
@@ -83,13 +88,16 @@ export default {
         .catch(err => console.error(err.response))
     },
 
-    wishMovie( { commit, getters }, moviePk) {
+    wishMovie( { commit, getters, dispatch }, moviePk) {
       axios({
         url: drf.movies.movie(moviePk),
         method: 'post',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_MOVIE', res.data))
+        .then(res => {
+          commit('SET_MOVIE', res.data)
+          dispatch('fetchMovies', getters.movies_kind)
+        })
         .catch(err => console.error(err.response))
     },
 
