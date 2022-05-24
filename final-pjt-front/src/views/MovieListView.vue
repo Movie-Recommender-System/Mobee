@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
       <button type="button" class="btn btn-primary" 
@@ -16,8 +17,8 @@
           </li>
         </ul>
       </div>
-    </div>
     <ul>
+
       <div>
         <h1> {{moviesKind}}</h1>
       </div>
@@ -58,5 +59,7 @@
 </script>
 
 <style>
-  
+  .breadcrumb > li:hover {
+    cursor: pointer;
+  }
 </style>

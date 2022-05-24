@@ -1,6 +1,7 @@
 <template>
   <li class="list-group-item">
     <div class="d-flex justify-content-between">
+
       <div v-if="isUpdate">
         <form @submit.prevent="onSubmit">
           <div>
@@ -39,6 +40,7 @@ import { mapActions } from 'vuex'
 
   export default {
     name: 'CommentListItem',
+
     props: { comment: Object },
     data () {
       return {
