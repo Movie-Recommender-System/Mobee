@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
       <button type="button" class="btn btn-primary" 
@@ -17,11 +16,11 @@
           </li>
         </ul>
       </div>
+    </div>
     <ul>
-
-      <div>
-        <h1> {{moviesKind}}</h1>
-      </div>
+      <h1>{{ moviesKind }}</h1>
+      <br>
+      <br>
       <div v-if="!isMovies">
         <div v-if="moviesKind=='recommend'">
           <h3>사용자 데이터가 부족합니다.</h3>
@@ -31,7 +30,7 @@
         </div>
       </div>
       <div v-else class="row row-cols-1 row-cols-xs-2
-      row-cols-md-4 row-cols-lg-6 row-cols-xl-12 g-4">
+      row-cols-md-4 row-cols-lg-4 row-cols-xl-6 g-4">
         <MovieListItem v-for="movie in movies" :key="movie.pk" :movie="movie"/>
       </div>
     </ul>
@@ -59,7 +58,5 @@
 </script>
 
 <style>
-  .breadcrumb > li:hover {
-    cursor: pointer;
-  }
+  
 </style>
