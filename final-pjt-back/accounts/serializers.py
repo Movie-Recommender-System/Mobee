@@ -60,16 +60,19 @@ class ProfileSerializer(serializers.ModelSerializer):
             for movie_genre in review.movie.genres.all():
                 genres[movie_genre.name] += review.score - 3
 
+        for wish_movie in user.wish_movie_list.all():       # 찜한 영화의 장르는 별 4개와 같게!
+            for movie_genre in wish_movie.genres.all():
+                genres[movie_genre.name] += 1
+        
         genres = list(genres.items())
         genres.sort(key=lambda x: x[1], reverse=True)
-        data = []
+        data = {'score' : [], 'best_genres' : []}
 
-        for idx, genre in enumerate(genres):    # 선호 장르 최대 5개(없으면 선호도가 0이면 X)
-            if idx > 5:
-                break
-            if genre[1] <= 0:
-                break
-            data.append({genre[0]: genre[1]})   # 선호도와 함께 전송
+        for idx, genre in enumerate(genres):    
+            if idx <= 5 and genre[1] > 0:
+                data['best_genres'].append(genre[0])   # # 선호 장르 최대 5개(없으면 선호도가 0이면 X)
+            data['score'].append({genre[0]: genre[1]})   # 선호도와 함께 전송
+            
 
         return data
     class Meta:
