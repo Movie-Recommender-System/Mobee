@@ -64,14 +64,18 @@ class ProfileSerializer(serializers.ModelSerializer):
             for movie_genre in wish_movie.genres.all():
                 genres[movie_genre.name] += 1
         
+        data = {'genres': [], 'scores' : [], 'best_genres' : []}
         genres = list(genres.items())
+        for i in range(len(genres)):
+            data['genres'].append(genres[i][0])
+            data['scores'].append(genres[i][1])
+
         genres.sort(key=lambda x: x[1], reverse=True)
-        data = {'score' : [], 'best_genres' : []}
 
         for idx, genre in enumerate(genres):    
             if idx <= 5 and genre[1] > 0:
                 data['best_genres'].append(genre[0])   # # 선호 장르 최대 5개(없으면 선호도가 0이면 X)
-            data['score'].append({genre[0]: genre[1]})   # 선호도와 함께 전송
+            # data['score'][genre[0]] = genre[1]   # 선호도와 함께 전송
             
 
         return data
