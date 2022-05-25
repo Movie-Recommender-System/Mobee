@@ -15,8 +15,6 @@
             <button v-if="isLoggedIn" @click='likeArticle(article.pk)'>
               <i v-if="article.is_liked" class="fa-solid fa-heart"></i>
               <i v-else class="fa-regular fa-heart"></i>
-
-
             </button>
             <i v-else class="fa-solid fa-heart"></i>
             {{ article.like_users.length }}<br>
@@ -33,7 +31,6 @@
     </div>
   </div>
 </template>
-
 
 
 <script>
@@ -60,46 +57,5 @@ export default {
       height: 100%;
       overflow-y: auto;
   }
-  [id="heart"] {
-  position: absolute;
-  left: -100vw;
-}
-
-[for="heart"] {
-  color: #aab8c2;
-  cursor: pointer;
-  font-size: 6em;
-  align-self: center;  
-  transition: color 0.2s ease-in-out;
-}
-
-[for="heart"]:hover {
-  color: grey;
-}
-
-[for="heart"]::selection {
-  color: none;
-  background: transparent;
-}
-
-[for="heart"]::moz-selection {
-  color: none;
-  background: transparent;
-}
-
-[id="heart"]:checked + label {
-  color: #e2264d;
-  will-change: font-size;
-  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
-}
-
-
-
-@keyframes heart {0%, 17.5% {font-size: 0;}}
-
-.button {
-  border: none;
-  outline:none;
-  }
-
+  
 </style>

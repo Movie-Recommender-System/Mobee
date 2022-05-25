@@ -4,21 +4,17 @@
             <div class="info_section">
               <div class="movie_header">
                 <img class="locandina" :src="posterURL"/>
-                <h3>{{ movie.title }}</h3>
-                <h6>{{ movie.release_date }}, David Ayer</h6>
+                <h4>{{ movie.title }}</h4>
+                <h6>{{ movie.release_date }}, David Ayer <i class="fa-solid fa-heart"></i>   {{ movie.wished_count }}</h6> 
                 <span class="minutes">117 min</span>
-                <p class="type">Action, Crime, Fantasy</p>
+                <span v-for="genre in movie.genres" :key="genre.pk">{{ genre.name }}</span>
+                
                  
               </div>
               <div class="movie_desc">
                 <p class="text">
-                  Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for. 
+                  {{ movie.overview }}
                 </p>
-              </div>
-              <div class="movie_social">
-                <ul>
-                  <li><i class="fa-solid fa-heart"></i>   {{ movie.wished_count }}</li>
-                </ul>
               </div>
             </div>
             <div class="blur_back bright_back" :style="`background-image: url(${backdropURL})`"></div>
@@ -73,14 +69,6 @@
   margin: 0;
 }
 
-html, body {
-  margin: 0;
-  background: white;
-  font-family: "Montserrat", helvetica, arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-}
-
 .link {
   display: block;
   text-align: center;
@@ -92,19 +80,24 @@ html, body {
 .movie_card {
   position: relative;
   display: block;
-  width: 800px;
-  height: 350px;
-  margin: 80px auto;
+  width: 950px;
+  height: 320px;
+  margin: 30px auto;
+  z-index: 1;
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
   box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
 }
+
 .movie_card:hover {
   transform: scale(1.02);
   box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.5);
   transition: all 0.4s;
+
 }
+
+
 .movie_card .info_section {
   position: relative;
   width: 100%;
@@ -118,17 +111,17 @@ html, body {
   padding: 25px;
   height: 40%;
 }
-.movie_card .info_section .movie_header h1 {
-  color: black;
-  font-weight: 400;
-}
 .movie_card .info_section .movie_header h4 {
+  color: black;
+  font-weight: 700;
+}
+.movie_card .info_section .movie_header h6 {
   color: #555;
-  font-weight: 400;
+  font-weight: 500;
 }
 .movie_card .info_section .movie_header .minutes {
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 13px;
   color: #555;
   padding: 5px;
   border-radius: 5px;
@@ -146,13 +139,22 @@ html, body {
   height: 120px;
   box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
 }
+
 .movie_card .info_section .movie_desc {
   padding: 25px;
   height: 50%;
 }
 .movie_card .info_section .movie_desc .text {
   color: #545454;
+  font-size: 12px;
+  line-height:170%;
+  transition:1s;
 }
+
+.movie_card .info_section .movie_desc .text:hover {
+  color: #141414;
+}
+
 .movie_card .info_section .movie_social {
   height: 10%;
   padding-left: 15px;
@@ -189,11 +191,11 @@ html, body {
 
 @media screen and (min-width: 768px) {
   .movie_header {
-    width: 65%;
+    width: 70%;
   }
 
   .movie_desc {
-    width: 50%;
+    width: 55%;
   }
 
   .info_section {
