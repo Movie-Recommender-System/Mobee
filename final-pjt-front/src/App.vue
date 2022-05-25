@@ -5,11 +5,8 @@
       <NavBar/>
     </header>
     
-    <aside  class="sidebar collapse collapse-horizontal bg-warning" id="collapseWidthExample">
-      <SideBar  />
-    </aside>
 
-    <main  id="main" class="main d-grid">
+    <main>
       <div class="card min-vh-100">
         <div class="card-body">
           <router-view></router-view>
@@ -17,7 +14,6 @@
         <div class="card-footer text-muted text-center">
           <FooterPage ></FooterPage>
         </div>
-
       </div>
     </main>
     
@@ -30,12 +26,11 @@
 <script>
   import FooterPage from '@/components/FooterPage.vue'
   import NavBar from '@/components/NavBar.vue'
-  import SideBar from '@/components/SideBar.vue'
   import { mapActions } from 'vuex'
   export default {
     name: "App",
     components: {
-      NavBar, FooterPage, SideBar,
+      NavBar, FooterPage, 
     },
     methods: {
       ...mapActions(['fetchCurrentUser', 'fetchGenres'])
@@ -67,6 +62,7 @@
 
 :root {
   scroll-behavior: smooth;
+
 }
 
 /* 커서이미지 */
@@ -191,147 +187,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .header .search-form button i {
   color: #323232; /* 상단바 검색창 아이콘 */
-}
-
-
-
-/*--------------------------------------------------------------
-# Sidebar
---------------------------------------------------------------*/
-.sidebar {
-  position: fixed;
-  top: 100px;
-  left: 20px;
-  bottom: 0;
-  width: 200px;
-  z-index: 996;
-  transition: all 0.3s;
-  padding: 30px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
-  /* box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1); */
-  /* background-color: #ffffff; */
-  border: 2px solid #333;
-  border-radius: 15px 27px 25px 25px/25px 25px 305px 635px;
-}
-@media (max-width: 1199px) {
-  .sidebar {
-    left: -300px;
-  }
-}
-.sidebar::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-  background-color: rgb(106, 106, 106);
-}
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: #d8d8d8;
-}
-
-@media (min-width: 1200px) {
-  #main, #footer {
-    margin-left: 230px;
-  }
-}
-@media (max-width: 1199px) {
-  .toggle-sidebar .sidebar {
-    left: 0;
-  }
-}
-@media (min-width: 1200px) {
-  .toggle-sidebar #main, .toggle-sidebar #footer {
-    margin-left: 0;
-  }
-  .toggle-sidebar .sidebar {
-    left: -300px;
-  }
-}
-
-.sidebar-nav {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.sidebar-nav li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.sidebar-nav .nav-item {
-  margin-bottom: 5px;
-}
-.sidebar-nav .nav-heading { /* 사이드바 헤드메뉴(작은글씨) */
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #ffae00;
-  font-weight: 600;
-  margin: 10px 0 5px 15px;
-}
-.sidebar-nav .nav-link {
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  color: #000000;
-  transition: 0.3;
-  background: #ffffff;
-  padding: 10px 15px;
-  border-radius: 4px;
-}
-.sidebar-nav .nav-link i {
-  font-size: 16px;
-  margin-right: 10px;
-  color: #2a2a2a;
-}
-.sidebar-nav .nav-link.collapsed {
-  color: rgb(43, 43, 43);
-  background: #ffffff;
-}
-.sidebar-nav .nav-link.collapsed i {
-  color: rgb(41, 41, 41)
-}
-.sidebar-nav .nav-link:hover {
-  color: #ffffff;
-  background: #ffbf00;
-}
-.sidebar-nav .nav-link:hover i {
-  color: #262626;
-}
-.sidebar-nav .nav-link .bi-chevron-down {
-  margin-right: 0;
-  transition: transform 0.2s ease-in-out;
-}
-.sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
-  transform: rotate(180deg);
-}
-.sidebar-nav .nav-content {
-  padding: 5px 0 0 0;
-  margin: 0;
-  list-style: none;
-}
-.sidebar-nav .nav-content a {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: #818181;
-  transition: 0.3;
-  padding: 10px 0 10px 40px;
-  transition: 0.3s;
-  font-family: 'Stylish', sans-serif;
-}
-.sidebar-nav .nav-content a i {
-  font-size: 6px;
-  margin-right: 8px;
-  line-height: 0;
-  border-radius: 50%; 
-}
-.sidebar-nav .nav-content a:hover, .sidebar-nav .nav-content a.active {
-  color: #000000;
-}
-.sidebar-nav .nav-content a.active i {
-  background-color: #ffffff;
 }
 </style>
 

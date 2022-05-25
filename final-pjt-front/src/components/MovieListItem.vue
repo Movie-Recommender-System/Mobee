@@ -1,6 +1,6 @@
 <template>
-  <div id="movislistitem" class="movislistitem">
-    <div class="flip-card-container" style="--hue: 220">
+  <div class="movislistitem col">
+    <div class="flip-card-container" >
       <div @click="open" class="flip-card">
         <div class="card-front">
           <figure>
@@ -34,10 +34,6 @@
           </div>
         </div>
       </div>
-
-    
-    
-      
     </div>
     <modal :name='movie.title' height="auto" width="70%" :scrollable="true">
       <MovieDetail/>
@@ -104,7 +100,7 @@
 
 /* .flip-card-container */
 .flip-card-container {
-  --hue: 150;
+  /* --hue: 150; */
   --primary: hsl(var(--hue), 50%, 50%);
   --white-1: hsl(0, 0%, 90%);
   --white-2: hsl(0, 0%, 80%);
@@ -348,32 +344,12 @@ button:active {
   transition: .3s;
 }
 
-.design--1,
-.design--2,
-.design--3,
-.design--4 {
-  width: 1px;
-  height: 100%;
-}
-
-.design--1,
-.design--2 {
-  top: 0;
-  transform: translateY(calc((var(--tr) - (var(--tr) * 2)) * 1%))
-}
-
 .design--1 {
   left: 20%;
 }
 
 .design--2 {
   left: 80%;
-}
-
-.design--3,
-.design--4 {
-  bottom: 0;
-  transform: translateY(calc((var(--tr) + (var(--tr) - var(--tr))) * 1%))
 }
 
 .design--3 {
@@ -384,32 +360,12 @@ button:active {
   left: 76%;
 }
 
-.design--5,
-.design--6,
-.design--7,
-.design--8 {
-  width: 100%;
-  height: 1px;
-}
-
-.design--5,
-.design--6 {
-  left: 0;
-  transform: translateX(calc((var(--tr) - (var(--tr) * 2)) * 1%));
-}
-
 .design--5 {
   top: 41%;
 }
 
 .design--6 {
   top: 59%;
-}
-
-.design--7,
-.design--8 {
-  right: 0;
-  transform: translateX(calc((var(--tr) + (var(--tr) - var(--tr))) * 1%))
 }
 
 .design--7 {

@@ -1,5 +1,5 @@
 <template>
-  <nav class=" d-flex navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class=" d-flex navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     
     <div class="container-fluid mx-5">
       
