@@ -1,9 +1,26 @@
 <template>
   <div>
-    <button class="btn btn-secondary" @click="open">새 게시물 만들기</button>
-    <modal name='newArticle' height="auto" width="50%">
-      <ArticleForm :article="article" action="create"/>
-    </modal>
+    <button v-if="isLoggedIn" type="button" class="btn btn-secondary" data-bs-toggle="modal" 
+    data-bs-target="#newModal">새 게시물 만들기</button>
+
+    <div class="modal fade" id="newModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ArticleForm :article="article" action="create"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <table class="table table-hover">
       <thead>
         <tr>
@@ -42,15 +59,9 @@
 </template>
 
 <script>
-  import router from '@/router'
   import { mapActions, mapGetters } from 'vuex'
   import ArticleListItem from '@/components/ArticleListItem.vue'
   import ArticleForm from '@/components/ArticleForm.vue'
-  import Vue from 'vue'
-  import VModal from 'vue-js-modal'
-  import 'vue-js-modal/dist/styles.css'
-
-  Vue.use(VModal)
 
   export default {
     name: 'ArticleListView',  
@@ -72,14 +83,6 @@
     },
     methods: {
       ...mapActions(['fetchArticles', 'pageChange' ]),
-      open () {
-        if ( this.isLoggedIn ) {
-          this.$modal.show('newArticle')
-        } else {
-          alert('로그인 하세요.')
-          router.push({ name: 'login'})
-        }
-      },
     },
     created() {
       this.fetchArticles(this.currentPage)
