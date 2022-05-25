@@ -3,7 +3,7 @@
 
       <div class="movie-card">
         <!-- <div class="container"> -->
-          <img src="https://image.tmdb.org/t/p/w200/hPNb2m2jgchIpAoyGauol3wZHub.jpg" alt="cover" class="cover" />
+          <img :src="posterURL" alt="cover" class="cover" />
           <div class="hero" > 
             <div class="details">
             
@@ -43,7 +43,7 @@
 
       </div> <!-- end movie-card -->
       <div class="ratio ratio-16x9">
-        <iframe :src="movie.video_path" frameborder="0"></iframe>
+        <iframe :src="videoURL" frameborder="0"></iframe>
       </div>
 
 
@@ -51,14 +51,14 @@
       <section class="py-3 hero-section">
         <div class="card-grid">
           <a class="card" v-for="director in directors" :key="-director.pk">
-            <div class="card__background" :style="`background-image: url(${director.profile_path})`"></div>
+            <div class="card__background" :style="`background-image: url(https://image.tmdb.org/t/p/w500/${director.profile_key})`"></div>
             <div class="card__content">
               <p class="card__category">Director</p>
               <h3 class="card__heading">{{ director.name }}</h3>
             </div>
           </a>
           <a class="card" v-for="actor in actors" :key="actor.pk">
-            <div class="card__background" :style="`background-image: url(${actor.profile_path})`"></div>
+            <div class="card__background" :style="`background-image: url(https://image.tmdb.org/t/p/w500/${actor.profile_key})`"></div>
             <div class="card__content">
               <p class="card__category">{{ actor.character }}</p>
               <h3 class="actorname card__heading">{{ actor.name }}</h3>
@@ -96,7 +96,16 @@
       },
       directors() {
         return this.movie.credits.directors
-      }
+      },
+      backdropURL() {
+        return `https://image.tmdb.org/t/p/w500/${this.movie.backdrop_key}`
+      },
+      posterURL() {
+        return `https://image.tmdb.org/t/p/w200/${this.movie.poster_key}`
+      },
+      videoURL() {
+        return `https://youtube.com/embed/${this.movie.video_key}?autoplay=1&mute=1`
+      },
     },
     methods: {
       ...mapActions(['wishMovie'])
@@ -106,7 +115,7 @@
       // styleElem.setProperty('`--background', `url(${this.movie.poster_path})`);
 
       let styleElem = document.head.appendChild(document.createElement("style"));
-      styleElem.innerHTML = `.hero:before {background: url(${this.movie.poster_path});}`;
+      styleElem.innerHTML = `.hero:before {background: url(${this.backdropURL});}`;
 
       // let styleElem = window.getComputedStyle($('.hero')[0], ':before').getPropertyValue(`${this.movie.poster_path}`);
 

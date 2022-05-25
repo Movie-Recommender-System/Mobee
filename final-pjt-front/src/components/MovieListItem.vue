@@ -3,7 +3,7 @@
           <div class="movie_card" id="bright" @click="open">
             <div class="info_section">
               <div class="movie_header">
-                <img class="locandina" :src="movie.poster_path"/>
+                <img class="locandina" :src="posterURL"/>
                 <h3>{{ movie.title }}</h3>
                 <h6>{{ movie.release_date }}, David Ayer</h6>
                 <span class="minutes">117 min</span>
@@ -21,7 +21,7 @@
                 </ul>
               </div>
             </div>
-            <div class="blur_back bright_back" :style="`background-image: url(${movie.poster_path})`"></div>
+            <div class="blur_back bright_back" :style="`background-image: url(${backdropURL})`"></div>
           </div>
 
     <modal :name='movie.title' height="auto" width="70%" :scrollable="true">
@@ -47,6 +47,14 @@
     name: 'MovieListItem',
     props: { movie: Object },
     components: { MovieDetail },
+    computed: {
+      backdropURL() {
+        return `https://image.tmdb.org/t/p/w500/${this.movie.backdrop_key}`
+      },
+      posterURL() {
+        return `https://image.tmdb.org/t/p/w200/${this.movie.poster_key}`
+      },
+    },
     methods: {
       ...mapActions(['fetchMovie']),
       open () {
