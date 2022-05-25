@@ -73,7 +73,6 @@ export default {
       var y = e.clientY - 15  
       bee.style.left = x +'px'
       bee.style.top = y + 'px'
-      console.log(e.clientX - (window.innerWidth/2))
       if(last_x < x) {
         bee.classList.add('flip')    
       } else {

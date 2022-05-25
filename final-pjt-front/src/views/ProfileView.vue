@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h2>{{ profile.username }}'s Profile</h2>
-    <div class="d-flex my-5">
-      <div class="container">
+    <div class="row my-5">
+      <div class="col-4 box">
         <h4>남긴 리뷰</h4>
         <ul class="list-group">
           <li class="list-group-item" v-for="review in profile.reviews" :key="review.pk">
@@ -20,7 +20,7 @@
           </li>
         </ul>
       </div>
-      <div class="container">
+      <div class="col-8 box">
         <h4>Wish List</h4>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">
@@ -33,6 +33,27 @@
             </div>
           </div> 
         </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="container box">
+        <h4>작성한 게시글 모음</h4>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="article in profile.articles" :key="article.pk">
+            <h5>제목 : {{ article.title }}</h5>
+            <p>내용 : {{ article.content }}</p>
+            <p><i class="fa-solid fa-heart"></i> {{ article.like_count }}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="container box">
+        <h4>작성한 댓글 모음</h4>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="comment in profile.comments" :key="comment.pk">
+            <h5>게시글 제목 : {{ comment.article.title }}</h5>
+            <p>남긴 댓글 : {{ comment.content }}</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -55,6 +76,9 @@ import { mapActions, mapGetters } from 'vuex'
   }
 </script>
 
-<style>
-  
+<style scoped>
+  .box {
+    height: 600px;
+    overflow: auto;
+  }
 </style>
