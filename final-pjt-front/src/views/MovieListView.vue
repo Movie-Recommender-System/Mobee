@@ -1,9 +1,5 @@
 <template>
   <div>
-    <br>
-    <br>
-    <br>
-    <br>
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
       <button type="button" class="btn btn-primary" 

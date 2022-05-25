@@ -4,8 +4,10 @@
     <header class="header navbar0 fixed-top align-items-center" id="header">
       <NavBar/>
     </header>
-    
-
+    <br>
+    <br>
+    <br>
+    <br>
     <main>
       <div class="card min-vh-100">
         <div class="card-body">
