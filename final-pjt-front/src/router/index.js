@@ -5,7 +5,6 @@ import IntroView from '../views/IntroView.vue'
 import SignupView from '../views/SignupView.vue'
 import LoginView from '../views/LoginView.vue'
 import ProfileView from '../views/ProfileView.vue'
-import MileageShopView from '../views/MileageShopView.vue'
 
 import MovieListView from '../views/MovieListView.vue'
 import ArticleListView from '../views/ArticleListView'
@@ -30,11 +29,6 @@ const routes = [
     path: '/movie',
     name: 'movie',
     component: MovieListView
-  },
-  {
-    path: '/mileageShop',
-    name: 'mileageShop',
-    component: MileageShopView
   },
   {
     path: '/profile',

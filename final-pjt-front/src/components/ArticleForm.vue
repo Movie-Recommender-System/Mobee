@@ -32,7 +32,7 @@
       }
     },
     methods: {
-      ...mapActions(['createArticle', 'updateArticle', 'switchUpdateArticleModal']),
+      ...mapActions(['createArticle', 'updateArticle']),
       onSubmit() {
         if (this.action === 'create') {
           this.createArticle(this.newArticle)
@@ -43,7 +43,7 @@
             ...this.newArticle,
           }
           this.updateArticle(payload)
-          this.switchUpdateArticleModal()
+          this.$modal.hide('updateModal')
         }
       },
     }
