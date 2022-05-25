@@ -1,7 +1,8 @@
+from dataclasses import field
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from movies.models import Genre, Movie, Review
-
+from articles.models import Article, Comment
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -17,8 +18,8 @@ class ProfileSerializer(serializers.ModelSerializer):
 
             class Meta:
                 model = Movie
-                fields = ('pk', 'title',)
-        
+                fields = ('pk', 'title',) 
+
         movie = MovieSerializer()
         like_count = serializers.IntegerField(source='like_users.count', read_only=True)
 
@@ -26,9 +27,29 @@ class ProfileSerializer(serializers.ModelSerializer):
             model = Review
             fields = ('pk', 'movie', 'content', 'score', 'like_count')
 
+    class ArticleSerializer(serializers.ModelSerializer):
+        like_count = serializers.IntegerField(source='like_users.count', read_only=True)
+
+        class Meta:
+            model = Article
+            fields = ('pk', 'title', 'content', 'like_count')
+
+    class CommentSerializer(serializers.ModelSerializer):
+
+        class ArticleSerializer(serializers.ModelSerializer):
+
+            class Meta:
+                model = Article
+                fields = ('pk', 'title', )
+        article = ArticleSerializer()
+        class Meta:
+            model = Comment
+            fields = ('pk', 'article', 'content')
+
     wish_movie_list = MovieSerializer(many=True)
     reviews = ReviewSerializer(many=True)
-
+    articles = ArticleSerializer(many=True)
+    comments = CommentSerializer(many=True)
     preferred_genres = serializers.SerializerMethodField('preferred')
 
     def preferred(self, user):
@@ -54,7 +75,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         return data
     class Meta:
         model = get_user_model()
-        fields = ('pk', 'username', 'wish_movie_list', 'reviews', 'preferred_genres', 'mileage')
+        fields = ('pk', 'username', 'wish_movie_list', 'reviews', 
+        'preferred_genres', 'mileage', 'articles', 'comments')
 
 
 class UserSerializer(serializers.ModelSerializer):
