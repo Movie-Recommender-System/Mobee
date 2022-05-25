@@ -71,11 +71,11 @@ input {cursor: url(./assets/bee_hover.png),auto;}
 
 /* 글씨체 부분  자유롭게*/
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Noto Sans KR' , sans-serif;
+  font-family: 'Stylish', 'Noto Sans KR' , sans-serif;
   font-weight: 900;
 }
 p {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Stylish', 'Noto Sans KR', sans-serif;
 }
 
 .material-symbols-outlined {
