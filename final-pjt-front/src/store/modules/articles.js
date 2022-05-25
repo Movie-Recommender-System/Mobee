@@ -11,6 +11,8 @@ export default {
     articles: [],
     article: {},
     onUpdateArticleModal: false,
+    articlePage: 1,
+    articleCount: 0,
   },
 
   getters: {
@@ -21,19 +23,30 @@ export default {
     },
     isArticle: state => !_.isEmpty(state.article),
     onUpdateArticleModal: state => state.onUpdateArticleModal,
+    articlePage: state => state.articlePage,
+    articleCount: state => state.articleCount,
   },
 
   mutations: {
-    SET_ARTICLES: (state, articles) => state.articles = articles,
+    SET_ARTICLES: (state, data) => {
+      state.articles = data.articles
+      state.articleCount = data.count
+    },
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLE_COMMENTS: (state, comments) => (state.article.comments = comments),
     SET_ON_UPDATE_ARTICLE_MODAL: (state) => state.onUpdateArticleModal = ! state.onUpdateArticleModal,
+    SET_ARTICLE_PAGE: (state, page) => state.articlePage = page,
   },
 
-  actions: {
-    fetchArticles({ commit }) {
+  actions: {    
+    pageChange({ commit, dispatch }, page) {
+      commit('SET_ARTICLE_PAGE', page)
+      dispatch('fetchArticles')
+    },
+
+    fetchArticles({ commit, getters }) {
       axios({
-        url: drf.articles.articles(),
+        url: drf.articles.articles(getters.articlePage),
         method: 'get',
       })
         .then(res => commit('SET_ARTICLES', res.data))

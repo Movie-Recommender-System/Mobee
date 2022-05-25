@@ -18,7 +18,7 @@ export default {
   },
   articles: {
     // /articles/
-    articles: () => HOST + ARTICLES,
+    articles: page => HOST + ARTICLES + `?page=${page}`,
     // /articles/1/
     article: articlePk => HOST + ARTICLES + `${articlePk}/`,
     likeArticle: articlePk => HOST + ARTICLES + `${articlePk}/` + 'like/',

@@ -18,15 +18,18 @@
         :key="article.pk" :index='index' :article='article'/>
       </tbody>
     </table>
-    <div>
-      <ul class="pagination">
-        <li class="page-item" :class="{'disabled': currentPage === 1}">
-          <a class="page-link" href="#">&laquo;</a>
+    <div class="d-flex justify-content-center">
+      <ul class="pagination pagination-lg">
+        <li class="page-item" @click="pageChange(articlePage - 1)"
+        :class="{'disabled': articlePage === 1}">
+          <a class="page-link" >&laquo;</a>
         </li>
-        <li class="page-item active" v-for="page in pages" :key="page">
-          <a class="page-link" href="#">{{ page }}</a>
+        <li class="page-item" @click="pageChange(page)"
+        v-for="page in pages" :key="page" :class="{'active': articlePage === page}">
+          <a class="page-link" >{{ page }}</a>
         </li>
-        <li class="page-item" :class="{'disabled': currentPage === pages}">
+        <li class="page-item" @click="pageChange(articlePage + 1)"
+         :class="{'disabled': articlePage === pages}">
           <a class="page-link">&raquo;</a>
         </li>
       </ul>
@@ -35,7 +38,7 @@
 </template>
 
 <script>
-import router from '@/router'
+  import router from '@/router'
   import { mapActions, mapGetters } from 'vuex'
   import ArticleListItem from '@/components/ArticleListItem.vue'
   import ArticleForm from '@/components/ArticleForm.vue'
@@ -55,17 +58,16 @@ import router from '@/router'
           title: '',
           content: '',
         },
-        currentPage: 1
       }
     },
     computed: {
-      ...mapGetters(['articles', 'isLoggedIn']),
+      ...mapGetters(['articles', 'isLoggedIn', 'articlePage', 'articleCount']),
       pages () {
-        return Math.ceil(this.articles.length / 10)
+        return Math.ceil(this.articleCount / 10)
       }
     },
     methods: {
-      ...mapActions(['fetchArticles']),
+      ...mapActions(['fetchArticles', 'pageChange' ]),
       open () {
         if ( this.isLoggedIn ) {
           this.$modal.show('newArticle')
@@ -73,10 +75,10 @@ import router from '@/router'
           alert('로그인 하세요.')
           router.push({ name: 'login'})
         }
-      }
+      },
     },
     created() {
-      this.fetchArticles()
+      this.fetchArticles(this.currentPage)
     },
   }
 </script>
