@@ -83,8 +83,17 @@ input {cursor: url(./assets/bee_hover.png),auto;}
   /* cursor: url("./assets/bee.png"), auto; */
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Nunito", sans-serif; /*재설정하기!*/
+/* 글씨체 부분  자유롭게*/
+h1, h2, h3 {
+  font-family: 'Noto Sans KR' , sans-serif;
+  font-weight: 900;
+}
+h4, h5, h6 {
+  font-family: 'Noto Sans KR' , sans-serif;
+  font-weight: 500;
+}
+p {
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -126,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 997;
   height: 90px;
   box-shadow: 0px 2px 20px rgba(117, 117, 117, 0.1); /* 상단바 밑 그림자색 */
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   padding-left: 20px;
   padding: 1rem;
   /* padding-bottom: 1rem; */

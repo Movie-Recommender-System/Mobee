@@ -4,25 +4,42 @@
       <div @click="open" class="flip-card">
         <div class="card-front">
           <figure>
-            <div class="img-bg"></div>
+            <div class="front-img-bg"></div>
             <img :src="movie.poster_path">
-            <figcaption>{{ movie.title }}</figcaption>
+            <!-- <figcaption>{{ movie.title }}</figcaption> -->
           </figure>
-          <ul>
+          <!-- <ul>
             <li><i class="fa-solid fa-heart"></i>  {{ movie.wished_count }}</li>
             <li>{{ movie.release_date }}</li>
-            <!-- <li>Detail 4</li>
-            <li>Detail 5</li> -->
-          </ul>
+          </ul> -->
         </div>
 
         <div class="card-back">
-          <figure>
-            <div class="img-bg"></div>
-              <img :src="movie.poster_path">
-          </figure>
-          <button>Detail</button>
-          <div class="design-container">
+          <!-- <figure> -->
+            <div class="back-img-bg"></div>
+              <!-- <img :src="movie.poster_path"> -->
+              
+          <!-- </figure> -->
+          <!-- <ul>
+            <li><i class="fa-solid fa-heart"></i>  {{ movie.wished_count }}</li>
+            <li>{{ movie.release_date }}</li>
+          </ul> -->
+          <div class="container text-align-center mx-3">
+            <div class="row mt-5">
+              <p class="text-white text-center">{{ movie.title }}</p>
+              <ul>
+            <li><i class="fa-solid fa-heart"></i>  {{ movie.wished_count }}</li>
+            <li>{{ movie.release_date }}</li>
+          </ul>
+            </div>
+            <div class="row m-3">
+              <button>Detail</button>
+            </div>
+          </div>
+          
+
+          
+          <!-- <div class="design-container">
             <span class="design design--1"></span>
             <span class="design design--2"></span>
             <span class="design design--3"></span>
@@ -31,7 +48,7 @@
             <span class="design design--6"></span>
             <span class="design design--7"></span>
             <span class="design design--8"></span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -77,13 +94,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 /* default */
-*,
+/* *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 /* body */
 .movislistitem {
@@ -94,13 +111,15 @@
   justify-content: center;
   align-items: center;
 
-  background: hsl(0, 0%, 100%);
-  font-family: "Lato", "Segoe Ui", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* background: hsl(0, 0%, 100%); */
+  font-family: "Lato", 'Stylish', "Segoe Ui", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: bold;
+  
 }
 
 /* .flip-card-container */
 .flip-card-container {
-  /* --hue: 150; */
+  --hue: 150;
   --primary: hsl(var(--hue), 50%, 50%);
   --white-1: hsl(0, 0%, 90%);
   --white-2: hsl(0, 0%, 80%);
@@ -131,8 +150,7 @@
 }
 
 /* .card-... */
-.card-front,
-.card-back {
+.card-front, .card-back {
   width: 100%;
   height: 100%;
   border-radius: 24px;
@@ -150,6 +168,7 @@
   align-items: center;
 }
 
+
 /* .card-front */
 .card-front {
   transform: rotateY(0deg);
@@ -161,6 +180,9 @@
   transform: rotateY(180deg);
   z-index: 1;
 }
+
+  
+
 
 /* figure */
 figure {
@@ -207,15 +229,20 @@ figcaption {
 }
 
 /* .img-bg */
-.img-bg {
+
+.back-img-bg {
   background: hsla(var(--hue), 25%, 10%, .5);
 }
-
-.card-front .img-bg {
-  clip-path: polygon(0 20%, 100% 40%, 100% 100%, 0 100%);
+.card-back > img {
+  filter: brightness(50%);
 }
 
-.card-front .img-bg::before {
+
+.card-front .img-bg {
+  clip-path: hsla(0 20%, 100% 40%, 100% 100%, 0 100%);
+}
+
+/* .card-front .img-bg::before {
   content: "";
 
   position: absolute;
@@ -230,11 +257,11 @@ figcaption {
   border-right-color: transparent;
 
   transition: .1s;
-}
+} */
 
-.card-back .img-bg {
+/* .card-back .img-bg {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 60%);
-}
+} */
 
 /* hover state */
 .flip-card-container:hover .card-front .img-bg::before {
@@ -291,7 +318,7 @@ li:not(:last-child)::after {
 
 /* button */
 button {
-  font-family: inherit;
+  font-family: inherit 'Do Hyeon', sans-serif;
   font-weight: bold;
   color: var(--white-1);
 
@@ -318,7 +345,7 @@ button:active {
 }
 
 /* .design-container */
-.design-container {
+/* .design-container {
   --tr: 90;
   --op: .5;
 
@@ -331,10 +358,10 @@ button:active {
   left: 0;
 
   pointer-events: none;
-}
+} */
 
 /* .design */
-.design {
+/* .design {
   display: block;
 
   background: var(--grey);
@@ -374,22 +401,22 @@ button:active {
 
 .design--8 {
   top: 56%;
-}
+} */
 
 /* states */
-button:hover+.design-container,
+/* button:hover+.design-container,
 button:active+.design-container,
 button:focus+.design-container {
   --tr: 20;
   --op: .7;
-}
+} */
 
 .abs-site-link {
   position: fixed;
   bottom: 20px;
   left: 20px;
   color: hsla(0, 0%, 100%, .6);
-  font-size: 16px;
+  font-size: 20px;
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 </style>

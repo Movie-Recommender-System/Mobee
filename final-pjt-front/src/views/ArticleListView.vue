@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import router from '@/router'
   import { mapActions, mapGetters } from 'vuex'
   import ArticleListItem from '@/components/ArticleListItem.vue'
   import ArticleForm from '@/components/ArticleForm.vue'
@@ -70,6 +71,7 @@
           this.$modal.show('newArticle')
         } else {
           alert('로그인 하세요.')
+          router.push({ name: 'login'})
         }
       }
     },
