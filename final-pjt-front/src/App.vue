@@ -49,6 +49,14 @@
   scroll-behavior: smooth;
 
 }
+input::placeholder {
+  font-family: 'Stylish', sans-serif;
+}
+
+
+textarea::placeholder {
+  font-family: 'Stylish', sans-serif;
+}
 
 /* 커서이미지 */
 html, body{

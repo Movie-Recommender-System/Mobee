@@ -2,21 +2,23 @@
   <li class="list-group-item">
     <div class="d-flex justify-content-between">
 
-      <div v-if="isUpdate">
+      <div v-if="isUpdate" class="container">
         <form @submit.prevent="onSubmit">
-          <div>
-            <label for="content">content: </label>
-            <textarea v-model.trim="payload.content" type="text" id="content">
-            </textarea>
+          <div class="row" >
+            <label for="content" width="80%"></label><br>
           </div>
-          <div>
-            <button>수정</button>
+          <div class="row p-2">
+            <textarea v-model.trim="payload.content" type="text" id="content"></textarea>
+          </div>
+          <div class="row p-2 justify-content-end">
+            <button class="btn btn-outline-primary">수정</button>
           </div>
         </form>
       </div>
+
       <div class="py-4" v-else>
+        <p class="text-secondary">{{ comment.user.username }}</p>
         <h5>{{ comment.content }}</h5>
-        <p>{{ comment.user.username }}</p>
       </div>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" 
@@ -25,11 +27,21 @@
           
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><button class="dropdown-item" type="button"
-          @click='deleteComment({articlePk : comment.article, commentPk : comment.pk})'>
-          삭제</button></li>
-          <li><button class="dropdown-item" type="button" @click="isUpdate=true">
-          수정</button></li>
+          <li>
+            <button
+              class="dropdown-item"
+              type="button"
+              @click="isUpdate=true">
+              수정
+            </button>
+          </li>
+          <li>
+            <button
+              class="dropdown-item"
+              type="button"
+              @click='deleteComment({articlePk : comment.article, commentPk : comment.pk})'>삭제
+            </button>
+          </li>
         </ul>
       </div>
     </div>

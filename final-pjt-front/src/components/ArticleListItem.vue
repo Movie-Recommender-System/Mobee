@@ -1,10 +1,16 @@
 <template>
   <tr>
     <th scope="row">{{ articleNum }}</th>
-    <td><a href="" @click.prevent="open">{{ article.title }}</a></td>
+    <td>
+        <div class="row">
+          <div type="button" @click.prevent="open" class="text text-truncate col-6">{{ article.title }}</div>
+        </div>
+      </td>
     <td>{{ article.user.username }}</td>
-    <td>{{ article.comment_count }} | {{ article.like_count }}</td>
-    <modal :name='modalName' width="50%" :adaptive="true" height="50%">
+    <td>{{ article.comment_count }}</td>
+    <td>{{ article.like_count }}</td>
+    <modal :name='modalName' width="50%" :adaptive="true" height="50%" @before-close="beforeClose">
+
       <ArticleDetail/>
     </modal>
   </tr>
@@ -16,9 +22,7 @@
   import Vue from 'vue'
   import VModal from 'vue-js-modal'
   import 'vue-js-modal/dist/styles.css'
-
   Vue.use(VModal)
-
   export default {
     name: 'ArticleListItem',
     components: { ArticleDetail },
@@ -48,5 +52,4 @@
 </script>
 
 <style>
-
 </style>

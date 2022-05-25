@@ -1,18 +1,27 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <div>
-      <label for="title">title: </label>
-      <input v-model="newArticle.title" type="text" id="title" />
+    <div class="container">
+      <div class="row">
+        <label class="fs-4" for="title">TITLE </label>
+      </div>
+      <div class="row">
+        <input v-model="newArticle.title" type="text" id="title" placeholder="제목을 입력해 주세요."  required/>
+      </div>
+
+      <div class="row">
+        <label class="fs-4" for="content">CONTENT </label>
+      </div>
+      <div class="row">
+        <textarea v-model.trim="newArticle.content" type="text" id="content"  placeholder="내용을 입력해 주세요." required></textarea>
+      </div>
     </div>
     <div>
-      <label for="content">content: </label>
-      <textarea v-model.trim="newArticle.content" type="text" id="content"></textarea>
-    </div>
-    <div>
-      <button>{{ action }}</button>
+      <button class="btn btn-secondary"  style="width:100%;">{{ action }}</button>
     </div>
   </form>
 </template>
+
+
 
 <script>
   import { mapActions } from 'vuex'
@@ -50,6 +59,6 @@
   }
 </script>
 
-<style>
+<style scoped>
   
 </style>

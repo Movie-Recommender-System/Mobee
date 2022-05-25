@@ -8,7 +8,7 @@
         </textarea>
       </div>
       <div>
-        <button class="btn btn-primary">생성</button>
+        <button class="btn btn-outline-primary">생성</button>
       </div>
     </form>
   </div>
