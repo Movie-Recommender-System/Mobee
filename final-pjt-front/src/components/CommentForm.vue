@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h5>댓글 Create</h5>
+    <h5>Comment Create</h5>
     <form @submit.prevent="onSubmit">
       <div>
-        <label for="content">content: </label>
-        <textarea v-model.trim="content" type="text" id="content">
+        <label for="content "></label>
+        <textarea  v-model.trim="content" type="text" id="content" style="width:100%;">
         </textarea>
       </div>
       <div>
-        <button>생성</button>
+        <button class="btn btn-primary">생성</button>
       </div>
     </form>
   </div>

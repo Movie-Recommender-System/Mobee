@@ -1,7 +1,7 @@
 <template>
   <tr>
     <th scope="row">{{ articleNum }}</th>
-    <td><a href="" @click.prevent="open">{{ article.title }}</a></td>
+    <td><a class="text-decoration-none" href="" @click.prevent="open">{{ article.title }}</a></td>
     <td>{{ article.user.username }}</td>
     <td>{{ article.comment_count }} | {{ article.like_count }}</td>
     <modal :name='modalName' width="50%" :adaptive="true" height="50%">

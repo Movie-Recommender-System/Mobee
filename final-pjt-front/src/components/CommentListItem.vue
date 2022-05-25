@@ -14,7 +14,7 @@
           </div>
         </form>
       </div>
-      <div v-else>
+      <div class="py-4" v-else>
         <h5>{{ comment.content }}</h5>
         <p>{{ comment.user.username }}</p>
       </div>
@@ -22,6 +22,7 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" 
         id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-gear"></i>
+          
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <li><button class="dropdown-item" type="button"
