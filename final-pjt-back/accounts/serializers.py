@@ -10,7 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         
         class Meta:
             model = Movie
-            fields = ('pk', 'title', 'poster_path')
+            fields = ('pk', 'title', 'poster_key')
 
     class ReviewSerializer(serializers.ModelSerializer):
         class MovieSerializer(serializers.ModelSerializer):

@@ -62,9 +62,15 @@
 </template>
 
 <script>
+  import router from '@/router'
   import { mapActions, mapGetters } from 'vuex'
   import ArticleListItem from '@/components/ArticleListItem.vue'
   import ArticleForm from '@/components/ArticleForm.vue'
+  import Vue from 'vue'
+  import VModal from 'vue-js-modal'
+  import 'vue-js-modal/dist/styles.css'
+
+  Vue.use(VModal)
 
   export default {
     name: 'ArticleListView',  
@@ -86,6 +92,14 @@
     },
     methods: {
       ...mapActions(['fetchArticles', 'pageChange' ]),
+      open () {
+        if ( this.isLoggedIn ) {
+          this.$modal.show('newArticle')
+        } else {
+          alert('로그인 하세요.')
+          router.push({ name: 'login'})
+        }
+      },
     },
     created() {
       this.fetchArticles(this.currentPage)

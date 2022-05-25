@@ -22,7 +22,6 @@ export default {
       return state.article.user?.username === getters.currentUser.username
     },
     isArticle: state => !_.isEmpty(state.article),
-    onUpdateArticleModal: state => state.onUpdateArticleModal,
     articlePage: state => state.articlePage,
     articleCount: state => state.articleCount,
   },
@@ -34,7 +33,6 @@ export default {
     },
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLE_COMMENTS: (state, comments) => (state.article.comments = comments),
-    SET_ON_UPDATE_ARTICLE_MODAL: (state) => state.onUpdateArticleModal = ! state.onUpdateArticleModal,
     SET_ARTICLE_PAGE: (state, page) => state.articlePage = page,
   },
 
@@ -156,10 +154,6 @@ export default {
           dispatch('fetchArticles')
         })
         .catch(err => console.error(err.response))
-    },
-
-    switchUpdateArticleModal({ commit }) {
-      commit('SET_ON_UPDATE_ARTICLE_MODAL')
     },
 
 		createComment({ commit, getters, dispatch }, { articlePk, content }) {
