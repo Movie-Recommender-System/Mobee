@@ -3,24 +3,29 @@
     <div>
       <div class="d-flex">
         <span @click='onStar(0)'>
-          <i v-if="stars[0]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[0]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(1)'>
-          <i v-if="stars[1]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[1]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(2)'>
-          <i v-if="stars[2]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[2]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(3)'>
-          <i v-if="stars[3]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[3]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(4)'>
-          <i v-if="stars[4]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[4]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
       </div>
       <div>
@@ -29,7 +34,7 @@
       </div>
     </div>
     <div>
-      <button>생성</button>
+      <button class="btn btn-outline-primary">생성</button>
     </div>
   </form>
 </template>

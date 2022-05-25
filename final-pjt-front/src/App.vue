@@ -77,5 +77,13 @@ h1, h2, h3, h4, h5, h6 {
 p {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 </style>
 

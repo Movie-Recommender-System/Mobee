@@ -9,14 +9,14 @@
       <p>내용 : {{ review.content }}</p>
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex mb-5">
       <div>
         <h4>
-          <button v-if="isLoggedIn" @click='likeReview(
+          <a v-if="isLoggedIn" @click='likeReview(
             {moviePk : review.movie, reviewPk : review.pk})'>
-            <i v-if="review.is_liked" class="fa-solid fa-heart"></i>
+            <i v-if="review.is_liked" class="fa-solid fa-heart text-danger"></i>
             <i v-else class="fa-regular fa-heart"></i>
-          </button>
+          </a>
           <i v-else class="fa-solid fa-heart"></i>
           {{ review.like_count }}
         </h4>

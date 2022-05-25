@@ -7,17 +7,16 @@
           <div class="hero" > 
             <div class="details">
             
-            <div class="title1 fs-1">{{ movie.title }} <span>PG-13</span></div>
-            <div class="title2" ><span>{{ movie.release_date }}, </span><span v-for="director in directors" :key="-director.pk">{{ director.name }} </span>  </div> 
+            <div class="title1 fs-1">{{ movie.title }} <span>{{ movie.runtime }} min</span></div>
+            <div class="title2" ><span>{{ movie.release_date }}, </span>  </div> 
             
             <p>
-              <i v-if="movie.score_avg > 0.5" class="fa-solid fa-star"></i>
-              <i v-if="movie.score_avg > 1.5" class="fa-solid fa-star"></i>
-              <i v-if="movie.score_avg > 2.5" class="fa-solid fa-star"></i>
-              <i v-if="movie.score_avg > 3.5" class="fa-solid fa-star"></i>
-              <i v-if="movie.score_avg > 4.5" class="fa-solid fa-star"></i>
-              <span v-if="movie.score_avg">{{ movie.score_avg }}</span>
-              <span v-else class="text-muted">데이터가 없습니다.</span>
+              <span v-if="movie.score_avg > 0.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="movie.score_avg > 1.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="movie.score_avg > 2.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="movie.score_avg > 3.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="movie.score_avg > 4.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <!-- <h3 v-if="movie.score_avg">{{ movie.score_avg }}</h3> -->
             </p>
 
               
@@ -28,7 +27,7 @@
           <div class="description">
             
             <div  class="column1">
-              <span v-for="genre in movie.genres" :key="genre.pk" class="tag">{{ genre.name }}<br></span>
+              <span v-for="genre in movie.genres" :key="genre.pk" class="badge rounded-pill bg-warning tag">{{ genre.name }}<br></span>
               <div>
 
               <div  v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
@@ -43,13 +42,14 @@
           
             <div class="column2">
               
-              <p >{{ movie.overview }} <a href="#">read more</a></p>
+              <p >{{ movie.overview }}</p>
               
           </div> <!-- end column2 -->
         </div> <!-- end description -->
   
 
       </div> <!-- end movie-card -->
+      <br><br><br><br>
       <div class="ratio ratio-16x9">
         <iframe :src="videoURL" frameborder="0"></iframe>
       </div>
@@ -58,7 +58,7 @@
     
       <section class="py-3 hero-section">
         <div class="card-grid">
-          <a class="card" v-for="director in directors" :key="-director.pk">
+          <a class="card">
             <div class="card__background" :style="`background-image: url(https://image.tmdb.org/t/p/w500/${director.profile_key})`"></div>
             <div class="card__content">
               <p class="card__category">Director</p>
@@ -76,9 +76,11 @@
       </section>
       <div class="text-con  py-2 px-4">
        <hr>
-        <h3 class="py-2">리뷰 수</h3> {{ movie.reviews_count }}
-          <ReviewList class="py-2" :reviews="movie.reviews"/>
-          <ReviewCreateForm class="py-2" :moviePk="movie.pk"/>
+       <div class="row">
+          <ReviewList class="py-2 col-9" :reviews="movie.reviews"/>
+          <div class="col-1"></div>
+          <ReviewCreateForm class="py-2 col-2" :moviePk="movie.pk"/>
+       </div>
       </div>
  
 </div>
@@ -97,8 +99,8 @@
       actors() {
         return this.movie.credits.actors
       },
-      directors() {
-        return this.movie.credits.directors
+      director() {
+        return this.movie.credits.directors[0]
       },
       backdropURL() {
         return `https://image.tmdb.org/t/p/w500/${this.movie.backdrop_key}`
