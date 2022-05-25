@@ -1,61 +1,62 @@
 <template>
-  <div v-if="movie.credits" class="container">
-    <div class="ratio ratio-16x9">
-      <iframe :src="movie.video_path" frameborder="0"></iframe>
-    </div>
-    <h3 class='text-wrap'>{{ movie.title }}</h3>
-    <h4>
-      <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
-        <i v-if="movie.is_wished" class="fa-solid fa-heart"></i>
-        <i v-else class="fa-regular fa-heart"></i>
-      </button>
-      <i v-else class="fa-solid fa-heart"></i>
-      {{ movie.wished_count }}
-    </h4>
-    <p>
-      <i v-if="movie.score_avg > 0.5" class="fa-solid fa-star"></i>
-      <i v-if="movie.score_avg > 1.5" class="fa-solid fa-star"></i>
-      <i v-if="movie.score_avg > 2.5" class="fa-solid fa-star"></i>
-      <i v-if="movie.score_avg > 3.5" class="fa-solid fa-star"></i>
-      <i v-if="movie.score_avg > 4.5" class="fa-solid fa-star"></i>
-      <span v-if="movie.score_avg">{{ movie.score_avg }}</span>
-      <span v-else class="text-muted">데이터가 없습니다.</span>
-    </p>
-    <p>내용 : {{ movie.overview }}</p>
-    <p>출시일 : {{ movie.release_date }}</p>
-
-    <section class="my-3 hero-section">
-      <div class="card-grid">
-        <a class="card" v-for="director in directors" :key="-director.pk">
-          <div class="card__background" :style="`background-image: url(${director.profile_path})`"></div>
-          <div class="card__content">
-            <p class="card__category">Director</p>
-            <h3 class="card__heading">{{ director.name }}</h3>
-          </div>
-        </a>
-        <a class="card" v-for="actor in actors" :key="actor.pk">
-          <div class="card__background" :style="`background-image: url(${actor.profile_path})`"></div>
-          <div class="card__content">
-            <p class="card__category">{{ actor.character }}</p>
-            <h3 class="card__heading">{{ actor.name }}</h3>
-          </div>
-        </a>
+<div class="container h-100 row align-items-center">
+  <div v-if="movie.credits" class="col">
+      <div class="ratio ratio-16x9">
+        <iframe :src="movie.video_path" frameborder="0"></iframe>
       </div>
-    </section>
-
-    <p>장르 : 
-      <ul v-for="genre in movie.genres" :key="genre.pk">
-        <li>
-          <p>{{ genre.name }}</p>
-        </li>
-      </ul>
-    </p>
-
-    <p>리뷰 수 : {{ movie.reviews_count }}</p>
-    <ReviewList :reviews="movie.reviews"/>
-    <ReviewCreateForm :moviePk="movie.pk"/>
+      <div class="text-con container px-3">
+        <h3 class='text-wrap text-center py-4'>{{ movie.title }}</h3>
+        <h4 class="py-2">
+          <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
+            <i v-if="movie.is_wished" class="fa-solid fa-heart"></i>
+            <i v-else class="fa-regular fa-heart"></i>
+          </button>
+          <i v-else class="fa-solid fa-heart"></i>
+          {{ movie.wished_count }}
+        </h4>
+        <p class="py-2">
+          <i v-if="movie.score_avg > 0.5" class="fa-solid fa-star"></i>
+          <i v-if="movie.score_avg > 1.5" class="fa-solid fa-star"></i>
+          <i v-if="movie.score_avg > 2.5" class="fa-solid fa-star"></i>
+          <i v-if="movie.score_avg > 3.5" class="fa-solid fa-star"></i>
+          <i v-if="movie.score_avg > 4.5" class="fa-solid fa-star"></i>
+          <span v-if="movie.score_avg">{{ movie.score_avg }}</span>
+          <span v-else class="text-muted">데이터가 없습니다.</span>
+        </p>
+        <p class="py-2">{{ movie.overview }}</p>
+        <p class="py-2" >출시일 : {{ movie.release_date }}</p>
+      </div>
+      <section class="py-3 hero-section">
+        <div class="card-grid">
+          <a class="card" v-for="director in directors" :key="-director.pk">
+            <div class="card__background" :style="`background-image: url(${director.profile_path})`"></div>
+            <div class="card__content">
+              <p class="card__category">Director</p>
+              <h3 class="card__heading">{{ director.name }}</h3>
+            </div>
+          </a>
+          <a class="card" v-for="actor in actors" :key="actor.pk">
+            <div class="card__background" :style="`background-image: url(${actor.profile_path})`"></div>
+            <div class="card__content">
+              <p class="card__category">{{ actor.character }}</p>
+              <h3 class="card__heading">{{ actor.name }}</h3>
+            </div>
+          </a>
+        </div>
+      </section>
+      <div class="text-con container py-2 px-4">
+        <h3 class="py-2" >장르</h3>
+        <p class="py-2"> 
+          <ul v-for="genre in movie.genres" :key="genre.pk">
+            <li class="text-decoration-none">{{ genre.name }}</li>
+          </ul>
+        </p>
+        <h3 class="py-2">리뷰 수</h3> {{ movie.reviews_count }}
+          <ReviewList class="py-2" :reviews="movie.reviews"/>
+          <ReviewCreateForm class="py-2" :moviePk="movie.pk"/>
+      </div>
   </div>
-      
+</div>
 </template>
 
 <script>
@@ -83,6 +84,9 @@
 </script>
 
 <style scoped>
+
+
+
   :root{
   --background-dark: #2d3548;
   --text-light: rgba(255,255,255,0.6);

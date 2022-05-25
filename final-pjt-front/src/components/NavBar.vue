@@ -3,7 +3,6 @@
     
     <div class="container-fluid mx-5">
       
-      <i class="bi bi-list toggle-sidebar-btn"></i>
       <a class="navbar-brand" href="#">MOBEE</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,11 +11,6 @@
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </li>
           <li class="nav-item">
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </li>
@@ -80,119 +74,18 @@
   }
 </script>
 
-<style>
+<style scoped>
     
 /*--------------------------------------------------------------
 # Header Nav
 --------------------------------------------------------------*/
+.nav {
+  font-size: 20px;
+}
+
 .header-nav ul {
   list-style: none;
 }
-.header-nav > ul {
-  margin: 0;
-  padding: 0;
-}
-.header-nav .nav-icon {
-  font-size: 20px;
-  color: #b4b4b4; /* 상단바 아이콘 */
-}
 
-.header-nav .nav-icon:hover {
-  font-size: 20px;
-  color: #ffffff; /* 상단바 아이콘 */
-}
-
-.header-nav .nav-profile {
-  color: #bcbcbc; /* 상단바 사람 이름 */
-}
-.header-nav .nav-profile img {
-  max-height: 36px;
-}
-.header-nav .nav-profile span {
-  font-size: 14px;
-  font-weight: 600;
-}
-.header-nav .badge-number {
-  position: absolute;
-  inset: 4px 6px auto auto;
-  font-weight: normal;
-  font-size: 11px;
-  padding: 3px 6px;
-}
-.header-nav .notifications .notification-item {
-  display: flex;
-  align-items: center;
-  padding: 15px 10px;
-  transition: 0.3s;
-}
-.header-nav .notifications .notification-item i {
-  margin: 0 20px 0 10px;
-  font-size: 24px;
-}
-.header-nav .notifications .notification-item h4 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.header-nav .notifications .notification-item p {
-  font-size: 13px;
-  margin-bottom: 3px;
-  color: #303030; /* 상단바 알림 content */
-}
-.header-nav .notifications .notification-item:hover {
-  background-color: #f6f9ff;
-}
-.header-nav .messages .message-item {
-  padding: 15px 10px;
-  transition: 0.3s;
-}
-.header-nav .messages .message-item a {
-  display: flex;
-}
-.header-nav .messages .message-item img {
-  margin: 0 20px 0 10px;
-  max-height: 40px;
-}
-.header-nav .messages .message-item h4 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: #444444; /* 상단바 메시지 title */
-  
-}
-.header-nav .messages .message-item p {
-  font-size: 13px;
-  margin-bottom: 3px;
-  color: #919191;
-}
-.header-nav .messages .message-item:hover {
-  background-color: #f6f9ff;
-}
-.header-nav .profile {
-  min-width: 240px;
-  padding-bottom: 0;
-}
-.header-nav .profile .dropdown-header h6 {
-  font-size: 18px;
-  margin-bottom: 0;
-  font-weight: 600;
-  color: #444444;
-}
-.header-nav .profile .dropdown-header span {
-  font-size: 14px;
-}
-.header-nav .profile .dropdown-item {
-  font-size: 14px;
-  padding: 10px 15px;
-  transition: 0.3s;
-}
-.header-nav .profile .dropdown-item i {
-  margin-right: 10px;
-  font-size: 18px;
-  line-height: 0;
-}
-.header-nav .profile .dropdown-item:hover {
-  background-color: #f6f9ff;
-}
 
 </style>
