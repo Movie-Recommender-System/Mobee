@@ -10,6 +10,7 @@
     <td>{{ article.comment_count }}</td>
     <td>{{ article.like_count }}</td>
     <modal :name='modalName' width="50%" :adaptive="true" height="50%" @before-close="beforeClose">
+
       <ArticleDetail/>
     </modal>
   </tr>

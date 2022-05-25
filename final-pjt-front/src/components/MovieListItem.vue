@@ -5,7 +5,7 @@
               <div class="movie_header">
                 <img class="locandina" :src="posterURL"/>
                 <h4>{{ movie.title }}</h4>
-                <h6>{{ movie.release_date }}, David Ayer <i class="fa-solid fa-heart"></i>   {{ movie.wished_count }}</h6> 
+                <h6>{{ movie.release_date }}, David Ayer <i class="fa-solid fa-heart text-danger"></i>   {{ movie.wished_count }}</h6> 
                 <span class="minutes">117 min</span>
                 <span v-for="genre in movie.genres" :key="genre.pk">{{ genre.name }}</span>
                 
@@ -56,7 +56,7 @@
       ...mapActions(['fetchMovie']),
       open () {
         this.fetchMovie(this.movie.pk)
-        setTimeout(() => this.$modal.show(this.movie.title), 500)
+        setTimeout(() => this.$modal.show(this.movie.title), 1000)
       }
     },
   }
