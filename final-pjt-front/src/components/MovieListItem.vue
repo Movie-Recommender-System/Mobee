@@ -94,13 +94,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 /* default */
-*,
+/* *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 /* body */
 .movislistitem {

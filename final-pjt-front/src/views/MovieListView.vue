@@ -29,8 +29,7 @@
           <h3>관련 장르의 영화가 존재하지 않습니다.</h3>
         </div>
       </div>
-      <div v-else class="row row-cols-1 row-cols-xs-2
-      row-cols-md-4 row-cols-lg-4 row-cols-xl-6 g-4">
+      <div v-else class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 row-cols-xl-8 g-4">
         <MovieListItem v-for="movie in movies" :key="movie.pk" :movie="movie"/>
       </div>
     </ul>
