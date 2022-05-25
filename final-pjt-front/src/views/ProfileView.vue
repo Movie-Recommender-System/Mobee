@@ -27,7 +27,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">
             <div class="card h-100">
-              <img :src="movie.poster_path" 
+              <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_key}`" 
               class="card-img-top img-thumbnail rounded" alt="poster img">
               <div class="card-body">
                 <h5 class="card-title">{{ movie.title }}</h5>
@@ -36,7 +36,6 @@
           </div> 
         </div>
       </div>
-    
 
     <div class="row">
       <div class="col-6">
@@ -70,7 +69,7 @@ import { mapActions, mapGetters } from 'vuex'
   export default {
     name: 'ProfileView',
     computed: {
-      ...mapGetters(['profile', 'currentUser'])
+      ...mapGetters(['profile', 'currentUser']),
     },
     methods: {
       ...mapActions(['fetchProfile'])
