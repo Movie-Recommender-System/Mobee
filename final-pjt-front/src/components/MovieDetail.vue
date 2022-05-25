@@ -19,17 +19,6 @@
               <span v-if="movie.score_avg">{{ movie.score_avg }}</span>
               <span v-else class="text-muted">데이터가 없습니다.</span>
             </p>
-              
-            <span class="likes">109 likes</span>
-
-             <div>
-              <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
-                <i v-if="movie.is_liked" class="fa-duotone fa-honey-pot"></i>
-                <i v-else class="fa-thin fa-honey-pot"></i>
-              </button>
-              <i v-else class="fa-thin fa-honey-pot"></i>
-                  {{ movie.wished_users.length }}<br>
-            </div>
 
               
             </div> <!-- end details -->
