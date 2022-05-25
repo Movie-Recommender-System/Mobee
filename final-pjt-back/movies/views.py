@@ -134,6 +134,7 @@ def recommendation(request):
             genres_score[movie_genre.name] += review.score - 3        # 장르에 점수 -2 -1 0 1 2
     
     for wish_movie in user.wish_movie_list.all():       # 찜한 영화의 장르는 별 4개와 같게!
+        watch_movies.append(wish_movie.pk)
         for movie_genre in wish_movie.genres.all():
             genres_score[movie_genre.name] += 1
     result_data = []
