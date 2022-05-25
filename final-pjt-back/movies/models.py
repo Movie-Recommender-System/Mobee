@@ -7,9 +7,10 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
     release_date = models.DateField()
-    poster_path = models.URLField()
-    video_path = models.URLField()
-    backdrop_path = models.URLField()
+    runtime = models.IntegerField()
+    poster_key = models.CharField(max_length=100)
+    video_key = models.CharField(max_length=100)
+    backdrop_key = models.CharField(max_length=100)
     director_name = models.CharField(max_length=100)
     wished_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='wish_movie_list')
 

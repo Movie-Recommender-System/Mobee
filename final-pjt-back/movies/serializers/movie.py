@@ -21,14 +21,17 @@ class MovieCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ('pk', 'title', 'overview', 'release_date', 'poster_path', 'video_path')
+        fields = ('pk', 'title', 'overview', 'runtime', 
+        'release_date', 'director_name',
+        'poster_key', 'video_key', 'backdrop_key')
 
 
 class MovieListSerializer(serializers.ModelSerializer):
     wished_count = serializers.IntegerField()
     class Meta:
         model = Movie
-        fields = ('pk', 'title', 'release_date', 'poster_path', 'wished_count')
+        fields = ('pk', 'title', 'overview', 'runtime', 'director_name',
+        'release_date', 'poster_key', 'backdrop_key', 'wished_count')
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -68,7 +71,7 @@ class MovieSerializer(serializers.ModelSerializer):
                 actor = {
                     'pk':cast['id'],
                     'name':cast['name'], 
-                    'profile_path':f'https://image.tmdb.org/t/p/w500{cast["profile_path"]}', 
+                    'profile_key':cast["profile_path"], 
                     'character':cast['character']
                 }
                 credits['actors'].append(actor)
@@ -78,7 +81,7 @@ class MovieSerializer(serializers.ModelSerializer):
                 director = {
                     'pk':crew['id'],
                     'name':crew['name'], 
-                    'profile_path':f'https://image.tmdb.org/t/p/w500{crew["profile_path"]}'
+                    'profile_key':crew["profile_path"]
                     }
                 credits['directors'].append(director)
                 break
@@ -86,7 +89,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ('pk', 'title', 'score_avg', 'poster_path', 'overview', 'release_date', 
+        fields = ('pk', 'title', 'score_avg', 'runtime' , 'overview', 'release_date', 
         'genres', 'wished_count', 'wished_users', 'reviews', 'reviews_count',
-        'video_path', 'credits')
+        'video_key', 'poster_key', 'credits', 'backdrop_key')
 

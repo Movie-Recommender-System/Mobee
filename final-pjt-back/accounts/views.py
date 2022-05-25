@@ -16,10 +16,6 @@ def profile(request, username):
     return Response(serializer.data)
     
 
-def shop(request, username):
-    pass
-
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_info(request):

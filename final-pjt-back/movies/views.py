@@ -70,13 +70,24 @@ def movie_create(request):
             if not videos:      # 트레일러 없는 경우 제외
                 continue
             video_key = videos[0]['key']    # 비디오 하나만 뽑는다.
+
+            # 상영 시간 요청
+            path = f'/movie/{movie["id"]}'
+            runtime = requests.get(BASE_URL+path, params = params).json()['runtime']
+
+            # 영화 감독 이름
+            path = f'/movie/{movie["id"]}/credits'
+            director_name = requests.get(BASE_URL+path, params = params).json()['crew'][0]['name']
             movie_data = {
                 'pk' : movie['id'],
                 'title' : movie['title'],
                 'overview' : movie['overview'],
+                'runtime' : runtime,
                 'release_date' : movie['release_date'],
-                'poster_path' : f'https://image.tmdb.org/t/p/w500{movie["poster_path"]}',
-                'video_path' : f'https://youtube.com/embed/{video_key}?autoplay=1&mute=1'
+                'director_name' : director_name,
+                'poster_key' : movie["poster_path"],
+                'backdrop_key' : movie['backdrop_path'],
+                'video_key' : video_key
             }
             add_data['movies'].append({'id': movie['id'], 'title': movie['title']})
             serializer = MovieCreateSerializer(data=movie_data)
@@ -139,7 +150,7 @@ def recommendation(request):
             genres_score[movie_genre.name] += 1
     result_data = []
     movies = Movie.objects.annotate(wished_count=Count('wished_users'))
-
+    
     serializer = MovieListSerializer(movies, many=True)
     data = serializer.data
     scores = [[0, i] for i in range(movies.count())]        # 영화에 매길 추천도
