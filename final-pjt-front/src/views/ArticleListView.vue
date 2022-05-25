@@ -20,17 +20,21 @@
     </table>
     <div class="d-flex justify-content-center">
       <ul class="pagination pagination-lg">
-        <li class="page-item" @click="pageChange(articlePage - 1)"
-        :class="{'disabled': articlePage === 1}">
+        <li v-if="articlePage === 1" class="page-item disabled">
+          <a class="page-link" >&laquo;</a>
+        </li>
+        <li v-else class="page-item" @click="pageChange(articlePage - 1)">
           <a class="page-link" >&laquo;</a>
         </li>
         <li class="page-item" @click="pageChange(page)"
         v-for="page in pages" :key="page" :class="{'active': articlePage === page}">
           <a class="page-link" >{{ page }}</a>
         </li>
-        <li class="page-item" @click="pageChange(articlePage + 1)"
-         :class="{'disabled': articlePage === pages}">
-          <a class="page-link">&raquo;</a>
+        <li v-if="articlePage === pages" class="page-item disabled">
+          <a class="page-link" >&raquo;</a>
+        </li>
+        <li v-else class="page-item" @click="pageChange(articlePage + 1)">
+          <a class="page-link" >&raquo;</a>
         </li>
       </ul>
     </div>
