@@ -33,7 +33,6 @@
 </template>
 
 
-
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import ArticleForm from './ArticleForm.vue'
@@ -65,4 +64,5 @@ export default {
       height: 100%;
       overflow-y: auto;
   }
+
 </style>

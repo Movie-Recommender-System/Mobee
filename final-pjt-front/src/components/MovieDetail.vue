@@ -134,7 +134,7 @@
 }
 
 .detailview {
-  color: #A9A8A3;
+  color: #393939;
 }
 
 a {
@@ -250,7 +250,7 @@ a:hover {
   height: 200px;
   font-size: 16px;
   line-height: 26px;
-  color: #B1B0AC;
+  color: #3e3e3e; /* 글씨색 */
 }
 
 .column1 {
