@@ -1,15 +1,14 @@
 <template>
 <div v-if="movie.credits" class="detailview align-items-center">
-
+    
       <div class="movie-card">
         <!-- <div class="container"> -->
           <img :src="posterURL" alt="cover" class="cover" />
           <div class="hero" > 
             <div class="details">
             
-            <div class="title1">{{ movie.title }} <span>PG-13</span></div>
-
-            <div class="title2">The Battle of the Five Armies</div>    
+            <div class="title1 fs-1">{{ movie.title }} <span>PG-13</span></div>
+            <div class="title2" ><span>{{ movie.release_date }}, </span><span v-for="director in directors" :key="-director.pk">{{ director.name }} </span>  </div> 
             
             <p>
               <i v-if="movie.score_avg > 0.5" class="fa-solid fa-star"></i>
@@ -22,23 +21,43 @@
             </p>
               
             <span class="likes">109 likes</span>
+
+             <div>
+              <button v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
+                <i v-if="movie.is_liked" class="fa-duotone fa-honey-pot"></i>
+                <i v-else class="fa-thin fa-honey-pot"></i>
+              </button>
+              <i v-else class="fa-thin fa-honey-pot"></i>
+                  {{ movie.wished_users.length }}<br>
+            </div>
+
               
             </div> <!-- end details -->
             
           </div> <!-- end hero -->
           
           <div class="description">
-
+            
             <div  class="column1">
               <span v-for="genre in movie.genres" :key="genre.pk" class="tag">{{ genre.name }}<br></span>
-            </div> <!-- end column1 -->
+              <div>
+
+              <div  v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
+                <img v-if="movie.is_wished" src="../assets/honey (2).png" alt="">
+                <img v-else src="../assets/honey.png" alt="">
+              </div>
+              <img v-else src="../assets/honey.png" alt="">
+                  {{ movie.wished_users.length }}<br>
+            </div>
+
+          </div> <!-- end column1 -->
           
             <div class="column2">
               
               <p >{{ movie.overview }} <a href="#">read more</a></p>
               
-            </div> <!-- end column2 -->
-          </div> <!-- end description -->
+          </div> <!-- end column2 -->
+        </div> <!-- end description -->
   
 
       </div> <!-- end movie-card -->
@@ -67,12 +86,7 @@
         </div>
       </section>
       <div class="text-con  py-2 px-4">
-        <h3 class="py-2" >장르</h3>
-        <p class="py-2"> 
-          <ul v-for="genre in movie.genres" :key="genre.pk">
-            <span class="text-decoration-none">{{ genre.name }}</span>
-          </ul>
-        </p>
+       <hr>
         <h3 class="py-2">리뷰 수</h3> {{ movie.reviews_count }}
           <ReviewList class="py-2" :reviews="movie.reviews"/>
           <ReviewCreateForm class="py-2" :moviePk="movie.pk"/>
@@ -158,7 +172,7 @@ a:hover {
   font: 14px/22px "Lato", Arial, sans-serif;
   color: #A9A8A3;
   padding: 40px 0;
-  font-size: 10px;
+  font-size: 15px;
   /* z-index: 100000000; */
 }
 
@@ -226,7 +240,7 @@ a:hover {
   background: #C4AF3D;
   border-radius: 5px;
   color: #544C21;
-  font-size: 14px;
+  font-size: 15px;
   padding: 0px 4px;
 }
 .details .title2 {
@@ -364,7 +378,7 @@ a[data-tooltip]::before {
   content: attr(data-tooltip);
   background: #000;
   color: #fff;
-  font-size: 13px;
+  font-size: 15px;
   padding: 5px;
   border-radius: 5px;
   /* we don't want the text to wrap */

@@ -17,10 +17,11 @@
                 </p>
               </div>
             </div>
-            <div class="blur_back bright_back" :style="`background-image: url(${backdropURL})`"></div>
+            <div class="blur_back bright_back" :style="`background-image: url(${backdropURL});`"></div>
           </div>
 
-    <modal :name='movie.title' height="auto" width="70%" :scrollable="true">
+    <modal :name='movie.title' height="auto" width="70%"  :scrollable="true">
+      <br><br>
       <MovieDetail/>
     </modal>
 
@@ -69,6 +70,17 @@
   margin: 0;
 }
 
+
+.movie_desc > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* word-wrap:break-word; 
+  line-height: 1.2em;
+  height: 3.6em;  */
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* 라인수 */
+  -webkit-box-orient: vertical;
+  }
 .link {
   display: block;
   text-align: center;
@@ -88,6 +100,8 @@
   border-radius: 10px;
   transition: all 0.4s;
   box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie_card:hover {
@@ -142,11 +156,12 @@
 
 .movie_card .info_section .movie_desc {
   padding: 25px;
-  height: 50%;
+  height: 60%;
+  
 }
 .movie_card .info_section .movie_desc .text {
   color: #545454;
-  font-size: 12px;
+  font-size: 15px;
   line-height:170%;
   transition:1s;
 }
@@ -195,7 +210,7 @@
   }
 
   .movie_desc {
-    width: 55%;
+    width: 50%;
   }
 
   .info_section {
@@ -227,7 +242,7 @@
 
   .movie_desc {
     width: 100%;
-  }
+}
 
   .info_section {
     background: linear-gradient(to top, #e5e6e6 50%, transparent 100%);

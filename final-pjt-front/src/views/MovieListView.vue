@@ -1,24 +1,26 @@
 <template>
-  <div>
-    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-      <button type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
-      <button type="button" class="btn btn-primary" 
-      @click='fetchMovies("wish")'>유저들이 가장 많이 찜한 영화</button>
-      <button type="button" class="btn btn-primary" 
-      v-if="isLoggedIn" @click='fetchRecommendMovies'>사용자 맞춤 추천 영화</button>
-      <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
-         data-bs-toggle="dropdown" aria-expanded="false">장르별 추천 영화
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <li v-for="genre in genres" :key="genre.pk" @click='fetchMovies(genre.name)'>
-            <a class="dropdown-item" href="#">{{ genre.name }}</a>
-          </li>
-        </ul>
+  <div class="container">
+    <h1 class="text-center my-5">{{ moviesKind }}</h1>
+    <div class="row">
+      <div id="buttons" class="btn-group my-5" role="group" aria-label="Button group with nested dropdown">
+
+        <button  type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
+        <button type="button" class="btn btn-primary" @click='fetchMovies("wish")'>유저들이 가장 많이 찜한 영화</button>
+        <button type="button" class="btn btn-primary" @click='fetchRecommendMovies' v-if="isLoggedIn" >사용자 맞춤 추천 영화</button>
+        
+        <div class="button btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false">장르별 추천 영화
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <li v-for="genre in genres" :key="genre.pk" @click='fetchMovies(genre.name)'>
+              <a class="dropdown-item" href="#">{{ genre.name }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <ul>
-      <h1>{{ moviesKind }}</h1>
       <br>
       <br>
       <div v-if="!isMovies">
@@ -56,6 +58,7 @@
   }
 </script>
 
-<style>
+<style scoped>
+
 
 </style>
