@@ -1,7 +1,7 @@
 <template>
   <tr>
     <th scope="row">{{ articleNum }}</th>
-    <td><a href="" @click.prevent="open" data-bs-toggle="modal" 
+    <td><a class="text-decoration-none" href="" @click.prevent="open" data-bs-toggle="modal" 
     data-bs-target="#detailModal">
     {{ article.title }}</a></td>
     <td>{{ article.user.username }}</td>

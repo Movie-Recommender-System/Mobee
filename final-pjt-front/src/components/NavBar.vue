@@ -3,7 +3,7 @@
     
     <div class="container-fluid mx-5">
       
-      <a class="navbar-brand" href="#">MOBEE</a>
+      <p class="navbar-brand" >MOBEE</p>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'movie'}"  class="nav-link active" href="#">Home
+            <router-link :to="{ name: 'movie'}"  class="nav-link active" href="#">Movie
               <span class="visually-hidden">(current)</span>
             </router-link>
           </li>
@@ -36,12 +36,11 @@
           <li v-if="isLoggedIn" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">My Page</a>
             <div class="dropdown-menu">
-              <a v-if="isLoggedIn" class="dropdown-item text-decoration-none" href="#" @click.prevent="logout">logout</a>
               <router-link class="dropdown-item" :to="{ name: 'profile' }">Profile</router-link>
-              <router-link class="dropdown-item" :to="{ name: 'mileageShop' }">Mileage</router-link>
+              <a v-if="isStaff" class="dropdown-item" href="http://localhost:8000/admin/">Admin Page</a>
               <!--관리자계정페이지-->
               <div v-if="isStaff" class="dropdown-divider"></div>
-              <a v-if="isStaff" class="dropdown-item" href="http://localhost:8000/admin/">Admin Page</a>
+              <a v-if="isLoggedIn" class="dropdown-item text-decoration-none" href="#" @click.prevent="logout">logout</a>
             </div>
           </li>
         </ul>
@@ -83,9 +82,8 @@
   font-size: 20px;
 }
 
-.header-nav ul {
-  list-style: none;
+a .router-link:hover {
+  color:aqua;
 }
-
 
 </style>
