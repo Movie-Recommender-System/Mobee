@@ -5,8 +5,8 @@
               <div class="movie_header">
                 <img class="locandina" :src="posterURL"/>
                 <h4>{{ movie.title }}</h4>
-                <h6>{{ movie.release_date }}, David Ayer <i class="fa-solid fa-heart text-danger"></i>   {{ movie.wished_count }}</h6> 
-                <span class="minutes">117 min</span>
+                <h6>{{ movie.release_date }}, <span>{{ movie.director_name }} </span><i v-if="movie.is_wished" class="fa-solid fa-heart text-warning"></i><i v-else class="fa-solid fa-heart text-warning"></i>   {{ movie.wished_count }}</h6> 
+                <span class="minutes">{{ movie.runtime }}mim</span>
                 <span v-for="genre in movie.genres" :key="genre.pk">{{ genre.name }}</span>
                 
                  

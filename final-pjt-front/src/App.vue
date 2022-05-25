@@ -1,13 +1,11 @@
 <template>
   <div id="app">
-
     <header class="header fixed-top align-items-center" id="header">
       <NavBar/>
     </header>
     <br>
     <br>
-    <br>
-    <br>
+
     <main>
       <div class="card min-vh-100">
         <div class="card-body">
@@ -58,18 +56,31 @@ textarea::placeholder {
   font-family: 'Stylish', sans-serif;
 }
 
+
+.header {
+  font-size: 20px;
+}
+
+.header a, .header .nav-link:hover {
+  color:blue;
+}
+
 /* 커서이미지 */
 html, body{
   cursor: url(./assets/bee_cursor.png), auto;
 }
+
 a, a:link {
   cursor: url(./assets/bee_hover.png),auto;
 }
+
 a:hover, a:focus { 
   cursor: url(./assets/bee_hover.png),auto;
   color:#665f5f;
-  } 
+} 
+
 a:active {cursor: url(./assets/bee_hover.png),auto;} 
+
 input {cursor: url(./assets/bee_hover.png),auto;} 
 
 #app {
@@ -82,6 +93,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Stylish', 'Noto Sans KR' , sans-serif;
   font-weight: 900;
 }
+
 p {
   font-family: 'Stylish', 'Noto Sans KR', sans-serif;
 }

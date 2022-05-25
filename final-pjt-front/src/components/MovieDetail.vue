@@ -7,8 +7,10 @@
           <div class="hero" > 
             <div class="details">
             
-            <div class="title1 fs-1">{{ movie.title }} <span>{{ movie.runtime }} min</span></div>
-            <div class="title2" ><span>{{ movie.release_date }}, </span>  </div> 
+            <div class="title1 fs-1">{{ movie.title }} </div>
+            <div></div>
+
+            <div class="title2" ><span>{{ movie.release_date }}, <span>{{ movie.runtime }} min</span></span>  </div> 
             
             <p>
               <span v-if="movie.score_avg > 0.5" class="material-symbols-outlined text-warning">hexagon</span>
@@ -23,40 +25,42 @@
             </div> <!-- end details -->
             
           </div> <!-- end hero -->
-          
-          <div class="description">
+          <br><br><br>
+
+          <div class="description container">
+            <div class="row mx-2">
             
-            <div  class="column1">
-              <span v-for="genre in movie.genres" :key="genre.pk" class="badge rounded-pill bg-warning tag">{{ genre.name }}<br></span>
-              <div>
-
-              <div  v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
-                <img v-if="movie.is_wished" src="../assets/honey (2).png" alt="">
-                <img v-else src="../assets/honey.png" alt="">
-              </div>
-              <img v-else src="../assets/honey.png" alt="">
-                  {{ movie.wished_users.length }}<br>
-            </div>
-
-          </div> <!-- end column1 -->
-          
-            <div class="column2">
-              
+              <div  class="col-3">
+                <div class="row p-3">
+                  <div class="col">
+                    <span v-for="genre in movie.genres" :key="genre.pk" class="badge rounded-pill bg-warning tag">{{ genre.name }}<br></span>
+                  </div>
+                </div>
+                <div>
+                  <div text-cetner v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
+                    <img v-if="movie.is_wished" src="../assets/honey (5).png" style="width:30px;" alt="">
+                    <img v-else src="../assets/honey (6).png" alt="">
+                  </div>
+                  <img v-else src="../assets/honey (6).png"  alt="">
+                      {{ movie.wished_users.length }}<br>
+                </div>
+            </div> <!-- end column1 -->
+            
+            <div class="col-9">
               <p >{{ movie.overview }}</p>
-              
-          </div> <!-- end column2 -->
+            </div> <!-- end column2 -->
+          </div>
         </div> <!-- end description -->
   
 
       </div> <!-- end movie-card -->
-      <br><br><br><br>
       <div class="ratio ratio-16x9">
         <iframe :src="videoURL" frameborder="0"></iframe>
       </div>
 
 
     
-      <section class="py-3 hero-section">
+      <section class="py-1 hero-section">
         <div class="card-grid">
           <a class="card">
             <div class="card__background" :style="`background-image: url(https://image.tmdb.org/t/p/w500/${director.profile_key})`"></div>
@@ -103,7 +107,7 @@
         return this.movie.credits.directors[0]
       },
       backdropURL() {
-        return `https://image.tmdb.org/t/p/w500/${this.movie.backdrop_key}`
+        return `https://image.tmdb.org/t/p/w780/${this.movie.backdrop_key}`
       },
       posterURL() {
         return `https://image.tmdb.org/t/p/w200/${this.movie.poster_key}`
@@ -125,7 +129,7 @@
       // let styleElem = window.getComputedStyle($('.hero')[0], ':before').getPropertyValue(`${this.movie.poster_path}`);
 
       // $('head').append("<style>.hero:before{background: `url(${this.movie.poster_path})`}</style>");
-     }
+     },
     
   }
 </script>
@@ -140,6 +144,7 @@
 
 .detailview {
   color: #393939;
+  background-color: #F0F0ED;
 }
 
 a {
@@ -162,7 +167,7 @@ a:hover {
 .movie-card {
   font: 14px/22px "Lato", Arial, sans-serif;
   color: #A9A8A3;
-  padding: 40px 0;
+  padding: 17px 0;
   font-size: 15px;
   /* z-index: 100000000; */
 }
@@ -201,7 +206,7 @@ a:hover {
 
   /* background: red; */
   /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg"); */
-  filter: brightness(50%);
+  filter: brightness(25%);
   z-index: -1;
   transform: skewY(-2.2deg);
   transform-origin: 0 0;
@@ -215,25 +220,20 @@ a:hover {
   z-index: 2;
 }
 
+
+
 .details {
   padding: 190px 0 0 280px;
 }
 .details .title1 {
   color: white;
-  font-size: 44px;
+  font-family: 'Stylish', sans-serif;
+  font-size: 40px;
+  line-height:170%;
   margin-bottom: 13px;
   position: relative;
 }
-.details .title1 span {
-  position: absolute;
-  top: 3px;
-  margin-left: 12px;
-  background: #C4AF3D;
-  border-radius: 5px;
-  color: #544C21;
-  font-size: 15px;
-  padding: 0px 4px;
-}
+
 .details .title2 {
   color: #C7C1BA;
   font-size: 23px;
@@ -267,13 +267,13 @@ a:hover {
 }
 
 .tag {
-  background: white;
-  border-radius: 10px;
-  padding: 3px 8px;
-  font-size: 14px;
-  margin-right: 4px;
-  line-height: 35px;
-  cursor: pointer;
+      background: white;
+    border-radius: 10px;
+    padding: 3px 8px;
+    font-size: 5px;
+    margin-right: 4px;
+    line-height: 13px;
+    cursor: pointer;
 }
 
 .tag:hover {
@@ -284,7 +284,7 @@ a:hover {
   padding-left: 41px;
   padding-top: 30px;
   margin-left: 20px;
-  width: 480px;
+  width: 750px;
   float: left;
 }
 

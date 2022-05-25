@@ -4,7 +4,7 @@
     <h1 v-else-if="moviesKind == 'wish'" class="text-center my-5">꿀단지에 가장 많이 담긴 Movies</h1>
     <h1 v-else-if="moviesKind == 'recommend'" class="text-center my-5">꿀단지 알고리즘 추천 Movies</h1>
     <h1 v-else class="text-center my-5">{{ moviesKind }}</h1>
-    <div class="row">
+    <div class="row text-change">
       <div id="buttons" class="btn-group my-5" role="group" aria-label="Button group with nested dropdown">
 
         <button  type="button" class="btn btn-primary" @click='fetchMovies("recent")'>최신 영화</button>
@@ -65,6 +65,17 @@
 </script>
 
 <style scoped>
+* {
+  /* font-family: 'Black Han Sans', sans-serif; */
+      /* font-family: 'Do Hyeon', sans-serif; */
+      /* font-family: 'Jua', sans-serif; */
+      /* font-family: 'Nanum Brush Script', cursive; */
+      font-family: 'Stylish', sans-serif;
+      /* font-family: 'Noto Sans KR', sans-serif;  */
+  font-size:"30px";
+  color: #ffc107;
+}
+
 
 
 </style>

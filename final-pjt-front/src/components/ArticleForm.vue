@@ -15,8 +15,8 @@
         <textarea v-model.trim="newArticle.content" type="text" id="content"  placeholder="내용을 입력해 주세요." required></textarea>
       </div>
     </div>
-    <div>
-      <button class="btn btn-secondary"  style="width:100%;">{{ action }}</button>
+    <div class="mt-1">
+      <button class="btn btn-secondary py-2"  style="width:100%;">{{ action }}</button>
     </div>
   </form>
 </template>
