@@ -75,7 +75,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ('pk', 'username', 'wish_movie_list', 'reviews', 
-        'preferred_genres', 'mileage', 'articles', 'comments')
+        'preferred_genres', 'articles', 'comments')
 
 
 class UserSerializer(serializers.ModelSerializer):
