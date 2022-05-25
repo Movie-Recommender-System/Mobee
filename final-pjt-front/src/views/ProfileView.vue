@@ -60,22 +60,83 @@
         </div>
       </div>
     </div>
+    <Bar
+      :chart-options="chartOptions"
+      :chart-data="chartData"
+      :chart-id="chartId"
+      :dataset-id-key="datasetIdKey"
+      :plugins="plugins"
+      :css-classes="cssClasses"
+      :styles="styles"
+      :width="width"
+      :height="height"
+    />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
+  import { Bar } from 'vue-chartjs/legacy'
+  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+  ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
   export default {
     name: 'ProfileView',
+    components: { Bar },
+    data() {
+      return {
+        chartData: {
+          labels: [ 'a', 'b', 'c', 'd' ],
+          datasets: [ { data: [0, 1 ,2 , 3] } ]
+        },
+        chartOptions: {
+          responsive: true
+        },
+      }
+    },
+    props: {
+      chartId: {
+        type: String,
+        default: 'bar-chart'
+      },
+      datasetIdKey: {
+        type: String,
+        default: 'label'
+      },
+      width: {
+        type: Number,
+        default: 400
+      },
+      height: {
+        type: Number,
+        default: 400
+      },
+      cssClasses: {
+        default: '',
+        type: String
+      },
+      styles: {
+        type: Object,
+        default: () => {}
+      },
+      plugins: {
+        type: Array,
+        default: () => []
+      }
+    },
     computed: {
       ...mapGetters(['profile', 'currentUser']),
     },
     methods: {
-      ...mapActions(['fetchProfile'])
+      ...mapActions(['fetchProfile']),
     },
     created () {
-
-      setTimeout(() => this.fetchProfile({ username : this.currentUser.username }), 100)
+      setTimeout(() => {
+        this.fetchProfile({ username : this.currentUser.username })
+        this.chartData.labels = this.profile.preferred_genres.genres
+        this.chartData.datasets[0].data = this.profiled.preferred_genres.scores
+      }, 500)
     }
   }
 </script>
