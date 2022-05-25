@@ -10,12 +10,11 @@
             <h5>영화 제목 : {{ review.movie.title }}</h5>
             <p>리뷰 : {{ review.content }}</p>
             <div>
-              <span>평점: </span>
-              <i v-if="review.score > 0.5" class="fa-solid fa-star"></i>
-              <i v-if="review.score > 1.5" class="fa-solid fa-star"></i>
-              <i v-if="review.score > 2.5" class="fa-solid fa-star"></i>
-              <i v-if="review.score > 3.5" class="fa-solid fa-star"></i>
-              <i v-if="review.score > 4.5" class="fa-solid fa-star"></i>
+              <span v-if="review.score > 0.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="review.score > 1.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="review.score > 2.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="review.score > 3.5" class="material-symbols-outlined text-warning">hexagon</span>
+              <span v-if="review.score > 4.5" class="material-symbols-outlined text-warning">hexagon</span>
             </div>
             <p><i class="fa-solid fa-heart"></i> {{ review.like_count }}</p>
           </li>

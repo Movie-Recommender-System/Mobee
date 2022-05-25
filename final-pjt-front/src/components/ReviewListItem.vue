@@ -1,11 +1,11 @@
 <template>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     <div class="align-top">
-      <i class="fa-solid fa-star"></i>
-      <i v-if="review.score >= 2" class="fa-solid fa-star"></i>
-      <i v-if="review.score >= 3" class="fa-solid fa-star"></i>
-      <i v-if="review.score >= 4" class="fa-solid fa-star"></i>
-      <i v-if="review.score == 5" class="fa-solid fa-star"></i>
+      <span class="material-symbols-outlined text-warning">hexagon</span>
+      <span v-if="review.score >= 2" class="material-symbols-outlined text-warning">hexagon</span>
+      <span v-if="review.score >= 3" class="material-symbols-outlined text-warning">hexagon</span>
+      <span v-if="review.score >= 4" class="material-symbols-outlined text-warning">hexagon</span>
+      <span v-if="review.score == 5" class="material-symbols-outlined text-warning">hexagon</span>
       <p>내용 : {{ review.content }}</p>
     </div>
 
