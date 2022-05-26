@@ -5591,7 +5591,7 @@ fieldset:disabled .btn {
 }
 
 .list-group-horizontal > .list-group-item:first-child {
-  border-bottom-left-radius: 25px;
+  border-bottom-left-radius: 10px;
   border-top-right-radius: 0;
 }
 

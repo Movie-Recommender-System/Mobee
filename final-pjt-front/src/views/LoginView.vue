@@ -1,15 +1,14 @@
 <template>
-  <div class="otherpt-5">
     <div class="container pt-5">
       <account-error-list v-if="authError"></account-error-list>
         <div class="body d-md-flex align-items-center justify-content-between">
             <div class="box-1 mt-md-0 mt-5">
-                <img src="../assets/minions2.png"
+                <img src="https://www.ixpap.com/images/2022/02/Minions-Wallpaper-3.jpg"
                     class="" alt="">
             </div>
             <div class=" box-2 ps-5 d-flex flex-column h-100">
               <div class="mt-5">
-                  <p class="mb-1 h-1">Login Page.</p>
+                  <p class="mb-1 h-1">Login</p>
                   <p class="text-muted mb-2">Login or register from here to access.</p>
                   <div class="d-flex flex-column ">
                       <p class="text-muted mb-2">Continue with...</p>
@@ -44,10 +43,9 @@
                     </p>
                 </div>
             </div>
-            <span class="fas fa-times"></span>
         </div>
     </div>
-  </div>
+
 </template>
 
 <script>

@@ -4,7 +4,7 @@
     <form @submit.prevent="onSubmit">
       <div>
         <label for="content "></label>
-        <textarea  v-model.trim="content" type="text" id="content" style="width:100%;">
+        <textarea placeholder="댓글을 입력해 주세요." v-model.trim="content" type="text" id="content" style="width:100%;" required>
         </textarea>
       </div>
       <div>

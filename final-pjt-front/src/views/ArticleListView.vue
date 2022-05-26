@@ -7,7 +7,7 @@
         <ArticleForm :article="article" action="create"/>
       </modal>
       
-      <table class="table table-hover table-container">
+      <table class="table table-striped table-hover table-container">
         <thead>
           <tr class="table-dark">
             <th  scope="col">#</th>

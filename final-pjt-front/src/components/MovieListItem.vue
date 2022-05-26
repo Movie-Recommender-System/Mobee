@@ -6,7 +6,7 @@
                 <img class="locandina" :src="posterURL"/>
                 <h4>{{ movie.title }}</h4>
                 <h6>{{ movie.release_date }}, <span>{{ movie.director_name }} </span>
-                <i class="fa-solid fa-heart text-warning"></i>
+                <i class="fa-solid fa-heart text-danger"></i>
                 {{ movie.wished_count }}</h6> 
                 <span class="minutes">{{ movie.runtime }}min</span>
                 <span v-for="genre in movie.genres" :key="genre.pk">{{ genre.name }}</span>

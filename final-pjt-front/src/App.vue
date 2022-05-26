@@ -11,7 +11,7 @@
         <div class="Main pt-5 h-100">
           <router-view></router-view>
         </div>
-        <div class="fixed-bottom text-muted text-center">
+        <div class="text-muted text-center mt-5 mb-1">
           <FooterPage ></FooterPage>
         </div>
       </div>
@@ -39,6 +39,25 @@
 </script>
 
 <style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+@font-face {
+    font-family: 'GimpoGothicRegular00';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/GimpoGothicRegular00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KOHIBaeumOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KOHIBaeumOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face {
     font-family: 'SuncheonB';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonB.woff') format('woff');
@@ -67,11 +86,11 @@
 }
 
 
-/* h1, h2, h3, h4, h5, h6 {
-  font-family: 'CookieRun-Regular';
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'KOHIBaeumOTF';
 }
 
-p { 
+/* p { 
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 } */
 

@@ -110,6 +110,7 @@ export default {
           }
           else if (err.response.status === 401) {
             alert('로그인 하세요.')
+            router.push({ name: 'login' })
           } 
           else {
             console.error(err.response)
@@ -134,6 +135,7 @@ export default {
             } 
             else if (err.response.status === 401) {
               alert('로그인 하세요.')
+              router.push({ name: 'login' })
             } 
             else {
               console.error(err.response)

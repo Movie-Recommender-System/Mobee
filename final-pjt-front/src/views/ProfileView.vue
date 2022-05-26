@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <h2 class="text-center my-5">{{ profile.username }}'s Profile</h2>
+  <div class="container px-5">
+    <div class="container px-5">
+    <h1 class="text-center my-5">{{ profile.username }}'s Profile</h1>
     <div v-if="currentUser.is_staff == true">
       <button v-if="isDownload" class="btn btn-warning" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -10,9 +11,9 @@
       @click="download()">꿀 영화 받아오기</button>
     </div>
     <div class="row my-5">
-      <div class="col-4 box p-3">
+      <div class="col-4 box ">
         <h4 class="text-center">장르 선호도</h4>
-        <div>
+        <div class="p-3">
           <Bar
           :chart-options="chartOptions"
           :chart-data="chartData"
@@ -27,30 +28,31 @@
         </div>
         
         <br>
-        <h5 class="text-center">{{ profile.username }}님이 좋아하는 장르입니다.</h5>
-        <div class="d-inline" v-for="best_genre in profile.preferred_genres.best_genres" :key="best_genre">
-          <span>{{ best_genre }} </span>
+        <h5 class="text-center my-2">{{ profile.username }}님이 좋아하는 장르입니다.</h5>
+        <div class="container text-center">
+          <div class=" d-inline " v-for="best_genre in profile.preferred_genres.best_genres" :key="best_genre">
+          <span class=" badge bg-warning">{{ best_genre }}</span> 
         </div>
+        </div>
+        
       </div>
-      <div class="col-8 box text-center p-3">
-        <h4>내 꿀단지 영화</h4>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">
+      <div class="honeymovies col-8 text-center">
+        <h4 >내 꿀단지 영화</h4>
+        <div class="p-3 box row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          <div class="col py-1" v-for="movie in profile.wish_movie_list" :key="movie.pk">
             <div class="card h-100">
+              <p class="card-header">{{ movie.title }}</p>
               <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_key}`" 
-              class="card-img-top img-thumbnail rounded" alt="poster img">
-              <div class="card-body">
-                <h5 class="card-title">{{ movie.title }}</h5>
-              </div>
-            </div>
-          </div> 
+              class="cover d-block  " alt="poster img" />
+            </div> 
+          </div>
         </div>
       </div>
 
-    <div class="row">
-      <div class="col-4 box">
-        <h4 class="text-center">남긴 리뷰</h4>
-        <ul class="list-group">
+    <div class="row my-5">
+      <div class="col-4">
+      <h4 class="text-center">남긴 리뷰</h4>
+        <ul class="box list-group m-3">
           <li class="list-group-item" v-for="review in profile.reviews" :key="review.pk">
             <h5>영화 제목 : {{ review.movie.title }}</h5>
             <p>리뷰 : {{ review.content }}</p>
@@ -87,6 +89,7 @@
         </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -171,8 +174,25 @@
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'KOHIBaeumOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KOHIBaeumOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
   .box {
     height: 600px;
     overflow: auto;
+  }
+  h1{
+    font-family: 'KOHIBaeumOTF';
+  }
+
+  /* .honeymovies > p {
+    font-family: 'KOHIBaeumOTF';
+  } */
+
+  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, a:hover {
+    background-color: #ffdc6a;
   }
 </style>

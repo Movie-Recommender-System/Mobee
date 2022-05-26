@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  name: 'FirstView',
+  name: 'EpilogueView',
 }
 </script>
 <style scoped>

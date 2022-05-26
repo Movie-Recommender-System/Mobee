@@ -11,8 +11,7 @@ import ArticleListView from '../views/ArticleListView'
 
 import NotFound404 from '../views/NotFound404.vue'
 
-import BeeView from '../views/BeeView.vue'
-import FirstView from '../views/FirstView.vue'
+import EpilogueView from '../views/EpilogueView.vue'
 
 Vue.use(VueRouter)
 
@@ -23,9 +22,9 @@ const routes = [
     component: IntroView
   },
   {
-    path: 'first/',
-    name: 'first',
-    component: FirstView
+    path: 'epilogue/',
+    name: 'epilogue',
+    component: EpilogueView
   },
   {
     path: '/article',
@@ -57,11 +56,6 @@ const routes = [
     path: '/404',
     name: 'NotFound404',
     component: NotFound404
-  },
-  {
-    path: '/bee',
-    name: 'bee',
-    component: BeeView
   },
   {
     path: '*',

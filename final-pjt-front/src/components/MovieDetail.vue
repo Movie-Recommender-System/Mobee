@@ -25,11 +25,12 @@
             </div> <!-- end details -->
             
           </div> <!-- end hero -->
-          <br><br><br>
+          <br><br><br><br><br><br><br><br>
 
           <div class="description container">
-            <div class="row mx-2">
-            
+            <div class="row">
+              
+              
               <div  class="col-3">
                 <div class="row p-3">
                   <div class="col">
@@ -40,29 +41,29 @@
                   <div>
                     <p class="fs-5">꿀영화 저장</p>
                     <div class="fs-5" v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
-                      <i v-if="movie.is_wished" class="fa-solid fa-heart text-warning"></i>
+                      <i v-if="movie.is_wished" class="fa-solid fa-heart text-danger"></i>
                       <i v-else class="fa-solid fa-heart"></i>
                       {{ movie.wished_users.length }}
                     </div>
                   </div>
                 </div>
             </div> <!-- end column1 -->
-            
-            <div class="col-9">
+            <div class="col-1"></div>
+            <div class="col-8">
               <p >{{ movie.overview }}</p>
             </div> <!-- end column2 -->
           </div>
         </div> <!-- end description -->
-  
-
       </div> <!-- end movie-card -->
+
+      <br><br><br><br><br><br><br><br><br>
+
       <div class="ratio ratio-16x9">
         <iframe :src="videoURL" frameborder="0"></iframe>
       </div>
 
-
-    
-      <section class="py-1 hero-section">
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <section class="hero-section">
         <div class="card-grid">
           <a class="card">
             <div class="card__background" :style="`background-image: url(https://image.tmdb.org/t/p/w500/${director.profile_key})`"></div>
@@ -80,14 +81,23 @@
           </a>
         </div>
       </section>
-      <div class="text-con  py-2 px-4">
-       <hr>
-       <div class="row">
-          <ReviewList class="py-2 col-9" :reviews="movie.reviews"/>
-          <div class="col-1"></div>
-          <ReviewCreateForm class="py-2 col-2" :moviePk="movie.pk"/>
+
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+
+      <div class="text-con  my-2 mx-4">
+       <br><br><br>
+       <div class="container">
+        <div class="row my-5">
+          <ReviewCreateForm class="m-2" :moviePk="movie.pk"/>
+        </div>
+        <div class="row my-5">
+            <ReviewList class="m-2" :reviews="movie.reviews"/>
+        </div>
        </div>
       </div>
+
+       <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>
+      
  
 </div>
 </template>
@@ -137,7 +147,7 @@
 </script>
 
 <style scoped>
-@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Dosis:wght@200;300;500;800&family=Gowun+Dodum&family=Playfair+Display:ital,wght@1,400;1,800&family=Poor+Story&display=swap');@charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 *, *:before, *:after {
@@ -146,7 +156,7 @@
 
 .detailview {
   color: #393939;
-  background-color: #F0F0ED;
+  background-color: #000000;
 }
 
 a {
@@ -177,9 +187,10 @@ a:hover {
   margin: 0 auto;
   width: 780px;
   height: 640px;
-  background: #F0F0ED;
+  background: #000000;
   border-radius: 5px;
   position: relative;
+  
 }
 
 .hero {
@@ -207,7 +218,7 @@ a:hover {
 
   /* background: red; */
   /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg"); */
-  filter: brightness(25%);
+  filter: brightness(50%);
   z-index: -1;
   transform: skewY(-2.2deg);
   transform-origin: 0 0;
@@ -228,18 +239,19 @@ a:hover {
 }
 .details .title1 {
   color: white;
-  font-family: 'Stylish', sans-serif;
+   font-family: 'KOHIBaeumOTF';
   font-size: 40px;
-  line-height:170%;
-  margin-bottom: 13px;
+  line-height:100%;
+  margin-bottom: 1px;
   position: relative;
 }
 
 .details .title2 {
-  color: #C7C1BA;
+  color: #ffffff;
   font-size: 23px;
   font-weight: 300;
   margin-bottom: 15px;
+  
 }
 .details .likes {
   margin-left: 24px;
@@ -255,8 +267,11 @@ a:hover {
   bottom: 0px;
   height: 200px;
   font-size: 16px;
-  line-height: 26px;
-  color: #3e3e3e; /* 글씨색 */
+  line-height: 40px;
+  word-spacing: 2px;
+  letter-spacing: 2px;
+  color: #ffffff; /* 글씨색 */
+  font-family: 'GimpoGothicBold00';
 }
 
 .column1 {
@@ -268,7 +283,7 @@ a:hover {
 }
 
 .tag {
-      background: white;
+      background: rgb(0, 0, 0);
     border-radius: 10px;
     padding: 3px 8px;
     font-size: 5px;
@@ -278,7 +293,7 @@ a:hover {
 }
 
 .tag:hover {
-  background: #ddd;
+  background: rgb(0, 0, 0);
 }
 
 .column2 {
@@ -368,7 +383,7 @@ a[data-tooltip]::before {
    * don't have the real tooltip overlapping
    */
   content: attr(data-tooltip);
-  background: #000;
+  background: rgb(0, 0, 0);
   color: #fff;
   font-size: 15px;
   padding: 5px;
@@ -410,7 +425,7 @@ a[data-tooltip][data-placement=top]::after {
 
   :root{
   --background-dark: #2d3548;
-  --text-light: rgba(255,255,255,0.6);
+  --text-light: rgba(0, 0, 0, 0.6);
   --text-lighter: rgba(255,255,255,0.9);
   /* --spacing-s: 8px;
   --spacing-m: 16px;
@@ -466,6 +481,7 @@ body{
 .card{
   list-style: none;
   position: relative;
+  color: rgb(34, 34, 34);
 }
 .card:before{
   content: '';
@@ -499,7 +515,9 @@ body{
   left: 0;
   padding: var(--spacing-l);
   position: absolute;
-  top: 0;
+  font-family: 'Playfair Display', serif;
+  top:0;
+  
 }
 .card__category{
   color: var(--text-light);
@@ -509,9 +527,10 @@ body{
 }
 .card__heading{
   color: var(--text-lighter);
-  font-size: 1.9rem;
-  text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+  font-size: 1.4rem;
+  text-shadow: 4px 4px 20px rgba(0,0,0,0.2);
   line-height: 1.4;
   word-spacing: 100vw;
+  font-family: 'Playfair Display', serif;
 }
 </style>

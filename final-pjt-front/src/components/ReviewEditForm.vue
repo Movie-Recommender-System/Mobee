@@ -1,31 +1,40 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <div>
-      <div class="d-flex">
+  <form @submit.prevent="onSubmit" class="bg-black">
+    <div class="container">
+      <div class="row p-3">
+        <p>평점</p>
+        <div class="d-flex py-2">
         <span @click='onStar(0)'>
-          <i v-if="stars[0]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[0]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(1)'>
-          <i v-if="stars[1]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[1]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(2)'>
-          <i v-if="stars[2]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[2]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(3)'>
-          <i v-if="stars[3]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[3]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
         <span @click='onStar(4)'>
-          <i v-if="stars[4]" class="fa-solid fa-star"></i>
-          <i v-else class="fa-regular fa-star"></i>
+          <span v-if="stars[4]" class="material-symbols-outlined 
+          text-warning">hexagon</span>
+          <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
       </div>
+      </div>
+      
       <div>
         <label for="content">content: </label>
-        <textarea v-model.trim="editReview.content" type="text" id="content" />
+        <textarea placeholder="리뷰를 수정해 주세요." v-model.trim="editReview.content" type="text" id="content" />
       </div>
     </div>
     <div>

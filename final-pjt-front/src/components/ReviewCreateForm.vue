@@ -1,7 +1,9 @@
 <template>
-  <form @submit.prevent="onSubmit">
+  <form  @submit.prevent="onSubmit">
+    <h3 class="text-light text-center py-4">ReviewCreate</h3>
     <div>
-      <div class="d-flex">
+      <h6>평점</h6>
+      <div class="d-flex py-2">
         <span @click='onStar(0)'>
           <span v-if="stars[0]" class="material-symbols-outlined 
           text-warning">hexagon</span>
@@ -28,13 +30,14 @@
           <span v-else class="material-symbols-outlined">hexagon</span>
         </span>
       </div>
-      <div>
-        <label for="content">content: </label>
-        <textarea v-model.trim="newReview.content" type="text" id="content" />
+      <div class="py-3">
+        <h6><label for="content">리뷰 </label></h6>
+        
+        <textarea style="width:100%" placeholder="리뷰를 입력해 주세요." v-model.trim="newReview.content" type="text" id="content" />
       </div>
     </div>
     <div>
-      <button class="btn btn-outline-primary">생성</button>
+      <button class="btn btn-outline-light">생성</button>
     </div>
   </form>
 </template>
@@ -92,6 +95,12 @@
   }
 </script>
 
-<style>
-  
+<style scoped>
+  textarea {
+    color: black;
+    font-family:'CookieRun-Regular'; 
+  }
+  * {
+    color: white;
+  }
 </style>

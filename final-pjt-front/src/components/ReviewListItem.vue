@@ -1,5 +1,5 @@
 <template>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item bg-black text-light d-flex justify-content-between align-items-center">
     <div class="align-top">
       <div>
         <span class="material-symbols-outlined text-warning">hexagon</span>
@@ -8,7 +8,7 @@
         <span v-if="review.score >= 4" class="material-symbols-outlined text-warning">hexagon</span>
         <span v-if="review.score == 5" class="material-symbols-outlined text-warning">hexagon</span>
       </div>
-      <p>내용 : {{ review.content }}</p>
+      <p>{{ review.content }}</p>
     </div>
 
     <div class="d-flex ">
@@ -22,12 +22,12 @@
           <i v-else class="fa-solid fa-heart"></i>
           {{ review.like_count }}
         </h4>
-          <span >작성자 : {{ review.user.username }}</span><br>
-          <span class="opacity-75">생성 시간 : {{ review.created_at }}</span>
-          <p class="opacity-75">수정 시간 : {{ review.updated_at }}</p>
+          <span class="opacity-75" >작성</span>  {{ review.user.username }}<br>
+          <span class="opacity-75">생성</span> {{ review.created_at }} <br>
+          <span class="opacity-75">수정</span> {{ review.updated_at }} <br>
       </div>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" 
+        <button class="btn btn-light dropdown-toggle" type="button" 
         id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-gear"></i>
         </button>
@@ -40,7 +40,7 @@
         </ul>
       </div>
     </div>
-    <modal name='updateModal' height="auto" width="50%">
+    <modal name='updateModal' height="auto" width="50%" >
       <ReviewEditForm :review="review"/>
     </modal>
   </li>
@@ -72,4 +72,8 @@
 </script>
 
 <style>
+.opacity-75 {
+  font-size:12px;
+}
+
 </style>

@@ -2,7 +2,8 @@
   <div>
     <footer id="footer" class="footer">
       <p class="copyright">
-        Copyright Mobee. All Rights Reserved
+        <router-link :to="{ name: 'first'}"> Copyright Mobee. All Rights Reserved</router-link>
+       
       </p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
