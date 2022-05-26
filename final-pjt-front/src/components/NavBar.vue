@@ -8,6 +8,9 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item me-5">
+            <router-link :to="{ name: 'bee' }" class="nav-link" >bee</router-link>
+          </li>
+          <li class="nav-item me-5">
             <router-link :to="{ name: 'intro' }" class="nav-link" >MOBEE</router-link>
           </li>
           <li class="nav-item">

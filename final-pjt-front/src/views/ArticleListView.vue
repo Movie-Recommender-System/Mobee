@@ -2,15 +2,15 @@
   <div>
     <h1 class="text-center my-5">꿀영화 이야기 나누기</h1>
     <div class="container">
-      <button class="btn btn-secondary mb-3" @click="open">새 게시물 만들기</button>
+      <button class="btn btn-outline-warning mb-3" style="border:2px solid black; color:black;" @click="open">새 게시물 만들기</button>
       <modal name='newArticle' height="auto" width="30%">
         <ArticleForm :article="article" action="create"/>
       </modal>
       
-      <table class="table table-hover">
+      <table class="table table-hover table-container">
         <thead>
-          <tr class="table-warning">
-            <th scope="col">#</th>
+          <tr class="table-dark">
+            <th  scope="col">#</th>
             <th scope="col">제목</th>
             <th scope="col">User</th>
             <th scope="col">댓글</th>
@@ -94,6 +94,5 @@
   }
 </script>
 
-<style>
-  
+<style scoped>
 </style>

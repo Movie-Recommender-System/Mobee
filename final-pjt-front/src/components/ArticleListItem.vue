@@ -1,5 +1,5 @@
 <template>
-  <tr :class="`table-${index % 2 ? warning : dark}`">
+  <tr :class="`table-${index % 2 ? dark: dark}`">
     <th scope="row">{{ articleNum }}</th>
     <td>
         <div class="row">

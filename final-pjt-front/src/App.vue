@@ -7,11 +7,11 @@
     <br>
 
     <main>
-      <div class="card min-vh-100">
-        <div class="card-body">
+      <div class="min-vh-100">
+        <div class="container mt-5 pt-5">
           <router-view></router-view>
         </div>
-        <div class="card-footer text-muted text-center">
+        <div class="fixed-bottom text-muted text-center">
           <FooterPage ></FooterPage>
         </div>
       </div>
@@ -42,11 +42,16 @@
 
 @import url("../public/bootstrap.css");
 @import url("../public/bootstrap.min.css");
-
-:root {
+  :root {
+  --bg-color: rgb(255, 204, 0);
+  --line-color: rgb(0, 0, 0);
+  --main-color: rgb(255, 234, 0);
+  --main-color-dark: rgb(140, 70, 20);
+  --wing-color: rgb(193, 246, 255);
+  --unit: 1vh;
   scroll-behavior: smooth;
-
 }
+
 input::placeholder {
   font-family: 'Stylish', sans-serif;
 }
@@ -62,7 +67,7 @@ textarea::placeholder {
 }
 
 .header a, .header .nav-link:hover {
-  color:blue;
+  color:rgb(58, 58, 58);
 }
 
 /* 커서이미지 */

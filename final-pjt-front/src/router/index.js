@@ -11,6 +11,8 @@ import ArticleListView from '../views/ArticleListView'
 
 import NotFound404 from '../views/NotFound404.vue'
 
+import BeeView from '../views/BeeView.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,6 +51,11 @@ const routes = [
     path: '/404',
     name: 'NotFound404',
     component: NotFound404
+  },
+  {
+    path: '/bee',
+    name: 'bee',
+    component: BeeView
   },
   {
     path: '*',
