@@ -20,29 +20,35 @@
         <p class="text-secondary">{{ comment.user.username }}</p>
         <h5>{{ comment.content }}</h5>
       </div>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" 
-        id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-gear"></i>
-          
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li>
-            <button
-              class="dropdown-item"
-              type="button"
-              @click="isUpdate=true">
-              수정
-            </button>
-          </li>
-          <li>
-            <button
-              class="dropdown-item"
-              type="button"
-              @click='deleteComment({articlePk : comment.article, commentPk : comment.pk})'>삭제
-            </button>
-          </li>
-        </ul>
+      <div>
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" 
+          id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-gear"></i>
+            
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li>
+              <button
+                class="dropdown-item"
+                type="button"
+                @click="isUpdate=true">
+                수정
+              </button>
+            </li>
+            <li>
+              <button
+                class="dropdown-item"
+                type="button"
+                @click='deleteComment({articlePk : comment.article, commentPk : comment.pk})'>삭제
+              </button>
+            </li>
+          </ul>
+        </div>
+        <br>
+        <p class="opacity-75">생성 시간 : {{ comment.created_at }}</p>
+        <p class="opacity-75">수정 시간 : {{ comment.updated_at }}</p>
       </div>
     </div>
   </li>

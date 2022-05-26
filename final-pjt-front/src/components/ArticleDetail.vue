@@ -26,6 +26,10 @@
             {{ article.like_users.length }}<br>
            </h4>
       </div>
+      <div class='text-end opacity-50'>
+        <p>작성시간 : {{ article.created_at }}</p>
+        <p>수정시간 : {{ article.updated_at }}</p>
+      </div>
       <div class='row pb-5 d-flex justify-content-end'>
         <div class="col-1"> </div>
         <button class="btn btn-warning col-2" @click="open" >수정</button>
@@ -64,7 +68,7 @@ export default {
   name: 'ArticleDetail',
   components: { ArticleForm, CommentList, CommentForm },
   computed: {
-    ...mapGetters(['article', 'isLoggedIn', 'onUpdateArticleModal'])
+    ...mapGetters(['article', 'isLoggedIn'])
   },
   methods: {
     ...mapActions(['likeArticle', 'updateArticle', 'deleteArticle']),

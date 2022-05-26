@@ -26,17 +26,19 @@
 
       <table class="table table-hover">
         <thead>
-          <tr>
+          <tr class="table-warning">
             <th scope="col">#</th>
             <th scope="col">제목</th>
             <th scope="col">User</th>
             <th scope="col">댓글</th>
             <th scope="col">좋아요</th>
+            <th scope="col">작성시간</th>
+            <th scope="col">수정시간</th>
           </tr>
         </thead>
         <tbody>
           <ArticleListItem v-for="(article, index) in articles" 
-          :key="article.pk" :index='index' :article='article'/>
+          :key="article.pk" :index='index' :article='article' />
         </tbody>
       </table>
       <div class="d-flex justify-content-center">

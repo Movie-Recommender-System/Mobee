@@ -1,15 +1,17 @@
 <template>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     <div class="align-top">
-      <span class="material-symbols-outlined text-warning">hexagon</span>
-      <span v-if="review.score >= 2" class="material-symbols-outlined text-warning">hexagon</span>
-      <span v-if="review.score >= 3" class="material-symbols-outlined text-warning">hexagon</span>
-      <span v-if="review.score >= 4" class="material-symbols-outlined text-warning">hexagon</span>
-      <span v-if="review.score == 5" class="material-symbols-outlined text-warning">hexagon</span>
+      <div>
+        <span class="material-symbols-outlined text-warning">hexagon</span>
+        <span v-if="review.score >= 2" class="material-symbols-outlined text-warning">hexagon</span>
+        <span v-if="review.score >= 3" class="material-symbols-outlined text-warning">hexagon</span>
+        <span v-if="review.score >= 4" class="material-symbols-outlined text-warning">hexagon</span>
+        <span v-if="review.score == 5" class="material-symbols-outlined text-warning">hexagon</span>
+      </div>
       <p>내용 : {{ review.content }}</p>
     </div>
 
-    <div class="d-flex mb-5">
+    <div class="d-flex ">
       <div>
         <h4>
           <a v-if="isLoggedIn" @click='likeReview(
@@ -20,7 +22,9 @@
           <i v-else class="fa-solid fa-heart"></i>
           {{ review.like_count }}
         </h4>
-        <span class="m-2">작성자 : {{ review.user.username }}</span>
+          <span >작성자 : {{ review.user.username }}</span><br>
+          <span class="opacity-75">생성 시간 : {{ review.created_at }}</span>
+          <p class="opacity-75">수정 시간 : {{ review.updated_at }}</p>
       </div>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" 

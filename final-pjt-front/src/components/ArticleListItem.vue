@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr :class="`table-${index % 2 ? warning : dark}`">
     <th scope="row">{{ articleNum }}</th>
     <td>
         <div class="row">
@@ -9,8 +9,9 @@
     <td>{{ article.user.username }}</td>
     <td>{{ article.comment_count }}</td>
     <td>{{ article.like_count }}</td>
+    <td>{{ article.created_at }}</td>
+    <td>{{ article.updated_at }}</td>
     <modal :name='modalName' width="50%" :adaptive="true" height="50%">
-
       <ArticleDetail/>
     </modal>
   </tr>
@@ -32,7 +33,9 @@
     },
     data () {
       return {
-        modalName: this.article.pk + ''    // 게시글 별로 다른 모달 이름을 주기 위함.
+        modalName: this.article.pk + '',    // 게시글 별로 다른 모달 이름을 주기 위함.
+        warning : "warning",
+        dark : "light"
       }
     },
     computed: {
@@ -45,7 +48,10 @@
       ...mapActions(['fetchArticle']),
       open () {
         this.fetchArticle(this.article.pk)
-        this.$modal.show(this.modalName)
+        
+        setTimeout(() => {      
+          this.$modal.show(this.modalName)
+        }, 100) 
       },
     }
   }

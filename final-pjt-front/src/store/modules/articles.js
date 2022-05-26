@@ -10,7 +10,6 @@ export default {
   state: {
     articles: [],
     article: {},
-    onUpdateArticleModal: false,
     articlePage: 1,
     articleCount: 0,
   },

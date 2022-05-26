@@ -132,11 +132,13 @@
       ...mapActions(['fetchProfile']),
     },
     created () {
-      setTimeout(() => {
+      setTimeout(() => {      
         this.fetchProfile({ username : this.currentUser.username })
+      }, 500)        
+      setTimeout(() => {
         this.chartData.labels = this.profile.preferred_genres.genres
-        this.chartData.datasets[0].data = this.profiled.preferred_genres.scores
-      }, 500)
+        this.chartData.datasets[0].data = this.profile.preferred_genres.scores
+      }, 1000)
     }
   }
 </script>
