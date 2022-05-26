@@ -2,28 +2,11 @@
   <div>
     <h1 class="text-center my-5">꿀영화 이야기 나누기</h1>
     <div class="container">
-      <button v-if="isLoggedIn" type="button" class="btn btn-secondary" data-bs-toggle="modal" 
-      data-bs-target="#newModal">새 게시물 만들기</button>
-
-      <div class="modal fade" id="newModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <ArticleForm :article="article" action="create"/>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+      <button class="btn btn-secondary mb-3" @click="open">새 게시물 만들기</button>
+      <modal name='newArticle' height="auto" width="30%">
+        <ArticleForm :article="article" action="create"/>
+      </modal>
+      
       <table class="table table-hover">
         <thead>
           <tr class="table-warning">
