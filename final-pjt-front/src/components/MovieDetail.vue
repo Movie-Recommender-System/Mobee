@@ -283,13 +283,14 @@ a:hover {
 }
 
 .tag {
-      background: rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
     border-radius: 10px;
-    padding: 3px 8px;
-    font-size: 5px;
+    padding: 5px 5px;
+    font-size: 6px;
     margin-right: 4px;
     line-height: 13px;
     cursor: pointer;
+    color: black;
 }
 
 .tag:hover {

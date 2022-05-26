@@ -1,7 +1,6 @@
 <template>
-  <div class="body">
-  <h1 class="text-center">MoBee</h1>
-  
+  <div class="body"> <br><br>
+    <span class="text-center"><h3 class="firstword">보고 싶은 영화를 찜하고, 봤던 영화에 대한 리뷰를 남기면</h3><h3 class="secondword">moBee가 추천해 줄게</h3><h1 class=" thirdword text-center">MoBee</h1></span>
     <div class="bee"> 
       <div class="booty"></div>
       <div class="wing-left"></div>
@@ -30,8 +29,8 @@ export default {
   position: absolute;
 }
 
-body {
-  height: 100vh;
+.body {
+  min-height: 100vh;
   margin: 0;
   display: grid;
   place-items: center;

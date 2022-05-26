@@ -37,7 +37,7 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" 
+          <input class="form-control me-2" type="search" placeholder="Search movie name." 
           aria-label="Search" @input="changeQuery">
         </form>
         <a href="#"><button class="btn btn-outline-warning">UP</button></a>

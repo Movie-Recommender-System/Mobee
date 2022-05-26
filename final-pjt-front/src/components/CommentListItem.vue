@@ -47,8 +47,8 @@
           </ul>
         </div>
         <br>
-        <p class="opacity-75">생성 시간 : {{ comment.created_at }}</p>
-        <p class="opacity-75">수정 시간 : {{ comment.updated_at }}</p>
+        <p class="opacity-75">생성 : {{ comment.created_at }}</p>
+        <p class="opacity-75">수정 : {{ comment.updated_at }}</p>
       </div>
     </div>
   </li>
