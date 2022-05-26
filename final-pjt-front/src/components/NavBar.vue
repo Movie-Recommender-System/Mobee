@@ -39,8 +39,8 @@
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" 
           aria-label="Search" @input="changeQuery">
-          <button class="btn btn-outline-warning" type="submit">UP</button>
         </form>
+        <a href="#"><button class="btn btn-outline-warning">UP</button></a>
       </div>
     </div>
   </nav>
