@@ -13,6 +13,9 @@
           <li class="nav-item me-5">
             <router-link :to="{ name: 'intro' }" class="nav-link" >MOBEE</router-link>
           </li>
+          <li class="nav-item me-5">
+            <router-link :to="{ name: 'first' }" class="nav-link" >first</router-link>
+          </li>
           <li class="nav-item">
             <router-link :to="{ name: 'movie'}"  class="nav-link">Movie</router-link>
           </li>

@@ -2,18 +2,18 @@
   <div class="body">
   <h1 class="text-center">MoBee</h1>
   
-<div class="bee"> 
-  <div class="booty"></div>
-  <div class="wing-left"></div>
-  <div class="wing-right"></div>
-  <div class="face">
-    <div class="eyes"></div>
-    <div class="mouth"></div>
-  </div>
-</div>
-<div class="cloud1"></div>
-<div class="cloud2"></div>
-<div class="cloud3"></div>
+    <div class="bee"> 
+      <div class="booty"></div>
+      <div class="wing-left"></div>
+      <div class="wing-right"></div>
+      <div class="face">
+        <div class="eyes"></div>
+        <div class="mouth"></div>
+      </div>
+    </div>
+    <div class="cloud1"></div>
+    <div class="cloud2"></div>
+    <div class="cloud3"></div>
   </div>
 </template>
 <script>

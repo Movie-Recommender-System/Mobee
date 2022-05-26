@@ -8,7 +8,7 @@
 
     <main>
       <div class="min-vh-100">
-        <div class="container mt-5 pt-5">
+        <div class="Main  h-100">
           <router-view></router-view>
         </div>
         <div class="fixed-bottom text-muted text-center">
@@ -39,11 +39,30 @@
 </script>
 
 <style>
+@font-face {
+    font-family: 'SuncheonB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+  @font-face {
+    font-family: 'SuncheonB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+}
 
+body {
+
+  background-color: var(--bg-color);
+ 
+} 
 @import url("../public/bootstrap.css");
 @import url("../public/bootstrap.min.css");
   :root {
-  --bg-color: rgb(255, 204, 0);
+  --bg-color: #ffffff;
   --line-color: rgb(0, 0, 0);
   --main-color: rgb(255, 234, 0);
   --main-color-dark: rgb(140, 70, 20);

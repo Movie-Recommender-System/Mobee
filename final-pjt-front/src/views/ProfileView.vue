@@ -10,9 +10,10 @@
       @click="download()">꿀 영화 받아오기</button>
     </div>
     <div class="row my-5">
-      <div class="col-4 box">
+      <div class="col-4 box p-3">
         <h4 class="text-center">장르 선호도</h4>
-        <Bar
+        <div>
+          <Bar
           :chart-options="chartOptions"
           :chart-data="chartData"
           :chart-id="chartId"
@@ -22,14 +23,16 @@
           :styles="styles"
           :width="width"
           :height="height"
-        />
+          />
+        </div>
+        
         <br>
         <h5 class="text-center">{{ profile.username }}님이 좋아하는 장르입니다.</h5>
         <div class="d-inline" v-for="best_genre in profile.preferred_genres.best_genres" :key="best_genre">
           <span>{{ best_genre }} </span>
         </div>
       </div>
-      <div class="col-8 box text-center">
+      <div class="col-8 box text-center p-3">
         <h4>내 꿀단지 영화</h4>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">

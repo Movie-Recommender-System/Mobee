@@ -1,12 +1,12 @@
-<template lang="">
-  <div>
+<template scoped>
+  <div class="body">
     <div class="crawl">
-  <div class="wrapper">
-    <h1 class="pre-text">Episode IV</h1>
-    <h2 class="pre-text">A NEW HOPE</h2>
-       <p>Pursued by the Empire's sinister agents,"</p>
-  </div>
-</div>
+      <div class="wrapper">
+        <h1 class="pre-text">Mobee</h1>
+        <h2 class="pre-text">꿀잼 영화 추천 사이트</h2>
+          <p>Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,"</p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -14,12 +14,12 @@ export default {
   name: 'FirstView',
 }
 </script>
-<style lang="">
-  body {
-  background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/4w8qfPNhgilfsnun8/stars-slowly-twinkle-in-the-night-sky_ejvleuenl__S0000.jpg");
-  color: #FECC00;
+<style scoped>
+  #app {
+  background: black;
+  color: #212121;
   font-family: "Lato";
-  text-shadow: 0px 0px 4px #e5b800;
+  text-shadow: 0px 0px 0px #e5b800;
   font-weight: 700;
   overflow: hidden;
 }
