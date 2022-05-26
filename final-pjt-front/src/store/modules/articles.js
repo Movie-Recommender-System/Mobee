@@ -110,7 +110,6 @@ export default {
           }
           else if (err.response.status === 401) {
             alert('로그인 하세요.')
-            router.push({ name: 'login' })
           } 
           else {
             console.error(err.response)
@@ -132,10 +131,9 @@ export default {
           .catch(err => {
             if (err.response.status === 403) {
               alert(err.response.data)
-            } 
+            }
             else if (err.response.status === 401) {
               alert('로그인 하세요.')
-              router.push({ name: 'login' })
             } 
             else {
               console.error(err.response)
@@ -170,7 +168,17 @@ export default {
           commit('SET_ARTICLE_COMMENTS', res.data)
           dispatch('fetchArticles')
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          if (err.response.status === 403) {
+            alert(err.response.data)
+          }
+          else if (err.response.status === 401) {
+            alert('로그인 하세요.')
+          } 
+          else {
+            console.error(err.response)
+          }
+        })
     },
 
     updateComment({ commit, getters }, { articlePk, commentPk, content }) {
@@ -189,7 +197,12 @@ export default {
           if (err.response.status === 403) {
             alert(err.response.data)
           }
-          console.error(err.response)
+          else if (err.response.status === 401) {
+            alert('로그인 하세요.')
+          } 
+          else {
+            console.error(err.response)
+          }
         })
     },
 
@@ -209,7 +222,12 @@ export default {
               if (err.response.status === 403) {
                 alert(err.response.data)
               }
-              console.error(err.response)
+              else if (err.response.status === 401) {
+                alert('로그인 하세요.')
+              } 
+              else {
+                console.error(err.response)
+              }
             })
         }
       },

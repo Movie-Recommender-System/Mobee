@@ -143,7 +143,11 @@ export default {
         .catch(err => {
           if (err.response.status === 403) {
             alert(err.response.data)
-          } else {
+          } 
+          else if (err.response.status === 401) {
+            alert('로그인 하세요.')
+          } 
+          else {
             console.error(err.response)
           }
         })
