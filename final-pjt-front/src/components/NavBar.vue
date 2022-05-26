@@ -40,7 +40,8 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" type="search" placeholder="Search" 
+          aria-label="Search" @input="changeQuery">
           <button class="btn btn-outline-warning" type="submit">Search</button>
         </form>
       </div>
@@ -63,7 +64,10 @@
       }
     },
     methods: {
-      ...mapActions(['logout']),
+      ...mapActions(['logout', 'movieSearch']),
+      changeQuery (e) {
+        this.movieSearch(e.target.value.replace(/ /gi, ""))
+      }
     }
   }
 </script>
