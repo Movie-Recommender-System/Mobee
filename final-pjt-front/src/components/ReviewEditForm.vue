@@ -50,6 +50,7 @@
     name: 'ReviewEditForm',
     props: { 
       review : Object,
+      modalName: String,
     },
     data () {
       return {
@@ -93,7 +94,7 @@
         }
         this.editReview.content = this.review.content
         this.stars = [false, false, false, false, false]
-        this.$modal.hide('updateModal')
+        this.$modal.hide(this.modalName)
       } 
     }
   }

@@ -40,8 +40,8 @@
         </ul>
       </div>
     </div>
-    <modal name='updateModal' height="auto" width="50%" >
-      <ReviewEditForm :review="review"/>
+    <modal :name='modalName' height="auto" width="50%" >
+      <ReviewEditForm :modalName="modalName" :review="review"/>
     </modal>
   </li>
 </template>
@@ -57,6 +57,11 @@
 
   export default {
     name: 'ReviewListItem',
+    data () {
+      return {
+        modalName: this.review.pk + 'modal'
+      }
+    },
     components: { ReviewEditForm },
     props: {review: Object },
     computed: {
@@ -65,7 +70,7 @@
     methods: {
       ...mapActions([ 'likeReview', 'deleteReview' ]),
       open () {
-        this.$modal.show('updateModal')
+        this.$modal.show(this.modalName)
       }
     }
   }
