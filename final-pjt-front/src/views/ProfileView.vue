@@ -8,12 +8,26 @@
         Loading...
       </button>
       <form v-else>
-        <label for="page">page:</label>
-        <input id="page" type="text" v-model.trim="page">
-        <button  class="btn btn-warning"
-        @click.prevent="download('now_playing')">TMDB Now Playing Movie Update</button>
-        <button  class="btn btn-warning"
-        @click.prevent="download('popular')">TMDB Famous Movie Update</button>
+        <div class="container">
+            <div class="row text-end my-2">
+              <div class="col-3"></div>
+              <div class="col-3"></div>
+              <div class="col-3"></div>
+              <div class="col-3 my-2">
+              <h5>관리자 권한으로</h5>
+              <h5>TMDB 영화 다운로드</h5>
+              <span><input id="page" type="text" v-model.trim="page" style="width:50px;">&nbsp;&nbsp;<label for="page">페이지</label></span>
+                <div class="row">
+                  <div class="col-6 my-2">
+                    <button @click.prevent="download('now_playing')" class=" btn btn-sm btn-warning me-1" type="button" style="width:100%">Now Playing</button>
+                  </div>
+                  <div class="col-6 my-2">
+                    <button @click.prevent="download('popular')" class=" btn btn-sm btn-warning"  type="button" style="width:100%">Popular</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </form>
     </div>
     <div class="row my-5">
