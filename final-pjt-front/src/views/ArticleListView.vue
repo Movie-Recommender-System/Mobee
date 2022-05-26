@@ -34,7 +34,8 @@
           </li>
           <li class="page-item" @click="pageChange(page)"
           v-for="page in pages" :key="page" :class="{'active': articlePage === page}">
-            <a class="page-link" >{{ page }}</a>
+            <a v-if="articlePage - 2 <= page && articlePage + 2 >= page" 
+              class="page-link" >{{ page }}</a>
           </li>
           <li v-if="articlePage === pages" class="page-item disabled">
             <a class="page-link" >&raquo;</a>
