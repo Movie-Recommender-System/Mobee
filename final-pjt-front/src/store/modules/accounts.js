@@ -65,7 +65,7 @@ export default {
           const token = res.data.key
           dispatch('saveToken', token)
           dispatch('fetchCurrentUser')
-          router.push({ name: 'movie' })
+          router.push({ name: 'intro' })
         })
         .catch(err => {
           console.error(err.response.data)
