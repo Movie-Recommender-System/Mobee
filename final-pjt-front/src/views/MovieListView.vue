@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <br>
     <br>
     <div class="container">
@@ -38,6 +39,11 @@
       <ul>
         <br>
         <br>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" 
+          aria-label="Search" v-model="query">
+          <button class="btn btn-outline-warning" type="submit">Search</button>
+        </form>
         <div v-if="!isMovies">
           <div v-if="moviesKind=='recommend'">
             <h3>사용자 데이터가 부족합니다.</h3>
@@ -46,8 +52,12 @@
             <h3>관련 장르의 영화가 존재하지 않습니다.</h3>
           </div>
         </div>
-        <div v-else class="row row-cols-1 align-content-center justify-content-center">
-          <MovieListItem v-for="movie in movies" :key="movie.pk" :movie="movie"/>
+        <div v-else>
+          <div class="row row-cols-1 align-content-center justify-content-center">
+            <div v-for="movie in movies" :key="movie.pk">
+              <MovieListItem v-if="movie.title.includes(query)"  :movie="movie"/>
+            </div>
+          </div>
         </div>
       </ul>
     </div>
@@ -62,6 +72,11 @@
   export default {
     name: 'MovieListView',
     components: { MovieListItem },
+    data () {
+      return {
+        query : ''
+      }
+    },
     computed: {
       ...mapGetters(['movies', 'isLoggedIn', 'isMovies', 'genres', 'moviesKind'])
     },
