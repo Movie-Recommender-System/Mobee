@@ -2,7 +2,41 @@
   <div class="container">
     <h2 class="text-center my-5">{{ profile.username }}'s Profile</h2>
     <div class="row my-5">
+      <div class="col-4 box">
+        <h4>장르 선호도</h4>
+        <Bar
+          :chart-options="chartOptions"
+          :chart-data="chartData"
+          :chart-id="chartId"
+          :dataset-id-key="datasetIdKey"
+          :plugins="plugins"
+          :css-classes="cssClasses"
+          :styles="styles"
+          :width="width"
+          :height="height"
+        />
+        <br>
+        <h5>{{ profile.username }}님이 좋아하는 장르입니다.</h5>
+        <div class="d-inline" v-for="best_genre in profile.preferred_genres.best_genres" :key="best_genre">
+          <span>{{ best_genre }} </span>
+        </div>
+      </div>
+      <div class="col-8 box">
+        <h4>Wish List</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">
+            <div class="card h-100">
+              <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_key}`" 
+              class="card-img-top img-thumbnail rounded" alt="poster img">
+              <div class="card-body">
+                <h5 class="card-title">{{ movie.title }}</h5>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
 
+    <div class="row">
       <div class="col-4 box">
         <h4>남긴 리뷰</h4>
         <ul class="list-group">
@@ -20,24 +54,7 @@
           </li>
         </ul>
       </div>
-      
-      <div class="col-8 box">
-        <h4>Wish List</h4>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">
-            <div class="card h-100">
-              <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_key}`" 
-              class="card-img-top img-thumbnail rounded" alt="poster img">
-              <div class="card-body">
-                <h5 class="card-title">{{ movie.title }}</h5>
-              </div>
-            </div>
-          </div> 
-        </div>
-      </div>
-
-    <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <h4>작성한 게시글 모음</h4>
         <div class="box list-group">
           <li class="list-group-item" v-for="article in profile.articles" :key="article.pk">
@@ -47,7 +64,7 @@
           </li>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-4">
         <h4>작성한 댓글 모음</h4>
         <div>
           <ul class=" box list-group">
@@ -60,17 +77,6 @@
         </div>
       </div>
     </div>
-    <Bar
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    />
   </div>
 </template>
 
@@ -88,7 +94,12 @@
       return {
         chartData: {
           labels: [ 'a', 'b', 'c', 'd' ],
-          datasets: [ { data: [0, 1 ,2 , 3] } ]
+          datasets: [ { 
+            data: [0, 1, 2, 3],
+            // backgroundColor: '#f87979',
+            backgroundColor: 'rgb(255, 220, 106)',
+            label: '선호도',
+            } ],
         },
         chartOptions: {
           responsive: true
