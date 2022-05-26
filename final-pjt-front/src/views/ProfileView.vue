@@ -1,9 +1,17 @@
 <template>
   <div class="container">
     <h2 class="text-center my-5">{{ profile.username }}'s Profile</h2>
+    <div v-if="currentUser.is_staff == true">
+      <button v-if="isDownload" class="btn btn-warning" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+      </button>
+      <button v-else class="btn btn-warning" 
+      @click="download()">꿀 영화 받아오기</button>
+    </div>
     <div class="row my-5">
       <div class="col-4 box">
-        <h4>장르 선호도</h4>
+        <h4 class="text-center">장르 선호도</h4>
         <Bar
           :chart-options="chartOptions"
           :chart-data="chartData"
@@ -16,13 +24,13 @@
           :height="height"
         />
         <br>
-        <h5>{{ profile.username }}님이 좋아하는 장르입니다.</h5>
+        <h5 class="text-center">{{ profile.username }}님이 좋아하는 장르입니다.</h5>
         <div class="d-inline" v-for="best_genre in profile.preferred_genres.best_genres" :key="best_genre">
           <span>{{ best_genre }} </span>
         </div>
       </div>
-      <div class="col-8 box">
-        <h4>Wish List</h4>
+      <div class="col-8 box text-center">
+        <h4>내 꿀단지 영화</h4>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col" v-for="movie in profile.wish_movie_list" :key="movie.pk">
             <div class="card h-100">
@@ -38,7 +46,7 @@
 
     <div class="row">
       <div class="col-4 box">
-        <h4>남긴 리뷰</h4>
+        <h4 class="text-center">남긴 리뷰</h4>
         <ul class="list-group">
           <li class="list-group-item" v-for="review in profile.reviews" :key="review.pk">
             <h5>영화 제목 : {{ review.movie.title }}</h5>
@@ -55,7 +63,7 @@
         </ul>
       </div>
       <div class="col-4">
-        <h4>작성한 게시글 모음</h4>
+        <h4 class="text-center">작성한 게시글 모음</h4>
         <div class="box list-group">
           <li class="list-group-item" v-for="article in profile.articles" :key="article.pk">
             <h5> {{ article.title }}</h5>
@@ -65,7 +73,7 @@
         </div>
       </div>
       <div class="col-4">
-        <h4>작성한 댓글 모음</h4>
+        <h4 class="text-center">작성한 댓글 모음</h4>
         <div>
           <ul class=" box list-group">
           <li class="list-group-item" v-for="comment in profile.comments" :key="comment.pk">
@@ -137,10 +145,15 @@
       }
     },
     computed: {
-      ...mapGetters(['profile', 'currentUser']),
+      ...mapGetters(['profile', 'currentUser', 'isDownload']),
     },
     methods: {
-      ...mapActions(['fetchProfile']),
+      ...mapActions(['fetchProfile', 'createMovies']),
+      download() {
+        setTimeout(() => {      
+        this.createMovies()
+      }, 500) 
+      }
     },
     created () {
       setTimeout(() => {      

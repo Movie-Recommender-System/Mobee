@@ -35,14 +35,16 @@
                   <div class="col">
                     <span v-for="genre in movie.genres" :key="genre.pk" class="badge rounded-pill bg-warning tag">{{ genre.name }}<br></span>
                   </div>
-                </div>
-                <div>
-                  <div text-cetner v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
-                    <img v-if="movie.is_wished" src="../assets/honey (5).png" style="width:30px;" alt="">
-                    <img v-else src="../assets/honey (6).png" alt="">
+                  <br>
+                  <br>
+                  <div>
+                    <p class="fs-5">꿀영화 저장</p>
+                    <div class="fs-5" v-if="isLoggedIn" @click='wishMovie(movie.pk)'>
+                      <i v-if="movie.is_wished" class="fa-solid fa-heart text-warning"></i>
+                      <i v-else class="fa-solid fa-heart"></i>
+                      {{ movie.wished_users.length }}
+                    </div>
                   </div>
-                  <img v-else src="../assets/honey (6).png"  alt="">
-                      {{ movie.wished_users.length }}<br>
                 </div>
             </div> <!-- end column1 -->
             
