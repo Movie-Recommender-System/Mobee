@@ -11,20 +11,28 @@
       </div>
     </div>
 
-    <h1 v-if="moviesKind == 'recent'" class="text-center my-5">최신 Movies</h1>
-    <h1 v-else-if="moviesKind == 'wish'" class="text-center my-5">꿀단지에 가장 많이 담긴 Movies</h1>
-    <h1 v-else-if="moviesKind == 'recommend'" class="text-center my-5">꿀단지 알고리즘 추천 Movies</h1>
-    <h1 v-else class="text-center my-5">{{ moviesKind }}</h1>
-    <div class="row text-change">
-      <div id="buttons" class="btn-group btn-warning my-5" role="group" aria-label="Button group with nested dropdown">
+    <h1 v-if="moviesKind == 'recent'" class="text-center m-5 p-5">최신 Movies</h1>
+    <h1 v-else-if="moviesKind == 'wish'" class="text-center m-5 p-5">꿀단지에 가장 많이 담긴 Movies</h1>
+    <h1 v-else-if="moviesKind == 'recommend'" class="text-center m-5 p-5">꿀단지 알고리즘 추천 Movies</h1>
+    <h1 v-else class="text-center m-5 p-5">{{ moviesKind }}</h1>
 
-        <button  type="button" class="btn btn-warning" @click='fetchMovies("recent")'>최신 영화</button>
-        <button type="button" class="btn btn-warning" @click='fetchMovies("wish")'>꿀단지에 가장 많이 담긴 영화</button>
-        <button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="회원님이 남기신 리뷰와 꿀단지에 넣은 영화 정보를 혼합하여
-        맟춤 추천 영화를 알려드려요!" @click='fetchRecommendMovies' v-if="isLoggedIn" >꿀단지 알고리즘 추천 영화</button>
+
+    <div class="text-center container justify-contents-items">
+      <div class="row justify-contents-items">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+        <input type="radio" class="btn-check" @click='fetchMovies("recent")' name="btnradio" id="btnradio1" autocomplete="off" checked="">
+        <label class="btn btn-outline-primary" for="btnradio1">최신 영화</label>
+
+        <input type="radio" class="btn-check"  @click='fetchMovies("wish")' name="btnradio" id="btnradio2" autocomplete="off" checked="">
+        <label class="btn btn-outline-primary" for="btnradio2">꿀단지에 가장 많이 담긴 영화</label>
         
-        <div class="button  btn-group" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle"
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="회원님이 남기신 리뷰와 꿀단지에 넣은 영화 정보를 혼합하여
+        맟춤 추천 영화를 알려드려요!" @click='fetchRecommendMovies' v-if="isLoggedIn">
+        <label class="btn btn-outline-primary" for="btnradio3">꿀단지 알고리즘 추천 영화</label>
+         
+        <div class="button btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">장르별 추천 영화
           </button>
 
@@ -36,6 +44,11 @@
           </ul>
         </div>
       </div>
+      </div>
+      
+    </div>
+
+    <div>
       <ul>
         <br>
         <br>

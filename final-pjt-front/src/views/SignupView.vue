@@ -8,7 +8,7 @@
         </div>
         <div class=" box-2 ps-5 d-flex flex-column h-100">
           <div class="mt-5">
-              <p class="mb-1 h-1">SignUp Page.</p>
+              <p class="mb-1 h-1">SignUp</p>
               <p class="text-muted mb-2">Create your own account to use the Mobee service.</p>
               <div class="d-flex flex-column ">
                   <p class="text-muted mb-2">Continue with...</p>
