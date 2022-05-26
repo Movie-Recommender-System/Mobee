@@ -66,16 +66,7 @@
 </script>
 
 <style scoped>
-* {
-  /* font-family: 'Black Han Sans', sans-serif; */
-      /* font-family: 'Do Hyeon', sans-serif; */
-      /* font-family: 'Jua', sans-serif; */
-      /* font-family: 'Nanum Brush Script', cursive; */
-      font-family: 'Stylish', sans-serif;
-      /* font-family: 'Noto Sans KR', sans-serif;  */
-  font-size:"30px";
-  /* color: #ffc107; */
-}
+
 .body {
   background-color: rgb(33, 33, 33);
 } 

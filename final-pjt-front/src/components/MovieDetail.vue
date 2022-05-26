@@ -171,7 +171,6 @@ a:hover {
   color: #A9A8A3;
   padding: 17px 0;
   font-size: 15px;
-  /* z-index: 100000000; */
 }
 
 .container {
@@ -428,7 +427,7 @@ a[data-tooltip][data-placement=top]::after {
 }
 html{
   height: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'HallymGothic-Regular';
   font-size: 14px;
 }
 body{

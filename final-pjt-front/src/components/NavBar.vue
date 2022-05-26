@@ -1,12 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top py-2 d-flex">
-    <div class="container mx-5">
+    <div class="container-fluid mx-5">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
           <li class="nav-item me-5">
             <router-link :to="{ name: 'bee' }" class="nav-link" >bee</router-link>
           </li>
@@ -39,6 +39,10 @@
             </div>
           </li>
         </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-warning" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>

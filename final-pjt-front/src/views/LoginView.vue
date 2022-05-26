@@ -4,38 +4,38 @@
       <account-error-list v-if="authError"></account-error-list>
         <div class="body d-md-flex align-items-center justify-content-between">
             <div class="box-1 mt-md-0 mt-5">
-                <img src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                <img src="../assets/minions2.png"
                     class="" alt="">
             </div>
-            <div class=" box-2 d-flex flex-column h-100">
-                <div class="mt-5">
-                    <p class="mb-1 h-1">Login Page.</p>
-                    <p class="text-muted mb-2">Login or register from here to access.</p>
-                    <div class="d-flex flex-column ">
-                        <p class="text-muted mb-2">Continue with...</p>
-                        <div class="d-flex align-items-center">
-                           <form @submit.prevent="login(credentials)">
-                            <div class="form-group my-4 ">
-                                <label class=" ">User Name</label>
-                                <input id="username" v-model="credentials.username" type="text" class="form-control" placeholder="User Name" required>
+            <div class=" box-2 ps-5 d-flex flex-column h-100">
+              <div class="mt-5">
+                  <p class="mb-1 h-1">Login Page.</p>
+                  <p class="text-muted mb-2">Login or register from here to access.</p>
+                  <div class="d-flex flex-column ">
+                      <p class="text-muted mb-2">Continue with...</p>
+                      <div class="d-flex align-items-center">
+                          <form @submit.prevent="login(credentials)">
+                          <div class="form-group my-4 ">
+                              <label class=" ">User Name</label>
+                              <input id="username" v-model="credentials.username" type="text" class="form-control" placeholder="User Name" required>
+                          </div>
+                          <div class="form-group my-4">
+                              <label class=" ">Password</label>
+                              <input id="password" v-model="credentials.password" type="password" class="form-control" placeholder="Password" required>
+                          </div>
+                          <div class="row">
+                            <div class="col-6">
+                              <button type="submit" class="col-6 btn btn-black bg-black text-white me-1" style="width:100%;">Login</button>
                             </div>
-                            <div class="form-group my-4">
-                                <label class=" ">Password</label>
-                                <input id="password" v-model="credentials.password" type="password" class="form-control" placeholder="Password" required>
+                            <div class="col-6">
+                              <router-link :to="{name:'signup'}" >
+                                <button type="submit" class="btn btn-secondary" style="width:100%;">Sign Up</button>
+                              </router-link>
                             </div>
-                            <div class="row">
-                              <div class="col-6">
-                                <button type="submit" class="col-6 btn btn-black bg-black text-white me-1" style="width:100%;">Login</button>
-                              </div>
-                              <div class="col-6">
-                                <router-link :to="{name:'signup'}" >
-                                  <button type="submit" class="btn btn-secondary" style="width:100%;">Go Register</button>
-                                </router-link>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                    </div>
+                          </div>
+                        </form>
+                      </div>
+                  </div>
                 </div>
                 <div class="mt-auto">
                     <p class="footer text-muted mb-0 mt-md-0 mt-4">By register you agree with our

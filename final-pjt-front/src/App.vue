@@ -8,7 +8,7 @@
 
     <main>
       <div class="min-vh-100">
-        <div class="Main  h-100">
+        <div class="Main pt-5 h-100">
           <router-view></router-view>
         </div>
         <div class="fixed-bottom text-muted text-center">
@@ -45,14 +45,37 @@
     font-weight: normal;
     font-style: normal;
 }
-* {
-  @font-face {
-    font-family: 'SuncheonB';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonB.woff') format('woff');
+@font-face {
+    font-family: 'HallymGothic-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GimpoGothicBold00';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/GimpoGothicBold00.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
+
+
+/* h1, h2, h3, h4, h5, h6 {
+  font-family: 'CookieRun-Regular';
+}
+
+p { 
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+} */
+
+
 
 body {
 
@@ -113,21 +136,16 @@ input {cursor: url(./assets/bee_hover.png),auto;}
 }
 
 /* 글씨체 부분  자유롭게*/
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Stylish', 'Noto Sans KR' , sans-serif;
-  font-weight: 900;
-}
 
-p {
-  font-family: 'Stylish', 'Noto Sans KR', sans-serif;
-}
 
+
+/* 
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 1,
   'wght' 400,
   'GRAD' 0,
   'opsz' 24
-}
+} */
 </style>
 
