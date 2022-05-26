@@ -11,6 +11,7 @@ export default {
     newMovies: {},      // 새로 영화 받아올 때 보여주기 위함
     moviesKind: '',    // 좋아요 버튼 클릭 시 영화 리스트의 하트도 변경
     isDownload: false,  // 영화 받아오는 중
+    query: '',
   },
   getters: {
     movies: state => state.movies,
@@ -20,6 +21,7 @@ export default {
     isMovies: state => !_.isEmpty(state.movies),
     genres: state => state.genres,
     isDownload: state => state.isDownload,
+    query: state => state.query,
   },
   mutations: {
     SET_MOVIES: (state, { movies, kind }) => {
@@ -32,7 +34,8 @@ export default {
       state.isDownload = false
     },
     SET_GENRES: (state, genres) => state.genres = genres,
-    SET_DOWNLOAD: state => state.isDownload = true
+    SET_DOWNLOAD: state => state.isDownload = true,
+    SET_QUERY: (state, query) => state.query = query,
   },
   actions: {
     fetchGenres( {commit} ) {
@@ -201,5 +204,9 @@ export default {
         .then(() => dispatch('fetchMovie', moviePk))
         .catch(err => console.error(err.response))
     },
+
+    movieSearch({commit}, query) {
+      commit('SET_QUERY', query)
+    }
   },
 }
