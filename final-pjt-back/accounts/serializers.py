@@ -73,12 +73,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         genres.sort(key=lambda x: x[1], reverse=True)
 
         for idx, genre in enumerate(genres):    
-            if idx <= 5 and genre[1] > 0:
-                data['best_genres'].append(genre[0])   # # 선호 장르 최대 5개(없으면 선호도가 0이면 X)
-            # data['score'][genre[0]] = genre[1]   # 선호도와 함께 전송
-            
-
+            if idx == 5:
+                break
+            if genre[1] > 0:
+                data['best_genres'].append(genre[0])   # # 선호 장르 최대 5개(없으면 선호도가 0이면 X)     
+                
         return data
+
     class Meta:
         model = get_user_model()
         fields = ('pk', 'username', 'wish_movie_list', 'reviews', 

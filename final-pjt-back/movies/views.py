@@ -89,7 +89,7 @@ def movie_create(request):
                 'backdrop_key' : movie['backdrop_path'],
                 'video_key' : video_key
             }
-            add_data['movies'].append({'id': movie['id'], 'title': movie['title']})
+            add_data['movies'].append(movie['title'])
             serializer = MovieCreateSerializer(data=movie_data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()       # 영화 저장

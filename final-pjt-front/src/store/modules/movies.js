@@ -10,14 +10,16 @@ export default {
     genres: [],
     newMovies: {},      // 새로 영화 받아올 때 보여주기 위함
     moviesKind: '',    // 좋아요 버튼 클릭 시 영화 리스트의 하트도 변경
+    isDownload: false,  // 영화 받아오는 중
   },
   getters: {
     movies: state => state.movies,
     movie: state => state.movie,
-    newMovies: state => state.new_movies,
+    newMovies: state => state.newMovies,
     moviesKind: state => state.moviesKind,
     isMovies: state => !_.isEmpty(state.movies),
     genres: state => state.genres,
+    isDownload: state => state.isDownload,
   },
   mutations: {
     SET_MOVIES: (state, { movies, kind }) => {
@@ -25,8 +27,12 @@ export default {
       state.moviesKind = kind
     },
     SET_MOVIE: (state, movie) => state.movie = movie,
-    NEW_MOVIES: (state, new_movies) => state.newMovies = new_movies,
+    NEW_MOVIES: (state, newMovies) => {
+      state.newMovies = newMovies
+      state.isDownload = false
+    },
     SET_GENRES: (state, genres) => state.genres = genres,
+    SET_DOWNLOAD: state => state.isDownload = true
   },
   actions: {
     fetchGenres( {commit} ) {
@@ -90,16 +96,22 @@ export default {
     },
 
     createMovies({ commit, getters }) {
-      axios({
-        url: drf.movies.createMovie(),
-        method: 'post',
-        headers: getters.authHeader,
-      })
-        .then(res => {
-          commit('NEW_MOVIES', res.data)
-          alert('성공적으로 최신 영화를 받아왔습니다!')
+      if (confirm('정말 다운로드하시겠습니까?')) {
+        commit('SET_DOWNLOAD')
+        axios({
+          url: drf.movies.createMovies(),
+          method: 'post',
+          headers: getters.authHeader,
         })
-        .catch(err => console.error(err.response))
+          .then(res => {
+            commit('NEW_MOVIES', res.data)
+            setTimeout(() => {      
+              alert('성공적으로 최신 영화를 받아왔습니다!')
+              alert(getters.newMovies.movies)
+            }, 500)
+          })
+          .catch(err => console.error(err.response))
+      }
     },
 
     wishMovie( { commit, getters, dispatch }, moviePk) {
