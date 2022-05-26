@@ -23,7 +23,7 @@ params = {
 
 @api_view(['POST'])
 @permission_classes([IsAdminUser])      # 관리자만 가능!!
-def movie_create(request):
+def movie_create(request, kind, pages):
     # 영화 DB 초기 설정(genres와 popular_movies tmdb에서 받아오기)
     add_data = {'genres':[], 'movies':[]}
     # tmdb 장르 받아오기
@@ -46,21 +46,21 @@ def movie_create(request):
 
     # tmdb 영화 인기 영화 5 page 받아오기(한국 번역 트레일러 없는 영화 제외)
 
-    for page in range(1, 6):
-        popular_params = {
+    for page in range(1, pages + 1):
+        movies_params = {
             'api_key': '0092d2cc473c39e4782f65d37de965bd',
             'region': 'KR',
             'language': 'ko-KR',
             'page': page,
         }
-        path = '/movie/popular'
-        movies = requests.get(BASE_URL+path, params = popular_params).json()['results']
+        path = f'/movie/{kind}'
+        movies = requests.get(BASE_URL+path, params = movies_params).json()['results']
         for movie in movies:
             # 영화가 등록되어 있지 않는 경우만!
             if Movie.objects.all().filter(pk=movie['id']).exists():
                 continue
 
-            if not movie["poster_path"]:    # 포스터가 없는 경우 제외    
+            if not movie["poster_path"] or not movie["backdrop_path"]:    # 포스터나 배경이미지가 없는 경우 제외    
                 continue
 
             # 영화 트레일러 요청
@@ -77,7 +77,11 @@ def movie_create(request):
 
             # 영화 감독 이름
             path = f'/movie/{movie["id"]}/credits'
-            director_name = requests.get(BASE_URL+path, params = params).json()['crew'][0]['name']
+            directors = requests.get(BASE_URL+path, params = params).json()['crew']
+            if not directors:   # 영화 감독 없으면 제외
+                continue
+            director_name = directors[0]['name']
+
             movie_data = {
                 'pk' : movie['id'],
                 'title' : movie['title'],

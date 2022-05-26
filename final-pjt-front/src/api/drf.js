@@ -27,7 +27,7 @@ export default {
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
   },
   movies: {
-    createMovies: () => HOST + MOVIES + 'create/',
+    createMovies: (kind, page) => HOST + MOVIES + 'create/' +  `${kind}/` + `${page}/`,
     movies: kind => HOST + MOVIES + 'list/' + `${kind}/`,
     recommendMovies: () => HOST + MOVIES +'list/recommend/',
     movie: moviePk => HOST + MOVIES + `${moviePk}/`,

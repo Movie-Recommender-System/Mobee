@@ -98,22 +98,26 @@ export default {
       }
     },
 
-    createMovies({ commit, getters }) {
+    createMovies({ commit, getters }, { kind, page }) {
       if (confirm('정말 다운로드하시겠습니까?')) {
-        commit('SET_DOWNLOAD')
-        axios({
-          url: drf.movies.createMovies(),
-          method: 'post',
-          headers: getters.authHeader,
-        })
-          .then(res => {
-            commit('NEW_MOVIES', res.data)
-            setTimeout(() => {      
-              alert('성공적으로 최신 영화를 받아왔습니다!')
-              alert(getters.newMovies.movies)
-            }, 500)
+        if (page % 1 === 0 && page > 0) {
+          commit('SET_DOWNLOAD')
+          axios({
+            url: drf.movies.createMovies(kind, page),
+            method: 'post',
+            headers: getters.authHeader,
           })
-          .catch(err => console.error(err.response))
+            .then(res => {
+              commit('NEW_MOVIES', res.data)
+              setTimeout(() => {      
+                alert('성공적으로 데이터를 받아왔습니다!')
+                alert(getters.newMovies.movies)
+              }, 500)
+            })
+            .catch(err => console.error(err.response))
+        } else {
+          alert('알맞은 page를 입력하세요.')
+        }
       }
     },
 

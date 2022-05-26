@@ -7,8 +7,14 @@
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
       </button>
-      <button v-else class="btn btn-warning" 
-      @click="download()">꿀 영화 받아오기</button>
+      <form v-else>
+        <label for="page">page:</label>
+        <input id="page" type="text" v-model.trim="page">
+        <button  class="btn btn-warning"
+        @click.prevent="download('now_playing')">TMDB Now Playing Movie Update</button>
+        <button  class="btn btn-warning"
+        @click.prevent="download('popular')">TMDB Famous Movie Update</button>
+      </form>
     </div>
     <div class="row my-5">
       <div class="col-4 box ">
@@ -106,6 +112,7 @@
     components: { Bar },
     data() {
       return {
+        page: 0,
         chartData: {
           labels: [ 'a', 'b', 'c', 'd' ],
           datasets: [ { 
@@ -155,10 +162,10 @@
     },
     methods: {
       ...mapActions(['fetchProfile', 'createMovies']),
-      download() {
+      download(kind) {
         setTimeout(() => {      
-        this.createMovies()
-      }, 500) 
+        this.createMovies({'kind': kind, 'page': this.page})
+        }, 500)
       }
     },
     created () {
