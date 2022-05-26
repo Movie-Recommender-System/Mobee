@@ -147,7 +147,6 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Dosis:wght@200;300;500;800&family=Gowun+Dodum&family=Playfair+Display:ital,wght@1,400;1,800&family=Poor+Story&display=swap');@charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 *, *:before, *:after {
