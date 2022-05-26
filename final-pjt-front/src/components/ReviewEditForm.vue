@@ -33,12 +33,12 @@
       </div>
       
       <div>
-        <label for="content">content: </label>
+        <label for="content">Content</label><br>
         <textarea placeholder="리뷰를 수정해 주세요." v-model.trim="editReview.content" type="text" id="content" />
       </div>
     </div>
     <div>
-      <button>수정</button>
+      <button class="btn btn-primary">수정</button>
     </div>
   </form>
 </template>

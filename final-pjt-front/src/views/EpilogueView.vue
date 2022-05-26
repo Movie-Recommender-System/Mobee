@@ -4,7 +4,7 @@
       <div class="wrapper">
         <h1 class="pre-text">Mobee</h1>
         <h2 class="pre-text">꿀잼 영화 추천 사이트</h2>
-          <p>Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,Pursued by the Empire's sinister agents,"</p>
+        <p class="pre-text">힘들었다...</p>
       </div>
     </div>
   </div>

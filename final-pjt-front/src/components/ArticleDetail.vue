@@ -10,7 +10,7 @@
           
         </div>
         <div class="col-2">
-          작성자 : {{ article.user.username }}
+          {{ article.user.username }}
         </div>
       </div>
       <div class="row text-center py-2">
